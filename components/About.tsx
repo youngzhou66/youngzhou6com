@@ -34,7 +34,6 @@ export default function About() {
     about.vue,
     about.mysql,
     about.ai,
-    about.ts,
   ];
 
   const experiences = about.experience;
