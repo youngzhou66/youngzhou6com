@@ -197,7 +197,7 @@ function GroupPageContent() {
   const [lockedPositions, setLockedPositions] = useState<Record<string, Position | null>>({});
   const [teams, setTeams] = useState<Team[] | null>(null);
   const [sortMode, setSortMode] = useState<SortMode>('balanced');
-  const [threshold, setThreshold] = useState(0.3);
+  const [threshold, setThreshold] = useState(0.15);
   const [showAddForm, setShowAddForm] = useState(false);
   const [newPlayerName, setNewPlayerName] = useState('');
   const [newPlayerTiers, setNewPlayerTiers] = useState<Record<Position, TierKey>>({
