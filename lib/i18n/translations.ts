@@ -4,6 +4,7 @@ export const translations = {
       home: '首页',
       about: '关于',
       portfolio: '项目',
+      group: '分组',
     },
     hero: {
       welcome: '欢迎来到我的个人首页',
@@ -202,6 +203,7 @@ export const translations = {
       home: 'Home',
       about: 'About',
       portfolio: 'Projects',
+      group: 'Group',
     },
     hero: {
       welcome: 'Welcome to my personal homepage',

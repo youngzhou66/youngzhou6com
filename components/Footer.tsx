@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
@@ -11,14 +12,29 @@ const socialLinks = [
 
 export default function Footer() {
   const { t } = useLanguage();
+  const router = useRouter();
   const footer = t('footer');
   const nav = t('nav');
   const currentYear = new Date().getFullYear();
+
+  const navigateToSection = (href: string) => {
+    if (window.location.pathname !== '/') {
+      router.push('/');
+      setTimeout(() => {
+        const element = document.querySelector(href);
+        if (element) element.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      const element = document.querySelector(href);
+      if (element) element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const quickLinks = [
     { name: nav.home, href: '#home' },
     { name: nav.about, href: '#about' },
     { name: nav.portfolio, href: '#portfolio' },
+    { name: nav.group, href: '/group' },
   ];
 
   return (
@@ -39,6 +55,14 @@ export default function Footer() {
                 <li key={item.name}>
                   <a
                     href={item.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (item.href.startsWith('/')) {
+                        router.push(item.href);
+                      } else {
+                        navigateToSection(item.href);
+                      }
+                    }}
                     className="text-gray-400 hover:text-white transition-colors"
                   >
                     {item.name}

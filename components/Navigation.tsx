@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 import LanguageSwitcher from './i18n/LanguageSwitcher';
@@ -9,12 +10,14 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { t } = useLanguage();
+  const router = useRouter();
 
   const nav = t('nav');
   const navLinks = [
     { name: nav.home, href: '#home' },
     { name: nav.about, href: '#about' },
     { name: nav.portfolio, href: '#portfolio' },
+    { name: nav.group, href: '/group', external: true },
   ];
 
   useEffect(() => {
@@ -25,7 +28,12 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (href: string) => {
+  const scrollToSection = (href: string, external?: boolean) => {
+    if (external) {
+      router.push(href);
+      setIsOpen(false);
+      return;
+    }
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -61,7 +69,7 @@ export default function Navigation() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * index + 0.3 }}
-                onClick={() => scrollToSection(link.href)}
+                onClick={() => scrollToSection(link.href, link.external)}
                 className="text-sm font-medium text-secondary hover:text-primary transition-colors relative group"
               >
                 {link.name}
@@ -105,7 +113,7 @@ export default function Navigation() {
           {navLinks.map((link) => (
             <button
               key={link.name}
-              onClick={() => scrollToSection(link.href)}
+              onClick={() => scrollToSection(link.href, link.external)}
               className="block w-full text-left text-lg font-medium text-secondary hover:text-primary transition-colors py-2"
             >
               {link.name}
