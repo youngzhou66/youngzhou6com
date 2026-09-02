@@ -677,6 +677,9 @@ function GroupPageContent() {
                 </div>
                 <div className="text-sm font-medium text-gray-200">{info.label}</div>
                 <div className="text-xs text-gray-500">{info.elo} ELO</div>
+                <div className="mt-1 text-[11px] text-cyan-400/80 bg-cyan-500/10 px-2 py-0.5 rounded">
+                  {info.rank}
+                </div>
               </div>
             ))}
           </div>
