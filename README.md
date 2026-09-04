@@ -24,17 +24,19 @@
 | 语言 | [TypeScript](https://www.typescriptlang.org/) |
 | 样式 | [Tailwind CSS](https://tailwindcss.com/) |
 | 动画 | [Framer Motion](https://www.framer.com/motion/) |
-| 部署 | [Vercel](https://vercel.com/) |
+| 部署 | [Cloudflare Workers](https://workers.cloudflare.com/) |
 
 ## 📋 档次划分
 
 | 档次 | ELO | 说明 |
 |------|-----|------|
-| 夯 | 210 | 职业级 |
-| 顶级 | 170 | 大师/王者 |
-| 人上人 | 130 | 钻石 |
-| 拉完了 | 110 | 黄金/铂金 |
-| NPC | 90 | 白银及以下 |
+| 夯爆了 | 220 | 大师及以上 |
+| 夯 | 210 | 钻1钻2 |
+| 顶级 | 170 | 钻石 |
+| 人上人 | 130 | 翡翠 |
+| NPC | 90 | 白金 |
+| 拉完了 | 50 | 黄金 |
+| 人机 | 40 | 骇人鲸 |
 
 ## 📁 项目结构
 
@@ -118,26 +120,40 @@ npm run lint
 { name: '玩家名', positions: { top: 'npc', jungle: 'dingji', mid: 'renshangren', adc: 'lawanle', support: 'npc' } }
 ```
 
-可用档次：`npc`、`lawanle`、`renshangren`、`dingji`、`hang`
+可用档次：`hangbaole`、`hang`、`dingji`、`renshangren`、`npc`、`lawanle`、`renji`
 
 ## 🚀 部署
 
-### Vercel（推荐）
+### Cloudflare Workers + 阿里云域名
 
-项目已配置 Vercel，push 到 GitHub 后自动部署：
+项目部署在 Cloudflare Workers，绑定阿里云自定义域名 `youngzhou6.space`，国内可正常访问。
 
-```bash
-git add .
-git commit -m "update"
-git push origin master
-```
+#### 部署步骤：
 
-### 本地部署
-
+1. **本地构建**
 ```bash
 npm run build
-# 产物在 out/ 目录，可部署到任意静态托管服务
 ```
+
+2. **在 Cloudflare Workers 后台上传 out/ 目录**
+   - 进入 Cloudflare → Workers & Pages → 你的 Worker
+   - 上传 `out/` 目录下的所有文件
+
+3. **绑定域名**
+   - Worker → Settings → Domains → 添加 `youngzhou6.space`
+   - Cloudflare 会自动配置 DNS 记录
+
+4. **阿里云 DNS 设置**
+   - 将 DNS 服务器改为 Cloudflare 提供的：
+     ```
+     emely.ns.cloudflare.com
+     rory.ns.cloudflare.com
+     ```
+   - Cloudflare 接管 DNS 管理
+
+#### 自动部署（可选）
+
+已配置 GitHub Actions，push 到 master 后 Vercel 自动部署，可作为备用方案。
 
 ---
 
