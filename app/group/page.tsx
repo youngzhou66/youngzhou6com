@@ -10,6 +10,10 @@ import {
   type Position,
   type TierKey,
 } from '@/data/players';
+import {
+  CHAMPIONS_DATA,
+  type ChampionEntry,
+} from '@/data/champions';
 
 type SortMode = 'balanced' | 'random';
 
@@ -25,6 +29,34 @@ interface Team {
   color: string;
   players: GroupedPlayer[];
   totalElo: number;
+}
+
+type ChampionPoolMode = 'all' | 'top20' | 'meta';
+
+const CHAMPION_POOL_OPTIONS: { id: ChampionPoolMode; label: string; hint: string }[] = [
+  { id: 'all', label: '全英雄', hint: '从该位置 OP.GG 全部榜单英雄中抽取' },
+  { id: 'top20', label: '热门 前20', hint: '只从该位置胜率/登场率前 20 名中抽取' },
+  { id: 'meta', label: 'Tier 1~2', hint: '只从 OP.GG 版本强势（Tier 1~2）英雄中抽取' },
+];
+
+function championDrawErrorText(count: number): string {
+  return `当前英雄池无法为 10 位玩家凑出 ${count * 10} 个不重复的英雄，请切换到更大的英雄池后再试`;
+}
+
+const OPGG_QUEUE_LABELS: Record<string, string> = { ranked: '单双排' };
+const OPGG_REGION_LABELS: Record<string, string> = { global: '全服' };
+const OPGG_TIER_LABELS: Record<string, string> = {
+  emerald_plus: '翡翠+',
+  diamond_plus: '钻石+',
+  platinum_plus: '白金+',
+};
+
+function opggSnapshotText(): string {
+  const queue = OPGG_QUEUE_LABELS[CHAMPIONS_DATA.queue] ?? CHAMPIONS_DATA.queue;
+  const region = OPGG_REGION_LABELS[CHAMPIONS_DATA.region] ?? CHAMPIONS_DATA.region;
+  const tier = OPGG_TIER_LABELS[CHAMPIONS_DATA.tier] ?? CHAMPIONS_DATA.tier;
+  const date = CHAMPIONS_DATA.updatedAt.slice(0, 10);
+  return `${queue} · ${region} · ${tier} · 更新 ${date}`;
 }
 
 const POSITIONS: Position[] = ['top', 'jungle', 'mid', 'adc', 'support'];
@@ -167,6 +199,79 @@ function generateRandomGroups(
   return { team1: [], team2: [] };
 }
 
+function championPoolFor(position: Position, mode: ChampionPoolMode): ChampionEntry[] {
+  const list = CHAMPIONS_DATA.positions[position];
+  if (mode === 'top20') return list.slice(0, 20);
+  if (mode === 'meta') return list.filter((c) => c.tier <= 2);
+  return list;
+}
+
+function drawChampionAssignments(
+  players: GroupedPlayer[],
+  mode: ChampionPoolMode,
+  count: number
+): Record<string, ChampionEntry[]> | null {
+  // 每次尝试都重新随机玩家顺序，避免固定“先选上单、后选打野”造成的位置先后偏差
+  const tryPick = () => {
+    const taken = new Set<string>();
+    const result: Record<string, ChampionEntry[]> = {};
+
+    for (const gp of shuffle(players)) {
+      const pool = championPoolFor(gp.position, mode);
+      const candidates = shuffle(pool.filter((c) => !taken.has(c.key)));
+      if (candidates.length < count) return null;
+
+      const chosen = candidates.slice(0, count);
+      result[gp.player.name] = chosen;
+      for (const c of chosen) taken.add(c.key);
+    }
+    return result;
+  };
+
+  // 严格保证全场 count*10 个英雄不重复（同一局里不能出现相同英雄），
+  // 试不出来就直接返回 null，由页面提示用户，不进入“允许重复”的兜底
+  for (let attempt = 0; attempt < 400; attempt++) {
+    const result = tryPick();
+    if (result) return result;
+  }
+  return null;
+}
+
+function ChampionPickCard({ champion }: { champion: ChampionEntry }) {
+  const winColor =
+    champion.winRate >= 50
+      ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20'
+      : 'bg-red-500/10 text-red-300 border-red-500/20';
+
+  return (
+    <div
+      title={`${champion.name} · OP.GG #${champion.rank} · 胜率 ${champion.winRate.toFixed(1)}% · 登场率 ${champion.pickRate.toFixed(1)}%`}
+      className="flex items-center gap-2 rounded-lg bg-[#12151f] border border-white/10 px-2 py-1.5 shadow-sm hover:border-cyan-400/30 transition-colors"
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={champion.imageUrl}
+        alt={champion.name}
+        loading="lazy"
+        className="w-9 h-9 rounded-lg object-cover border border-white/10 flex-shrink-0"
+      />
+      <div className="min-w-0">
+        <div className="text-xs font-semibold text-gray-100 truncate">{champion.name}</div>
+        <div className="mt-1 flex flex-wrap items-center gap-1">
+          <span
+            className={`inline-flex items-center rounded border px-1 py-0.5 text-[10px] font-medium leading-none ${winColor}`}
+          >
+            胜率 {champion.winRate.toFixed(1)}%
+          </span>
+          <span className="inline-flex items-center rounded border border-sky-500/20 bg-sky-500/10 px-1 py-0.5 text-[10px] font-medium leading-none text-sky-300">
+            登场 {champion.pickRate.toFixed(1)}%
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const TIER_KEYS = Object.keys(TIER_INFO) as TierKey[];
 
 export default function GroupPage() {
@@ -178,6 +283,11 @@ function GroupPageContent() {
   const [selected, setSelected] = useState<string[]>([]);
   const [lockedPositions, setLockedPositions] = useState<Record<string, Position[]>>({});
   const [teams, setTeams] = useState<Team[] | null>(null);
+  const [championPoolMode, setChampionPoolMode] = useState<ChampionPoolMode>('all');
+  const [championDraws, setChampionDraws] = useState<Record<string, ChampionEntry[]>>({});
+  const [heroCountPerPlayer, setHeroCountPerPlayer] = useState(2);
+  const [showChampionPool, setShowChampionPool] = useState(false);
+  const [championDrawError, setChampionDrawError] = useState<string | null>(null);
   const [sortMode, setSortMode] = useState<SortMode>('balanced');
   const [threshold, setThreshold] = useState(0.15);
   const [showAddForm, setShowAddForm] = useState(false);
@@ -223,6 +333,19 @@ function GroupPageContent() {
       ? generateBalancedGroups(selectedPlayers, lockedPositions, threshold)
       : generateRandomGroups(selectedPlayers, lockedPositions);
 
+    const championAssignments = drawChampionAssignments(
+      [...result.team1, ...result.team2],
+      championPoolMode,
+      heroCountPerPlayer
+    );
+    if (championAssignments) {
+      setChampionDraws(championAssignments);
+      setChampionDrawError(null);
+    } else {
+      setChampionDraws({});
+      setChampionDrawError(championDrawErrorText(heroCountPerPlayer));
+    }
+
     const elo1 = result.team1.reduce((s, p) => s + p.elo, 0);
     const elo2 = result.team2.reduce((s, p) => s + p.elo, 0);
 
@@ -240,7 +363,54 @@ function GroupPageContent() {
         totalElo: elo2,
       },
     ]);
-  }, [selected, sortMode, lockedPositions, threshold, allPlayers]);
+  }, [selected, sortMode, lockedPositions, threshold, allPlayers, championPoolMode, heroCountPerPlayer]);
+
+  const rerollChampions = () => {
+    if (!teams || teams[0].players.length !== 5 || teams[1].players.length !== 5) return;
+    const drawnPlayers = [...teams[0].players, ...teams[1].players];
+    const nextDraw = drawChampionAssignments(
+      drawnPlayers,
+      championPoolMode,
+      heroCountPerPlayer
+    );
+    if (nextDraw) {
+      setChampionDraws(nextDraw);
+      setChampionDrawError(null);
+    } else {
+      setChampionDraws({});
+      setChampionDrawError(championDrawErrorText(heroCountPerPlayer));
+    }
+  };
+
+  const changeChampionPoolMode = (mode: ChampionPoolMode) => {
+    setChampionPoolMode(mode);
+    if (teams && teams[0].players.length === 5 && teams[1].players.length === 5) {
+      const drawnPlayers = [...teams[0].players, ...teams[1].players];
+      const nextDraw = drawChampionAssignments(drawnPlayers, mode, heroCountPerPlayer);
+      if (nextDraw) {
+        setChampionDraws(nextDraw);
+        setChampionDrawError(null);
+      } else {
+        setChampionDraws({});
+        setChampionDrawError(championDrawErrorText(heroCountPerPlayer));
+      }
+    }
+  };
+
+  const changeHeroCountPerPlayer = (count: number) => {
+    setHeroCountPerPlayer(count);
+    if (teams && teams[0].players.length === 5 && teams[1].players.length === 5) {
+      const drawnPlayers = [...teams[0].players, ...teams[1].players];
+      const nextDraw = drawChampionAssignments(drawnPlayers, championPoolMode, count);
+      if (nextDraw) {
+        setChampionDraws(nextDraw);
+        setChampionDrawError(null);
+      } else {
+        setChampionDraws({});
+        setChampionDrawError(championDrawErrorText(count));
+      }
+    }
+  };
 
   useEffect(() => {
     if (teams && resultRef.current) {
@@ -313,7 +483,7 @@ function GroupPageContent() {
               LOL 智能分组
             </h1>
             <p className="text-gray-400 text-lg">
-              选择 10 位玩家，系统将根据 ELO 智能平衡双方实力
+              选择 10 位玩家，系统将根据 ELO 智能平衡双方实力，并按位置抽取英雄
             </p>
           </motion.div>
 
@@ -323,75 +493,40 @@ function GroupPageContent() {
           transition={{ delay: 0.1 }}
           className="bg-[#1a1d27] border border-white/5 rounded-2xl p-6 shadow-xl mb-6"
         >
-          <div className="flex flex-wrap items-center gap-4 mb-4">
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-gray-400">
-                已选择: <span className="text-cyan-400 font-bold">{selectedCount}</span> / 10
+          <div className="flex flex-wrap items-center gap-3 mb-6">
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="text-base font-bold text-white">👥 选择 10 位玩家</span>
+              <span className="px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-xs font-medium text-cyan-300">
+                已选 {selectedCount} / 10
               </span>
             </div>
-            <div className="flex gap-2">
+            <div className="flex-1" />
+            <div className="flex flex-wrap gap-2">
               <button
                 onClick={randomSelect}
-                className="px-4 py-2 bg-white/5 hover:bg-white/10 text-gray-200 text-sm rounded-lg border border-white/10 transition-colors"
+                className="px-3.5 py-2 bg-white/5 hover:bg-white/10 text-gray-200 text-sm rounded-lg border border-white/10 transition-colors"
               >
                 🎲 随机选10人
               </button>
               <button
                 onClick={clearAll}
-                className="px-4 py-2 bg-white/5 hover:bg-white/10 text-gray-200 text-sm rounded-lg border border-white/10 transition-colors"
+                className="px-3.5 py-2 bg-white/5 hover:bg-white/10 text-gray-200 text-sm rounded-lg border border-white/10 transition-colors"
               >
                 🗑️ 清空
               </button>
               <button
                 onClick={() => setShowAddForm(!showAddForm)}
-                className="px-4 py-2 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 text-sm rounded-lg border border-cyan-500/30 transition-colors"
+                className="px-3.5 py-2 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 text-sm rounded-lg border border-cyan-500/30 transition-colors"
               >
                 ➕ 添加玩家
               </button>
               <button
                 onClick={() => setShowAlgorithm(true)}
-                className="px-4 py-2 bg-white/5 hover:bg-white/10 text-gray-300 text-sm rounded-lg border border-white/10 transition-colors"
+                className="px-3.5 py-2 bg-white/5 hover:bg-white/10 text-gray-300 text-sm rounded-lg border border-white/10 transition-colors"
               >
                 📖 算法原理
               </button>
             </div>
-            <div className="flex-1" />
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-gray-400">模式:</span>
-              <div className="flex bg-white/5 rounded-lg p-1 border border-white/10">
-                <button
-                  onClick={() => setSortMode('balanced')}
-                  className={`px-3 py-1 rounded text-sm transition-colors ${
-                    sortMode === 'balanced'
-                      ? 'bg-cyan-500 text-white'
-                      : 'text-gray-400 hover:text-gray-200'
-                  }`}
-                >
-                  智能平衡
-                </button>
-                <button
-                  onClick={() => setSortMode('random')}
-                  className={`px-3 py-1 rounded text-sm transition-colors ${
-                    sortMode === 'random'
-                      ? 'bg-cyan-500 text-white'
-                      : 'text-gray-400 hover:text-gray-200'
-                  }`}
-                >
-                  真随机
-                </button>
-              </div>
-            </div>
-            <button
-              onClick={handleGenerate}
-              disabled={selected.length !== 10}
-              className={`px-6 py-2 rounded-lg font-medium text-white transition-all ${
-                selected.length === 10
-                  ? 'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 shadow-lg shadow-cyan-500/30'
-                  : 'bg-gray-600 cursor-not-allowed'
-              }`}
-            >
-              ⚔️ 开始分组
-            </button>
           </div>
 
           <AnimatePresence>
@@ -447,28 +582,6 @@ function GroupPageContent() {
             )}
           </AnimatePresence>
 
-          {sortMode === 'balanced' && (
-            <div className="mb-4 bg-white/5 border border-white/10 rounded-xl p-4">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm text-gray-300">ELO 差值阈值</span>
-                <span className="text-sm font-bold text-cyan-400">{(threshold * 100).toFixed(0)}%</span>
-              </div>
-              <input
-                type="range"
-                min="5"
-                max="60"
-                step="5"
-                value={threshold * 100}
-                onChange={(e) => setThreshold(Number(e.target.value) / 100)}
-                className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-cyan-500"
-              />
-              <div className="flex justify-between text-xs text-gray-500 mt-1">
-                <span>严格 5%</span>
-                <span>宽松 60%</span>
-              </div>
-            </div>
-          )}
-
           {customPlayers.length > 0 && (
             <div className="mb-4 bg-white/5 border border-white/10 rounded-xl p-3">
               <div className="text-xs text-gray-400 mb-2">临时玩家 ({customPlayers.length}):</div>
@@ -509,6 +622,158 @@ function GroupPageContent() {
                 </div>
               );
             })}
+          </div>
+          <div className="mt-6 pt-5 border-t border-white/10">
+            <div className="flex flex-wrap items-center gap-3 mb-4">
+              <h3 className="text-base font-bold text-white">⚙️ 分组与英雄设置</h3>
+              <span className="text-xs text-gray-500">
+                已出结果时修改设置会立即按新配置重新抽取
+              </span>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-4">
+              <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+                <div className="text-sm font-medium text-gray-300 mb-3">🧩 分组模式</div>
+                <div className="flex bg-[#0f1117] rounded-lg p-1 border border-white/10">
+                  <button
+                    onClick={() => setSortMode('balanced')}
+                    className={`flex-1 px-3 py-2 rounded-md text-sm transition-colors ${
+                      sortMode === 'balanced'
+                        ? 'bg-cyan-500 text-white font-medium'
+                        : 'text-gray-400 hover:text-gray-200'
+                    }`}
+                  >
+                    智能平衡
+                  </button>
+                  <button
+                    onClick={() => setSortMode('random')}
+                    className={`flex-1 px-3 py-2 rounded-md text-sm transition-colors ${
+                      sortMode === 'random'
+                        ? 'bg-cyan-500 text-white font-medium'
+                        : 'text-gray-400 hover:text-gray-200'
+                    }`}
+                  >
+                    真随机
+                  </button>
+                </div>
+                <p className="text-[11px] text-gray-500 mt-2">
+                  智能平衡按 ELO 均衡实力；真随机只保证能凑成 5v5
+                </p>
+              </div>
+
+              <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-sm font-medium text-gray-300">⚖️ ELO 差值阈值</span>
+                  {sortMode === 'balanced' && (
+                    <span className="text-sm font-bold text-cyan-400">
+                      {(threshold * 100).toFixed(0)}%
+                    </span>
+                  )}
+                </div>
+                {sortMode === 'balanced' ? (
+                  <>
+                    <input
+                      type="range"
+                      min="5"
+                      max="60"
+                      step="5"
+                      value={threshold * 100}
+                      onChange={(e) => setThreshold(Number(e.target.value) / 100)}
+                      className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-cyan-500"
+                    />
+                    <div className="flex justify-between text-xs text-gray-500 mt-1">
+                      <span>严格 5%</span>
+                      <span>宽松 60%</span>
+                    </div>
+                  </>
+                ) : (
+                  <p className="text-xs text-gray-500 leading-relaxed">
+                    真随机模式不参与 ELO 均衡，无阈值
+                  </p>
+                )}
+              </div>
+
+              <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-sm font-medium text-gray-300">🎯 英雄池</span>
+                  <button
+                    onClick={() => setShowChampionPool(true)}
+                    className="text-xs text-cyan-400/80 hover:text-cyan-300 transition-colors"
+                  >
+                    👁 查看英雄
+                  </button>
+                </div>
+                <div className="grid grid-cols-3 gap-1.5 bg-[#0f1117] rounded-lg p-1 border border-white/10">
+                  {CHAMPION_POOL_OPTIONS.map((opt) => (
+                    <button
+                      key={opt.id}
+                      onClick={() => changeChampionPoolMode(opt.id)}
+                      title={opt.hint}
+                      className={`px-2 py-2 rounded-md text-xs transition-colors ${
+                        championPoolMode === opt.id
+                          ? 'bg-cyan-500 text-white font-medium'
+                          : 'text-gray-400 hover:text-gray-200'
+                      }`}
+                    >
+                      {opt.label}
+                    </button>
+                  ))}
+                </div>
+                <p className="text-[11px] text-gray-500 mt-2">
+                  {CHAMPION_POOL_OPTIONS.find((o) => o.id === championPoolMode)?.hint}
+                </p>
+              </div>
+
+              <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-sm font-medium text-gray-300">🎲 每人英雄数</span>
+                  <span className="px-2 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-xs font-bold text-cyan-300">
+                    {heroCountPerPlayer} 个
+                  </span>
+                </div>
+                <input
+                  type="range"
+                  min="1"
+                  max="3"
+                  step="1"
+                  value={heroCountPerPlayer}
+                  onChange={(e) => changeHeroCountPerPlayer(Number(e.target.value))}
+                  className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-cyan-500"
+                />
+                <div className="flex justify-between text-xs text-gray-500 mt-1 px-0.5">
+                  <span>1</span>
+                  <span>2</span>
+                  <span>3</span>
+                </div>
+                <p className="text-[11px] text-gray-500 mt-2">
+                  10 人共需 {heroCountPerPlayer * 10} 个不重复英雄
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-6 flex justify-center">
+              <button
+                onClick={handleGenerate}
+                disabled={selected.length !== 10}
+                className={`px-10 py-3 rounded-xl font-bold text-white transition-all ${
+                  selected.length === 10
+                    ? 'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/40'
+                    : 'bg-gray-600 cursor-not-allowed'
+                }`}
+              >
+                ⚔️ 开始分组{selected.length === 10 ? '' : `（还需 ${10 - selected.length} 人）`}
+              </button>
+            </div>
+          </div>
+          <div className="mt-5 pt-4 border-t border-white/5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-gray-500">
+            <span>🎯 分组完成后会自动为每位玩家按位置抽出 {heroCountPerPlayer} 个英雄，默认全场不重复</span>
+            <a
+              href={CHAMPIONS_DATA.sourceUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="text-cyan-400/70 hover:text-cyan-300 transition-colors"
+            >
+              🎮 英雄数据来自 OP.GG · Patch {CHAMPIONS_DATA.patch} · {opggSnapshotText()}
+            </a>
           </div>
         </motion.div>
 
@@ -625,6 +890,7 @@ function GroupPageContent() {
                             const gp = team.players.find((p) => p.position === pos);
                             if (!gp) return null;
                             const tier = TIER_INFO[gp.tier];
+                            const champions = championDraws[gp.player.name];
                             return (
                               <div
                                 key={pos}
@@ -640,6 +906,21 @@ function GroupPageContent() {
                                     <span>{tier.label}</span>
                                   </div>
                                   <div className="font-semibold text-white text-sm truncate">{gp.player.name}</div>
+                                  {champions && champions.length > 0 && (
+                                    <div
+                                      className={`mt-2 grid gap-1.5 ${
+                                        champions.length === 1
+                                          ? 'grid-cols-1'
+                                          : champions.length === 2
+                                          ? 'grid-cols-2'
+                                          : 'grid-cols-2 sm:grid-cols-3'
+                                      }`}
+                                    >
+                                      {champions.map((c) => (
+                                        <ChampionPickCard key={c.key} champion={c} />
+                                      ))}
+                                    </div>
+                                  )}
                                 </div>
                                 <div className={`px-2.5 py-1 rounded-full text-white text-xs font-bold ${tier.color} flex-shrink-0`}>
                                   {tier.icon} {tier.elo}
@@ -695,6 +976,23 @@ function GroupPageContent() {
                           : diffRatio <= threshold
                           ? '🙂 差距不大'
                           : '😅 有一定差距'}
+                      </span>
+                    </div>
+                    {championDrawError && (
+                      <div className="mt-4 mx-auto max-w-lg rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+                        ⚠️ {championDrawError}
+                      </div>
+                    )}
+                    <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
+                      <button
+                        onClick={rerollChampions}
+                        title="保持当前队伍和位置，只重新抽取英雄"
+                        className="px-5 py-2 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 text-sm rounded-lg border border-cyan-500/30 transition-colors"
+                      >
+                        🎲 重新抽英雄
+                      </button>
+                      <span className="text-xs text-gray-500">
+                        {CHAMPION_POOL_OPTIONS.find((o) => o.id === championPoolMode)?.hint}
                       </span>
                     </div>
                   </motion.div>
@@ -804,13 +1102,111 @@ function GroupPageContent() {
                   </p>
                 </div>
                 <div>
+                  <div className="font-bold text-cyan-400 mb-1">🎮 英雄抽取</div>
+                  <p className="text-gray-400">
+                    分组完成后，按每个人分到的位置，从 OP.GG 快照的对应位置英雄池中抽英雄，
+                    每人数量可在 1~3 之间调整（默认 2 个）。
+                  </p>
+                  <ol className="list-decimal list-inside space-y-1 text-gray-400 mt-2">
+                    <li>选择英雄池：全英雄 / 热门前 20 / Tier 1~2</li>
+                    <li>每次尝试前随机打乱 10 人顺序，避免固定先后手</li>
+                    <li>每个人从自己位置剩余可选的英雄中随机取所需数量</li>
+                    <li>抽过的英雄全局标记，其他位置不会再抽到（跨位置不重复）</li>
+                    <li>同一局所有玩家拿到的英雄都必须不重复，凑不齐时提示换更大的英雄池</li>
+                  </ol>
+                  <p className="text-gray-400 mt-2">
+                    一个英雄可能同时出现在多个位置池（例如剑魔可上单也可打野），
+                    只要被任意位置抽到，它在其他位置池中也会同步失效。
+                  </p>
+                </div>
+                <div>
                   <div className="font-bold text-cyan-400 mb-1">🔒 位置锁定</div>
                   <p className="text-gray-400">锁定位置后，系统只从锁定的位置中分配，确保位置不跑偏。</p>
                 </div>
                 <div>
                   <div className="font-bold text-cyan-400 mb-1">❓ 为什么要打乱？</div>
-                  <p className="text-gray-400">先分配的人选择空间最大，打乱后多试几次就能找到更优解。</p>
+                  <p className="text-gray-400">
+                    先分配的人选择空间最大。分组和抽英雄都会在每次尝试时重新打乱玩家顺序，
+                    既能帮分组找到更优解，也能避免某个位置固定先选、把共用英雄都“抢走”。
+                  </p>
                 </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {showChampionPool && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={() => setShowChampionPool(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="bg-[#1a1d27] border border-white/10 rounded-2xl p-6 shadow-2xl max-w-4xl w-full max-h-[85vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-start justify-between gap-4 mb-1">
+                <div>
+                  <h3 className="text-xl font-bold text-white">🗂️ 当前英雄池</h3>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {CHAMPION_POOL_OPTIONS.find((o) => o.id === championPoolMode)?.label} ·
+                    共 {POSITIONS.reduce((sum, pos) => sum + championPoolFor(pos, championPoolMode).length, 0)} 名英雄 ·
+                    Patch {CHAMPIONS_DATA.patch}
+                  </p>
+                </div>
+                <button
+                  onClick={() => setShowChampionPool(false)}
+                  className="text-gray-400 hover:text-white text-xl flex-shrink-0"
+                >
+                  ✕
+                </button>
+              </div>
+              <p className="text-[11px] text-gray-500 mb-5">
+                按位置显示当前可选英雄，抽取时会从对应位置的池子中随机选择
+              </p>
+
+              <div className="space-y-5">
+                {POSITIONS.map((pos) => {
+                  const list = championPoolFor(pos, championPoolMode);
+                  return (
+                    <div key={pos}>
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-sm font-bold text-white">
+                          {POSITION_LABELS[pos].icon} {POSITION_LABELS[pos].zh}
+                        </span>
+                        <span className="text-xs text-gray-500">({list.length})</span>
+                        <div className="flex-1 h-px bg-white/10" />
+                      </div>
+                      <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-2">
+                        {list.map((c) => (
+                          <div
+                            key={c.key}
+                            title={c.name}
+                            className="flex flex-col items-center gap-1 bg-white/5 border border-white/5 rounded-lg p-2 hover:bg-white/10 transition-colors"
+                          >
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={c.imageUrl}
+                              alt={c.name}
+                              loading="lazy"
+                              className="w-10 h-10 rounded-full object-cover"
+                            />
+                            <span className="text-[11px] text-gray-300 max-w-full truncate">
+                              {c.name}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </motion.div>
           </motion.div>
