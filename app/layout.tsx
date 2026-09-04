@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "zhou feng | AI Coding 实践者",
-  description: "Personal portfolio showcasing my creative work and projects",
+  title: "LOL 智能分组",
+  description: "LOL 自动分组工具 - 根据 ELO 智能平衡双方实力",
 };
 
 export default function RootLayout({

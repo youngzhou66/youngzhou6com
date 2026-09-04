@@ -1,10 +1,7 @@
 'use client';
 
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { LanguageProvider } from '@/lib/i18n/LanguageContext';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
 import {
   PLAYERS as BASE_PLAYERS,
   TIER_INFO,
@@ -53,7 +50,7 @@ interface AssignResult {
 
 function tryAssign(
   players: Player[],
-  lockedPositions: Record<string, Position | null>
+  lockedPositions: Record<string, Position[]>
 ): AssignResult | null {
   const team1: GroupedPlayer[] = [];
   const team2: GroupedPlayer[] = [];
@@ -67,42 +64,33 @@ function tryAssign(
   for (const player of shuffled) {
     if (assigned.has(player.name)) continue;
 
-    const locked = lockedPositions[player.name];
-
-    if (locked) {
-      const elo = TIER_INFO[player.positions[locked]].elo;
-      const t1Elo = team1.reduce((s, p) => s + p.elo, 0);
-      const t2Elo = team2.reduce((s, p) => s + p.elo, 0);
-
-      if (!pos1.has(locked) && team1.length < 5 && (t1Elo <= t2Elo || team2.length >= 5)) {
-        team1.push({ player, position: locked, tier: player.positions[locked], elo });
-        pos1.add(locked);
-      } else if (!pos2.has(locked) && team2.length < 5 && (t2Elo < t1Elo || team1.length >= 5)) {
-        team2.push({ player, position: locked, tier: player.positions[locked], elo });
-        pos2.add(locked);
-      } else {
-        continue;
-      }
-      assigned.add(player.name);
-      continue;
-    }
-
-    const playerPositions = POSITIONS.filter(
-      (p) => !isNaN(TIER_INFO[player.positions[p]].elo)
-    );
+    const locked = lockedPositions[player.name] || [];
 
     const candidates: { pos: Position; elo: number; team: 't1' | 't2' }[] = [];
 
-    for (const p of playerPositions) {
-      const elo = TIER_INFO[player.positions[p]].elo;
-      const t1Elo = team1.reduce((s, x) => s + x.elo, 0);
-      const t2Elo = team2.reduce((s, x) => s + x.elo, 0);
-
-      if (!pos1.has(p) && team1.length < 5) {
-        candidates.push({ pos: p, elo, team: 't1' });
+    if (locked.length > 0) {
+      for (const pos of locked) {
+        const elo = TIER_INFO[player.positions[pos]].elo;
+        if (!pos1.has(pos) && team1.length < 5) {
+          candidates.push({ pos, elo, team: 't1' });
+        }
+        if (!pos2.has(pos) && team2.length < 5) {
+          candidates.push({ pos, elo, team: 't2' });
+        }
       }
-      if (!pos2.has(p) && team2.length < 5) {
-        candidates.push({ pos: p, elo, team: 't2' });
+    } else {
+      const playerPositions = POSITIONS.filter(
+        (p) => !isNaN(TIER_INFO[player.positions[p]].elo)
+      );
+
+      for (const p of playerPositions) {
+        const elo = TIER_INFO[player.positions[p]].elo;
+        if (!pos1.has(p) && team1.length < 5) {
+          candidates.push({ pos: p, elo, team: 't1' });
+        }
+        if (!pos2.has(p) && team2.length < 5) {
+          candidates.push({ pos: p, elo, team: 't2' });
+        }
       }
     }
 
@@ -144,7 +132,7 @@ function tryAssign(
 
 function generateBalancedGroups(
   players: Player[],
-  lockedPositions: Record<string, Position | null>,
+  lockedPositions: Record<string, Position[]>,
   threshold: number
 ): AssignResult {
   for (let attempt = 0; attempt < 300; attempt++) {
@@ -170,7 +158,7 @@ function generateBalancedGroups(
 
 function generateRandomGroups(
   players: Player[],
-  lockedPositions: Record<string, Position | null>
+  lockedPositions: Record<string, Position[]>
 ): AssignResult {
   for (let attempt = 0; attempt < 100; attempt++) {
     const result = tryAssign(players, lockedPositions);
@@ -182,27 +170,24 @@ function generateRandomGroups(
 const TIER_KEYS = Object.keys(TIER_INFO) as TierKey[];
 
 export default function GroupPage() {
-  return (
-    <LanguageProvider>
-      <Navigation />
-      <GroupPageContent />
-      <Footer />
-    </LanguageProvider>
-  );
+  return <GroupPageContent />;
 }
 
 function GroupPageContent() {
   const [customPlayers, setCustomPlayers] = useState<Player[]>([]);
   const [selected, setSelected] = useState<string[]>([]);
-  const [lockedPositions, setLockedPositions] = useState<Record<string, Position | null>>({});
+  const [lockedPositions, setLockedPositions] = useState<Record<string, Position[]>>({});
   const [teams, setTeams] = useState<Team[] | null>(null);
   const [sortMode, setSortMode] = useState<SortMode>('balanced');
   const [threshold, setThreshold] = useState(0.15);
   const [showAddForm, setShowAddForm] = useState(false);
+  const [showAlgorithm, setShowAlgorithm] = useState(false);
   const [newPlayerName, setNewPlayerName] = useState('');
   const [newPlayerTiers, setNewPlayerTiers] = useState<Record<Position, TierKey>>({
     top: 'npc', jungle: 'npc', mid: 'npc', adc: 'npc', support: 'npc',
   });
+
+  const resultRef = useRef<HTMLDivElement>(null);
 
   const allPlayers = useMemo(() => [...BASE_PLAYERS, ...customPlayers], [customPlayers]);
 
@@ -214,13 +199,17 @@ function GroupPageContent() {
       setLockedPositions(newLocked);
     } else {
       setSelected([...selected, name]);
-      setLockedPositions({ ...lockedPositions, [name]: null });
+      setLockedPositions({ ...lockedPositions, [name]: [] });
     }
     setTeams(null);
   };
 
-  const setPosition = (name: string, pos: Position | null) => {
-    setLockedPositions({ ...lockedPositions, [name]: pos });
+  const togglePosition = (name: string, pos: Position) => {
+    const current = lockedPositions[name] || [];
+    const next = current.includes(pos)
+      ? current.filter((p) => p !== pos)
+      : [...current, pos];
+    setLockedPositions({ ...lockedPositions, [name]: next });
   };
 
   const selectedCount = selected.length;
@@ -253,6 +242,14 @@ function GroupPageContent() {
     ]);
   }, [selected, sortMode, lockedPositions, threshold, allPlayers]);
 
+  useEffect(() => {
+    if (teams && resultRef.current) {
+      setTimeout(() => {
+        resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  }, [teams]);
+
   const clearAll = () => {
     setSelected([]);
     setLockedPositions({});
@@ -263,9 +260,9 @@ function GroupPageContent() {
     const shuffled = shuffle(allPlayers);
     const selected10 = shuffled.slice(0, 10).map((p) => p.name);
     setSelected(selected10);
-    const newLocked: Record<string, Position | null> = {};
+    const newLocked: Record<string, Position[]> = {};
     selected10.forEach((name) => {
-      newLocked[name] = null;
+      newLocked[name] = [];
     });
     setLockedPositions(newLocked);
     setTeams(null);
@@ -299,20 +296,26 @@ function GroupPageContent() {
   const diffRatio = maxElo > 0 ? eloDiff / maxElo : 0;
 
   return (
-    <div className="min-h-screen bg-[#0f1117] text-gray-100 pt-24 pb-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-8"
-        >
-          <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-4">
-            LOL 智能分组
-          </h1>
-          <p className="text-gray-400 text-lg">
-            选择 10 位玩家，系统将根据 ELO 智能平衡双方实力
-          </p>
-        </motion.div>
+    <div>
+      <div className="aurora-bg">
+        <div className="aurora-orb" />
+        <div className="aurora-lines" />
+        <div className="aurora-grid" />
+      </div>
+      <div className="relative min-h-screen bg-gradient-to-b from-[#0c0e1a] via-[#0f1117] to-[#0c0e1a] text-gray-100 pt-24 pb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mb-8"
+          >
+            <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-4">
+              LOL 智能分组
+            </h1>
+            <p className="text-gray-400 text-lg">
+              选择 10 位玩家，系统将根据 ELO 智能平衡双方实力
+            </p>
+          </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -344,6 +347,12 @@ function GroupPageContent() {
                 className="px-4 py-2 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 text-sm rounded-lg border border-cyan-500/30 transition-colors"
               >
                 ➕ 添加玩家
+              </button>
+              <button
+                onClick={() => setShowAlgorithm(true)}
+                className="px-4 py-2 bg-white/5 hover:bg-white/10 text-gray-300 text-sm rounded-lg border border-white/10 transition-colors"
+              >
+                📖 算法原理
               </button>
             </div>
             <div className="flex-1" />
@@ -510,40 +519,56 @@ function GroupPageContent() {
             transition={{ delay: 0.2 }}
             className="bg-[#1a1d27] border border-white/5 rounded-2xl p-6 shadow-xl mb-6"
           >
-            <h3 className="text-lg font-bold text-white mb-4">位置锁定（可选）</h3>
+            <h3 className="text-lg font-bold text-white mb-1">位置锁定（可选，支持多选）</h3>
+            <p className="text-xs text-gray-500 mb-4">点击位置按钮锁定该位置（高亮），可同时锁定多个位置</p>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
-              {allPlayers.filter((p) => selected.includes(p.name)).map((player) => (
-                <div
-                  key={player.name}
-                  className="bg-white/5 border border-white/10 rounded-lg p-3"
-                >
-                  <div className="font-medium text-white text-sm mb-2">{player.name}</div>
-                  <div className="grid grid-cols-1 gap-1">
-                    {POSITIONS.map((pos) => {
-                      const current = lockedPositions[player.name];
-                      const isSelected = current === pos;
-                      const tier = TIER_INFO[player.positions[pos]];
-                      return (
-                        <button
-                          key={pos}
-                          onClick={() => setPosition(player.name, isSelected ? null : pos)}
-                          title={`${POSITION_LABELS[pos].zh}: ${tier.label} (${tier.elo})`}
-                          className={`px-2 py-1 rounded text-xs transition-all flex items-center justify-between ${
-                            isSelected
-                              ? `${tier.color} text-white font-medium`
-                              : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-gray-200'
-                          }`}
-                        >
-                          <span>{POSITION_LABELS[pos].zh}</span>
-                          <span className={isSelected ? 'text-white/90' : 'text-gray-500'}>
-                            {tier.icon} {tier.label} {tier.elo}
-                          </span>
-                        </button>
-                      );
-                    })}
+              {allPlayers.filter((p) => selected.includes(p.name)).map((player) => {
+                const locked = lockedPositions[player.name] || [];
+                return (
+                  <div
+                    key={player.name}
+                    className={`bg-white/5 border rounded-lg p-3 transition-all ${
+                      locked.length > 0
+                        ? 'border-cyan-500/50 bg-cyan-500/5 shadow-lg shadow-cyan-500/10'
+                        : 'border-white/10'
+                    }`}
+                  >
+                    <div className={`font-medium text-sm mb-2 flex items-center gap-2 ${
+                      locked.length > 0 ? 'text-cyan-300' : 'text-white'
+                    }`}>
+                      <span>{player.name}</span>
+                      {locked.length > 0 && (
+                        <span className="text-xs bg-cyan-500/20 text-cyan-300 px-1.5 py-0.5 rounded">
+                          已锁定 {locked.length}
+                        </span>
+                      )}
+                    </div>
+                    <div className="grid grid-cols-1 gap-1">
+                      {POSITIONS.map((pos) => {
+                        const isLocked = locked.includes(pos);
+                        const tier = TIER_INFO[player.positions[pos]];
+                        return (
+                          <button
+                            key={pos}
+                            onClick={() => togglePosition(player.name, pos)}
+                            title={`${POSITION_LABELS[pos].zh}: ${tier.label} (${tier.elo})`}
+                            className={`px-2 py-1.5 rounded text-xs transition-all flex items-center justify-between border ${
+                              isLocked
+                                ? `${tier.color} text-white font-bold border-transparent shadow-md scale-[1.02]`
+                                : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-gray-200 border-white/5'
+                            }`}
+                          >
+                            <span className={isLocked ? 'text-white' : ''}>{POSITION_LABELS[pos].zh}</span>
+                            <span className={isLocked ? 'text-white/95' : 'text-gray-500'}>
+                              {isLocked && '🔒 '}{tier.icon} {tier.label} {tier.elo}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </motion.div>
         )}
@@ -552,11 +577,12 @@ function GroupPageContent() {
           {teams && (
             <motion.div
               key="result"
+              ref={resultRef}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4 }}
-              className="space-y-6"
+              className="space-y-6 scroll-mt-24"
             >
               {teams[0].players.length === 5 && teams[1].players.length === 5 ? (
                 <>
@@ -567,19 +593,34 @@ function GroupPageContent() {
                         initial={{ opacity: 0, x: teamIdx === 0 ? -30 : 30 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.2 + teamIdx * 0.1 }}
-                        className="bg-[#1a1d27] border border-white/5 rounded-2xl shadow-xl overflow-hidden"
+                        className={`relative rounded-2xl shadow-2xl overflow-hidden border-2 ${
+                          teamIdx === 0 ? 'border-blue-500/40' : 'border-red-500/40'
+                        }`}
                       >
-                        <div className={`bg-gradient-to-r ${team.color} p-4`}>
+                        <div className={`absolute inset-0 bg-gradient-to-br ${team.color} opacity-10`} />
+                        <div className={`relative bg-gradient-to-r ${team.color} p-5`}>
                           <div className="flex items-center justify-between">
-                            <h3 className="text-2xl font-display font-bold text-white">{team.name}</h3>
-                            <div className="text-right">
-                              <div className="text-white/80 text-xs">总 ELO</div>
-                              <div className="text-white text-2xl font-bold">{team.totalElo}</div>
+                            <div className="flex items-center gap-3">
+                              <div className={`w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-xl backdrop-blur-sm`}>
+                                {teamIdx === 0 ? '🛡️' : '⚔️'}
+                              </div>
+                              <div>
+                                <h3 className="text-2xl font-display font-bold text-white drop-shadow">
+                                  {team.name}
+                                </h3>
+                                <div className="text-white/80 text-xs mt-0.5">
+                                  {teamIdx === 0 ? 'BLUE SIDE' : 'RED SIDE'}
+                                </div>
+                              </div>
+                            </div>
+                            <div className="text-right bg-white/15 backdrop-blur-sm rounded-xl px-4 py-2">
+                              <div className="text-white/70 text-xs tracking-wide">总 ELO</div>
+                              <div className="text-white text-3xl font-bold">{team.totalElo}</div>
                             </div>
                           </div>
                         </div>
 
-                        <div className="p-4 space-y-2">
+                        <div className="relative p-4 space-y-2 bg-[#1a1d27]/80 backdrop-blur-sm">
                           {POSITIONS.map((pos) => {
                             const gp = team.players.find((p) => p.position === pos);
                             if (!gp) return null;
@@ -587,17 +628,21 @@ function GroupPageContent() {
                             return (
                               <div
                                 key={pos}
-                                className="flex items-center gap-3 p-3 bg-white/5 rounded-lg border border-white/5"
+                                className="flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 transition-colors"
                               >
-                                <span className="text-xl">{POSITION_LABELS[pos].icon}</span>
-                                <div className="flex-1">
-                                  <div className="text-xs text-gray-400">
-                                    {POSITION_LABELS[pos].zh}
-                                  </div>
-                                  <div className="font-medium text-white">{gp.player.name}</div>
+                                <div className={`w-9 h-9 rounded-lg ${tier.color} flex items-center justify-center text-lg flex-shrink-0`}>
+                                  {POSITION_LABELS[pos].icon}
                                 </div>
-                                <div className={`px-3 py-1 rounded-full text-white text-xs font-medium ${tier.color}`}>
-                                  {tier.icon} {tier.label} ({tier.elo})
+                                <div className="flex-1 min-w-0">
+                                  <div className="text-xs text-gray-400 flex items-center gap-1.5">
+                                    <span className="font-medium text-gray-300">{POSITION_LABELS[pos].zh}</span>
+                                    <span className="text-gray-600">·</span>
+                                    <span>{tier.label}</span>
+                                  </div>
+                                  <div className="font-semibold text-white text-sm truncate">{gp.player.name}</div>
+                                </div>
+                                <div className={`px-2.5 py-1 rounded-full text-white text-xs font-bold ${tier.color} flex-shrink-0`}>
+                                  {tier.icon} {tier.elo}
                                 </div>
                               </div>
                             );
@@ -613,20 +658,38 @@ function GroupPageContent() {
                     transition={{ delay: 0.5 }}
                     className="text-center"
                   >
-                    <div className="inline-flex items-center gap-4 bg-[#1a1d27] border border-white/10 rounded-full px-6 py-3 shadow-xl">
-                      <span className="text-gray-400 text-sm">双方 ELO 差:</span>
-                      <span
-                        className={`text-xl font-bold ${
-                          diffRatio <= 0.15
-                            ? 'text-green-400'
-                            : diffRatio <= threshold
-                            ? 'text-yellow-400'
-                            : 'text-red-400'
-                        }`}
-                      >
-                        {eloDiff} ({(diffRatio * 100).toFixed(1)}%)
-                      </span>
-                      <span className="text-gray-400 text-sm">
+                    <div className="inline-flex items-center gap-6 bg-[#1a1d27] border border-white/10 rounded-full px-8 py-4 shadow-2xl">
+                      <div className="flex items-center gap-2">
+                        <span className="text-blue-400 text-sm">蓝方</span>
+                        <span className="text-xl font-bold text-white">{teams[0].totalElo}</span>
+                      </div>
+                      <div className="flex flex-col items-center">
+                        <span className="text-xs text-gray-500">VS</span>
+                        <span
+                          className={`text-lg font-bold ${
+                            diffRatio <= 0.15
+                              ? 'text-green-400'
+                              : diffRatio <= threshold
+                              ? 'text-yellow-400'
+                              : 'text-red-400'
+                          }`}
+                        >
+                          {eloDiff} ({(diffRatio * 100).toFixed(1)}%)
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xl font-bold text-white">{teams[1].totalElo}</span>
+                        <span className="text-red-400 text-sm">红方</span>
+                      </div>
+                    </div>
+                    <div className="mt-3">
+                      <span className={`text-sm ${
+                        diffRatio <= 0.15
+                          ? 'text-green-400'
+                          : diffRatio <= threshold
+                          ? 'text-yellow-400'
+                          : 'text-red-400'
+                      }`}>
                         {diffRatio <= 0.15
                           ? '⚖️ 势均力敌'
                           : diffRatio <= threshold
@@ -685,6 +748,74 @@ function GroupPageContent() {
           </div>
         </motion.div>
       </div>
+      </div>
+
+      <AnimatePresence>
+        {showAlgorithm && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={() => setShowAlgorithm(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="bg-[#1a1d27] border border-white/10 rounded-2xl p-6 shadow-2xl max-w-lg w-full max-h-[80vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xl font-bold text-white">📖 算法原理</h3>
+                <button
+                  onClick={() => setShowAlgorithm(false)}
+                  className="text-gray-400 hover:text-white text-xl"
+                >
+                  ✕
+                </button>
+              </div>
+              <div className="space-y-4 text-sm text-gray-300">
+                <div>
+                  <div className="font-bold text-cyan-400 mb-1">🎯 目标</div>
+                  <p>把 10 人分成两队，每队 5 人，让两队 ELO 总分尽量接近。</p>
+                </div>
+                <div>
+                  <div className="font-bold text-cyan-400 mb-1">🔄 步骤</div>
+                  <ol className="list-decimal list-inside space-y-1 text-gray-400">
+                    <li>玩家名单随机打乱</li>
+                    <li>依次给每个玩家分配位置</li>
+                    <li>每次选让双方分差最小的方案</li>
+                  </ol>
+                </div>
+                <div>
+                  <div className="font-bold text-cyan-400 mb-1">🧠 举例</div>
+                  <p className="text-gray-400">
+                    玩家 A 可选：上单 NPC(90) / 打野 顶级(170) / 中单 夯(210)<br/>
+                    蓝方 200 vs 红方 350<br/>
+                    → A 去蓝方打野：蓝方 370，差距 20（最小）✓
+                  </p>
+                </div>
+                <div>
+                  <div className="font-bold text-cyan-400 mb-1">⚙️ 两种模式</div>
+                  <p className="text-gray-400">
+                    <span className="text-white">智能平衡</span>：重试 300 次找符合阈值的最优解<br/>
+                    <span className="text-white">真随机</span>：随机分配，能分成就行
+                  </p>
+                </div>
+                <div>
+                  <div className="font-bold text-cyan-400 mb-1">🔒 位置锁定</div>
+                  <p className="text-gray-400">锁定位置后，系统只从锁定的位置中分配，确保位置不跑偏。</p>
+                </div>
+                <div>
+                  <div className="font-bold text-cyan-400 mb-1">❓ 为什么要打乱？</div>
+                  <p className="text-gray-400">先分配的人选择空间最大，打乱后多试几次就能找到更优解。</p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

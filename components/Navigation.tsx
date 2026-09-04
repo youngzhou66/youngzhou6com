@@ -9,6 +9,7 @@ import LanguageSwitcher from './i18n/LanguageSwitcher';
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const { t } = useLanguage();
   const router = useRouter();
 
@@ -22,9 +23,22 @@ export default function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 50);
+
+      if (currentScrollY > 100) {
+        const prevScrollY = (window as any).__prevScrollY || 0;
+        if (currentScrollY > prevScrollY) {
+          setHidden(true);
+        } else {
+          setHidden(false);
+        }
+        (window as any).__prevScrollY = currentScrollY;
+      } else {
+        setHidden(false);
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -44,8 +58,8 @@ export default function Navigation() {
   return (
     <motion.nav
       initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
+      animate={{ y: hidden ? -100 : 0 }}
+      transition={{ duration: 0.3, ease: 'easeOut' }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled ? 'bg-white/90 dark:bg-background-dark/90 backdrop-blur-md shadow-sm' : 'bg-transparent'
       }`}
