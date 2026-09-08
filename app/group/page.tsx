@@ -80,86 +80,168 @@ interface AssignResult {
   team2: GroupedPlayer[];
 }
 
-function tryAssign(
+function allowedPositionsFor(
+  player: Player,
+  lockedPositions: Record<string, Position[]>
+): Position[] {
+  const locked = lockedPositions[player.name] || [];
+  if (locked.length > 0) return locked;
+  return POSITIONS.filter((p) => !isNaN(TIER_INFO[player.positions[p]].elo));
+}
+
+/**
+ * 随机把 10 人匹配到 10 个位置名额（每个位置恰好 2 人，蓝/红各一）。
+ * 先分配位置、再考虑队伍，避免“为了压低队伍分差而把某人塞到弱位置”。
+ */
+function randomRolePairing(
   players: Player[],
   lockedPositions: Record<string, Position[]>
-): AssignResult | null {
+): Position[] | null {
+  const roles = shuffle([...POSITIONS, ...POSITIONS]);
+  for (let i = 0; i < players.length; i++) {
+    const allowed = allowedPositionsFor(players[i], lockedPositions);
+    if (!allowed.includes(roles[i])) return null;
+  }
+  return roles;
+}
+
+/** 兜底：位置锁定较多时用随机回溯找一套可行匹配 */
+function backtrackRolePairing(
+  players: Player[],
+  lockedPositions: Record<string, Position[]>
+): Position[] | null {
+  const remaining: Record<Position, number> = {
+    top: 2,
+    jungle: 2,
+    mid: 2,
+    adc: 2,
+    support: 2,
+  };
+  const order = shuffle(players.map((_, i) => i));
+  const result = new Array<Position>(players.length);
+
+  const search = (step: number): boolean => {
+    if (step === players.length) return true;
+    const idx = order[step];
+    const allowed = shuffle(allowedPositionsFor(players[idx], lockedPositions));
+    for (const role of allowed) {
+      if (remaining[role] === 0) continue;
+      remaining[role]--;
+      result[idx] = role;
+      if (search(step + 1)) return true;
+      remaining[role]++;
+    }
+    return false;
+  };
+
+  return search(0) ? result : null;
+}
+
+interface SplitOutcome {
+  result: AssignResult;
+  diffRatio: number;
+}
+
+function balancedSplitFromRoles(
+  players: Player[],
+  roles: Position[]
+): SplitOutcome {
+  const slots: GroupedPlayer[] = players.map((player, i) => ({
+    player,
+    position: roles[i],
+    tier: player.positions[roles[i]],
+    elo: TIER_INFO[player.positions[roles[i]]].elo,
+  }));
+
+  const orient = (mask: number) => {
+    const team1: GroupedPlayer[] = [];
+    const team2: GroupedPlayer[] = [];
+    let sum1 = 0;
+    let sum2 = 0;
+
+    for (let posIdx = 0; posIdx < POSITIONS.length; posIdx++) {
+      const pair = slots.filter((s) => s.position === POSITIONS[posIdx]);
+      const [a, b] = pair;
+      const blue = (mask >> posIdx) & 1 ? b : a;
+      const red = (mask >> posIdx) & 1 ? a : b;
+      sum1 += blue.elo;
+      sum2 += red.elo;
+      team1.push(blue);
+      team2.push(red);
+    }
+
+    return {
+      result: { team1, team2 },
+      diff: Math.abs(sum1 - sum2),
+      max: Math.max(sum1, sum2),
+    };
+  };
+
+  let bestDiff = Infinity;
+  let bestOutcomes: { result: AssignResult; max: number }[] = [];
+
+  for (let mask = 0; mask < 32; mask++) {
+    const outcome = orient(mask);
+    if (outcome.diff < bestDiff) {
+      bestDiff = outcome.diff;
+      bestOutcomes = [{ result: outcome.result, max: outcome.max }];
+    } else if (outcome.diff === bestDiff) {
+      bestOutcomes.push({ result: outcome.result, max: outcome.max });
+    }
+  }
+
+  const chosen =
+    bestOutcomes[Math.floor(Math.random() * bestOutcomes.length)];
+  return {
+    result: chosen.result,
+    diffRatio: bestDiff / chosen.max,
+  };
+}
+
+function randomSplitFromRoles(
+  players: Player[],
+  roles: Position[]
+): SplitOutcome {
   const team1: GroupedPlayer[] = [];
   const team2: GroupedPlayer[] = [];
-  const pos1 = new Set<Position>();
-  const pos2 = new Set<Position>();
+  let sum1 = 0;
+  let sum2 = 0;
 
-  const shuffled = shuffle(players);
-
-  const assigned = new Set<string>();
-
-  for (const player of shuffled) {
-    if (assigned.has(player.name)) continue;
-
-    const locked = lockedPositions[player.name] || [];
-
-    const candidates: { pos: Position; elo: number; team: 't1' | 't2' }[] = [];
-
-    if (locked.length > 0) {
-      for (const pos of locked) {
-        const elo = TIER_INFO[player.positions[pos]].elo;
-        if (!pos1.has(pos) && team1.length < 5) {
-          candidates.push({ pos, elo, team: 't1' });
-        }
-        if (!pos2.has(pos) && team2.length < 5) {
-          candidates.push({ pos, elo, team: 't2' });
-        }
-      }
-    } else {
-      const playerPositions = POSITIONS.filter(
-        (p) => !isNaN(TIER_INFO[player.positions[p]].elo)
-      );
-
-      for (const p of playerPositions) {
-        const elo = TIER_INFO[player.positions[p]].elo;
-        if (!pos1.has(p) && team1.length < 5) {
-          candidates.push({ pos: p, elo, team: 't1' });
-        }
-        if (!pos2.has(p) && team2.length < 5) {
-          candidates.push({ pos: p, elo, team: 't2' });
-        }
-      }
-    }
-
-    if (candidates.length === 0) continue;
-
-    candidates.sort((a, b) => a.elo - b.elo);
-
-    const t1Elo = team1.reduce((s, x) => s + x.elo, 0);
-    const t2Elo = team2.reduce((s, x) => s + x.elo, 0);
-
-    let best = candidates[0];
-    let bestDiff = Infinity;
-
-    for (const c of candidates) {
-      const newElo = (c.team === 't1' ? t1Elo : t2Elo) + c.elo;
-      const otherElo = c.team === 't1' ? t2Elo : t1Elo;
-      const diff = Math.abs(newElo - otherElo);
-      if (diff < bestDiff) {
-        bestDiff = diff;
-        best = c;
-      }
-    }
-
-    if (best.team === 't1') {
-      team1.push({ player, position: best.pos, tier: player.positions[best.pos], elo: best.elo });
-      pos1.add(best.pos);
-    } else {
-      team2.push({ player, position: best.pos, tier: player.positions[best.pos], elo: best.elo });
-      pos2.add(best.pos);
-    }
-    assigned.add(player.name);
+  for (const pos of POSITIONS) {
+    const pair = players
+      .map((player, i) => ({
+        player,
+        role: roles[i],
+        tier: player.positions[roles[i]],
+        elo: TIER_INFO[player.positions[roles[i]]].elo,
+      }))
+      .filter((s) => s.role === pos);
+    const [a, b] = pair;
+    const blue = Math.random() < 0.5 ? a : b;
+    const red = blue === a ? b : a;
+    const blueGroup: GroupedPlayer = {
+      player: blue.player,
+      position: pos,
+      tier: blue.tier,
+      elo: blue.elo,
+    };
+    const redGroup: GroupedPlayer = {
+      player: red.player,
+      position: pos,
+      tier: red.tier,
+      elo: red.elo,
+    };
+    team1.push(blueGroup);
+    team2.push(redGroup);
+    sum1 += blue.elo;
+    sum2 += red.elo;
   }
 
-  if (team1.length === 5 && team2.length === 5) {
-    return { team1, team2 };
-  }
-  return null;
+  const max = Math.max(sum1, sum2);
+  return {
+    result: { team1, team2 },
+    diffRatio: Math.abs(sum1 - sum2) / max,
+  };
 }
 
 function generateBalancedGroups(
@@ -167,25 +249,30 @@ function generateBalancedGroups(
   lockedPositions: Record<string, Position[]>,
   threshold: number
 ): AssignResult {
+  const accepted: AssignResult[] = [];
+  let best: SplitOutcome | null = null;
+
   for (let attempt = 0; attempt < 300; attempt++) {
-    const result = tryAssign(players, lockedPositions);
-    if (result) {
-      const elo1 = result.team1.reduce((s, p) => s + p.elo, 0);
-      const elo2 = result.team2.reduce((s, p) => s + p.elo, 0);
-      const maxElo = Math.max(elo1, elo2);
-      const diffRatio = Math.abs(elo1 - elo2) / maxElo;
-      if (diffRatio <= threshold) {
-        return result;
-      }
-    }
+    const roles = randomRolePairing(players, lockedPositions);
+    if (!roles) continue;
+    const outcome = balancedSplitFromRoles(players, roles);
+    if (outcome.diffRatio <= threshold) accepted.push(outcome.result);
+    if (!best || outcome.diffRatio < best.diffRatio) best = outcome;
   }
 
-  for (let attempt = 0; attempt < 500; attempt++) {
-    const result = tryAssign(players, lockedPositions);
-    if (result) return result;
+  // 满足阈值的阵容里随机挑一套，而不是固定返回第一套
+  if (accepted.length > 0) {
+    return accepted[Math.floor(Math.random() * accepted.length)];
   }
 
-  return { team1: [], team2: [] };
+  // 锁定位置较多导致随机匹配失败时，用回溯保证至少能凑出阵容
+  const fallbackRoles = backtrackRolePairing(players, lockedPositions);
+  if (fallbackRoles) {
+    const outcome = balancedSplitFromRoles(players, fallbackRoles);
+    if (!best || outcome.diffRatio < best.diffRatio) best = outcome;
+  }
+
+  return best ? best.result : { team1: [], team2: [] };
 }
 
 function generateRandomGroups(
@@ -193,9 +280,13 @@ function generateRandomGroups(
   lockedPositions: Record<string, Position[]>
 ): AssignResult {
   for (let attempt = 0; attempt < 100; attempt++) {
-    const result = tryAssign(players, lockedPositions);
-    if (result) return result;
+    const roles = randomRolePairing(players, lockedPositions);
+    if (roles) return randomSplitFromRoles(players, roles).result;
   }
+
+  const fallbackRoles = backtrackRolePairing(players, lockedPositions);
+  if (fallbackRoles) return randomSplitFromRoles(players, fallbackRoles).result;
+
   return { team1: [], team2: [] };
 }
 
@@ -1076,29 +1167,36 @@ function GroupPageContent() {
               <div className="space-y-4 text-sm text-gray-300">
                 <div>
                   <div className="font-bold text-cyan-400 mb-1">🎯 目标</div>
-                  <p>把 10 人分成两队，每队 5 人，让两队 ELO 总分尽量接近。</p>
+                  <p>
+                    把 10 人分成两队，每队 5 人，让两队 ELO 总分尽量接近；
+                    同时避免某个玩家总是被安排到同一个弱位置。
+                  </p>
                 </div>
                 <div>
                   <div className="font-bold text-cyan-400 mb-1">🔄 步骤</div>
                   <ol className="list-decimal list-inside space-y-1 text-gray-400">
-                    <li>玩家名单随机打乱</li>
-                    <li>依次给每个玩家分配位置</li>
-                    <li>每次选让双方分差最小的方案</li>
+                    <li>随机把 10 人匹配到 10 个位置名额（每个位置恰好 2 人）</li>
+                    <li>每个位置的两人分别进入蓝方和红方</li>
+                    <li>枚举蓝红切分（32 种），用 ELO 找到分差最小的组合</li>
+                    <li>满足阈值的阵容里再随机返回一套，避免总出同一种阵容</li>
                   </ol>
                 </div>
                 <div>
                   <div className="font-bold text-cyan-400 mb-1">🧠 举例</div>
                   <p className="text-gray-400">
-                    玩家 A 可选：上单 NPC(90) / 打野 顶级(170) / 中单 夯(210)<br/>
-                    蓝方 200 vs 红方 350<br/>
-                    → A 去蓝方打野：蓝方 370，差距 20（最小）✓
+                    羊羊可打：上单 顶级(170) / 打野 夯(210) / 中单 夯(210) /
+                    AD 人上人(130) / 辅助 人上人(130)<br/>
+                    系统先随机决定他这局打哪个位置，
+                    再用他的 ELO 决定进蓝方还是红方，<br/>
+                    不会因为“打 AD 更容易凑平分差”就总让他打 AD。
                   </p>
                 </div>
                 <div>
                   <div className="font-bold text-cyan-400 mb-1">⚙️ 两种模式</div>
                   <p className="text-gray-400">
-                    <span className="text-white">智能平衡</span>：重试 300 次找符合阈值的最优解<br/>
-                    <span className="text-white">真随机</span>：随机分配，能分成就行
+                    <span className="text-white">智能平衡</span>：随机生成 300 套位置分配，
+                    每套都找出蓝红最优切分，再从分差达标的结果中随机返回一套<br/>
+                    <span className="text-white">真随机</span>：位置和蓝红双方完全随机
                   </p>
                 </div>
                 <div>
@@ -1126,8 +1224,8 @@ function GroupPageContent() {
                 <div>
                   <div className="font-bold text-cyan-400 mb-1">❓ 为什么要打乱？</div>
                   <p className="text-gray-400">
-                    先分配的人选择空间最大。分组和抽英雄都会在每次尝试时重新打乱玩家顺序，
-                    既能帮分组找到更优解，也能避免某个位置固定先选、把共用英雄都“抢走”。
+                    分组先随机分配位置、再均衡队伍，不让“先到先得”影响结果；
+                    抽英雄也每次重新打乱顺序，避免共用英雄总被固定的先手位置“抢走”。
                   </p>
                 </div>
               </div>
