@@ -1,0 +1,14 @@
+data/players.ts
+  h_60431a838e6558 53,57,69
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.2",
+  "base_commit_sha": "18fc638f78540de26d181e2ba12e9bbc80c94198",
+  "prompts": {},
+  "humans": {
+    "h_60431a838e6558": {
+      "author": "youngzhou66 <youngzhouf@163.com>"
+    }
+  }
+}
