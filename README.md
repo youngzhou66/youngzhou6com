@@ -5,6 +5,8 @@
 
 在线演示：[youngzhou6.space](https://youngzhou6.space)
 
+> 📦 当前版本：**v1.2**（2026-09-08）｜版本公告见 [CHANGELOG.md](CHANGELOG.md)
+
 ## ✨ 功能特性
 
 ### 分组

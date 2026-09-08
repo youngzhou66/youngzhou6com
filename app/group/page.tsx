@@ -383,6 +383,7 @@ function GroupPageContent() {
   const [threshold, setThreshold] = useState(0.15);
   const [showAddForm, setShowAddForm] = useState(false);
   const [showAlgorithm, setShowAlgorithm] = useState(false);
+  const [showAnnouncement, setShowAnnouncement] = useState(true);
   const [newPlayerName, setNewPlayerName] = useState('');
   const [newPlayerTiers, setNewPlayerTiers] = useState<Record<Position, TierKey>>({
     top: 'npc', jungle: 'npc', mid: 'npc', adc: 'npc', support: 'npc',
@@ -1306,6 +1307,73 @@ function GroupPageContent() {
                   );
                 })}
               </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {showAnnouncement && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
+            onClick={() => setShowAnnouncement(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.92, y: 16 }}
+              transition={{ duration: 0.2 }}
+              className="bg-[#1a1d27] border border-white/10 rounded-2xl p-6 shadow-2xl max-w-xl w-full max-h-[85vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-start justify-between gap-4 mb-4">
+                <div>
+                  <h3 className="text-xl font-bold text-white">📢 版本公告</h3>
+                  <p className="text-xs text-gray-500 mt-1">
+                    当前版本 v1.2 · 2026-09-08
+                  </p>
+                </div>
+                <button
+                  onClick={() => setShowAnnouncement(false)}
+                  className="text-gray-400 hover:text-white text-xl flex-shrink-0"
+                >
+                  ✕
+                </button>
+              </div>
+
+              <div className="space-y-3">
+                <div className="rounded-xl border border-cyan-500/20 bg-cyan-500/5 p-4">
+                  <div className="text-sm font-bold text-cyan-300">
+                    🆕 v1.2 · 2026-09-08
+                  </div>
+                  <ul className="list-disc list-inside space-y-1.5 text-gray-400 text-sm mt-2">
+                    <li>重构分组算法：先随机分配位置，ELO 只负责蓝红均衡，不再把人固定推到弱位置</li>
+                    <li>保留位置锁定与真随机模式</li>
+                    <li>重新从 OP.GG 获取五个位置的英雄榜与 Tier 评级，数据快照更新至 9 月 8 日</li>
+                  </ul>
+                </div>
+
+                <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                  <div className="text-sm font-bold text-gray-200">
+                    v1.1 · 2026-09-04
+                  </div>
+                  <ul className="list-disc list-inside space-y-1.5 text-gray-400 text-sm mt-2">
+                    <li>新增分组后按位置直接抽取英雄</li>
+                    <li>英雄榜以构建时快照保存，不依赖 OP.GG 实时接口</li>
+                    <li>全场英雄不重复，支持重新抽英雄</li>
+                  </ul>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setShowAnnouncement(false)}
+                className="mt-5 w-full py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white text-sm font-bold transition-all"
+              >
+                开始使用
+              </button>
             </motion.div>
           </motion.div>
         )}
