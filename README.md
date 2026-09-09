@@ -129,16 +129,18 @@
 ```text
 zf-project/
 ├── app/
-│   ├── group/page.tsx        # 分组 + 抽英雄页面（核心功能）
-│   ├── page.tsx              # 首页（自动跳转 /group）
+│   ├── group/page.tsx        # 分组页入口
+│   ├── page.tsx              # 首页（直接展示分组工具）
 │   ├── layout.tsx            # 根布局与站点标题
 │   └── globals.css           # 全局样式（动态背景）
-├── components/               # 首页展示组件
+├── components/
+│   └── group/                # 分组页 UI 组件
 ├── data/
 │   ├── players.ts            # 玩家数据 + ELO 档次配置（可手动编辑）
 │   └── champions.ts          # OP.GG 英雄榜快照（自动生成，勿手动编辑）
 ├── lib/
-│   └── i18n/                 # 首页国际化
+│   ├── champions/            # 英雄池、英雄抽取与展示配置
+│   └── grouping/             # 分组算法、类型和常量
 ├── public/                   # 静态资源（CNAME 等）
 ├── scripts/
 │   └── update-champions.mjs  # 英雄数据快照更新脚本
