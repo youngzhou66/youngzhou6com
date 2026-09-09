@@ -146,6 +146,7 @@ export default function TeamResult({
               <ul className="text-gray-400 text-sm mt-4 space-y-1">
                 <li>• 取消位置锁定后重试</li>
                 <li>• 更换部分玩家后重试</li>
+                <li>• 检查“同队/不要同队”约束是否冲突</li>
                 <li>• 切换「真随机」模式</li>
                 <li>• 调高 ELO 差值阈值</li>
               </ul>

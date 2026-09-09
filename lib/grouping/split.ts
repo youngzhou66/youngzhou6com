@@ -1,15 +1,18 @@
 import { TIER_INFO, type Player, type Position } from '@/data/players';
 import { POSITIONS } from './constants';
+import { satisfiesPairConstraints } from './constraints';
 import type {
   AssignResult,
   GroupedPlayer,
+  PairConstraint,
   SplitOutcome,
 } from './types';
 
-export function balancedSplitFromRoles(
+function buildSplitFromRoles(
   players: Player[],
-  roles: Position[]
-): SplitOutcome {
+  roles: Position[],
+  mask: number
+): { result: AssignResult; diff: number; max: number } {
   const slots: GroupedPlayer[] = players.map((player, index) => ({
     player,
     position: roles[index],
@@ -17,38 +20,44 @@ export function balancedSplitFromRoles(
     elo: TIER_INFO[player.positions[roles[index]]].elo,
   }));
 
-  const orient = (mask: number) => {
-    const team1: GroupedPlayer[] = [];
-    const team2: GroupedPlayer[] = [];
-    let sum1 = 0;
-    let sum2 = 0;
+  const team1: GroupedPlayer[] = [];
+  const team2: GroupedPlayer[] = [];
+  let sum1 = 0;
+  let sum2 = 0;
 
-    for (let positionIndex = 0; positionIndex < POSITIONS.length; positionIndex++) {
-      const pair = slots.filter(
-        (slot) => slot.position === POSITIONS[positionIndex]
-      );
-      const [a, b] = pair;
-      const blue = (mask >> positionIndex) & 1 ? b : a;
-      const red = (mask >> positionIndex) & 1 ? a : b;
+  for (let positionIndex = 0; positionIndex < POSITIONS.length; positionIndex++) {
+    const pair = slots.filter(
+      (slot) => slot.position === POSITIONS[positionIndex]
+    );
+    const [a, b] = pair;
+    const blue = (mask >> positionIndex) & 1 ? b : a;
+    const red = (mask >> positionIndex) & 1 ? a : b;
 
-      sum1 += blue.elo;
-      sum2 += red.elo;
-      team1.push(blue);
-      team2.push(red);
-    }
+    sum1 += blue.elo;
+    sum2 += red.elo;
+    team1.push(blue);
+    team2.push(red);
+  }
 
-    return {
-      result: { team1, team2 },
-      diff: Math.abs(sum1 - sum2),
-      max: Math.max(sum1, sum2),
-    };
+  return {
+    result: { team1, team2 },
+    diff: Math.abs(sum1 - sum2),
+    max: Math.max(sum1, sum2),
   };
+}
 
+export function balancedSplitFromRoles(
+  players: Player[],
+  roles: Position[],
+  constraints: PairConstraint[] = []
+): SplitOutcome | null {
   let bestDiff = Infinity;
   let bestOutcomes: { result: AssignResult; max: number }[] = [];
 
   for (let mask = 0; mask < 32; mask++) {
-    const outcome = orient(mask);
+    const outcome = buildSplitFromRoles(players, roles, mask);
+
+    if (!satisfiesPairConstraints(outcome.result, constraints)) continue;
 
     if (outcome.diff < bestDiff) {
       bestDiff = outcome.diff;
@@ -57,6 +66,8 @@ export function balancedSplitFromRoles(
       bestOutcomes.push({ result: outcome.result, max: outcome.max });
     }
   }
+
+  if (bestOutcomes.length === 0) return null;
 
   const chosen =
     bestOutcomes[Math.floor(Math.random() * bestOutcomes.length)];
@@ -69,49 +80,27 @@ export function balancedSplitFromRoles(
 
 export function randomSplitFromRoles(
   players: Player[],
-  roles: Position[]
-): SplitOutcome {
-  const team1: GroupedPlayer[] = [];
-  const team2: GroupedPlayer[] = [];
-  let sum1 = 0;
-  let sum2 = 0;
+  roles: Position[],
+  constraints: PairConstraint[] = []
+): SplitOutcome | null {
+  const validOutcomes: { result: AssignResult; diff: number; max: number }[] =
+    [];
 
-  for (const position of POSITIONS) {
-    const pair = players
-      .map((player, index) => ({
-        player,
-        role: roles[index],
-        tier: player.positions[roles[index]],
-        elo: TIER_INFO[player.positions[roles[index]]].elo,
-      }))
-      .filter((slot) => slot.role === position);
-    const [a, b] = pair;
-    const blue = Math.random() < 0.5 ? a : b;
-    const red = blue === a ? b : a;
+  for (let mask = 0; mask < 32; mask++) {
+    const outcome = buildSplitFromRoles(players, roles, mask);
 
-    const blueGroup: GroupedPlayer = {
-      player: blue.player,
-      position,
-      tier: blue.tier,
-      elo: blue.elo,
-    };
-    const redGroup: GroupedPlayer = {
-      player: red.player,
-      position,
-      tier: red.tier,
-      elo: red.elo,
-    };
-
-    team1.push(blueGroup);
-    team2.push(redGroup);
-    sum1 += blue.elo;
-    sum2 += red.elo;
+    if (satisfiesPairConstraints(outcome.result, constraints)) {
+      validOutcomes.push(outcome);
+    }
   }
 
-  const max = Math.max(sum1, sum2);
+  if (validOutcomes.length === 0) return null;
+
+  const chosen =
+    validOutcomes[Math.floor(Math.random() * validOutcomes.length)];
 
   return {
-    result: { team1, team2 },
-    diffRatio: Math.abs(sum1 - sum2) / max,
+    result: chosen.result,
+    diffRatio: chosen.diff / chosen.max,
   };
 }

@@ -25,6 +25,8 @@ import {
 import { shuffle } from '@/lib/grouping/random';
 import type {
   LockedPositions,
+  PairConstraint,
+  PairConstraintType,
   SortMode,
   Team,
 } from '@/lib/grouping/types';
@@ -32,6 +34,7 @@ import AlgorithmModal from './AlgorithmModal';
 import AnnouncementModal from './AnnouncementModal';
 import ChampionPoolModal from './ChampionPoolModal';
 import GroupSettings from './GroupSettings';
+import PairConstraintEditor from './PairConstraintEditor';
 import PlayerSelector from './PlayerSelector';
 import PositionLockEditor from './PositionLockEditor';
 import TeamResult from './TeamResult';
@@ -41,6 +44,7 @@ export default function GroupPageContent() {
   const [customPlayers, setCustomPlayers] = useState<Player[]>([]);
   const [selected, setSelected] = useState<string[]>([]);
   const [lockedPositions, setLockedPositions] = useState<LockedPositions>({});
+  const [pairConstraints, setPairConstraints] = useState<PairConstraint[]>([]);
   const [teams, setTeams] = useState<Team[] | null>(null);
   const [championPoolMode, setChampionPoolMode] =
     useState<ChampionPoolMode>('all');
@@ -84,6 +88,12 @@ export default function GroupPageContent() {
 
       delete nextLockedPositions[name];
       setLockedPositions(nextLockedPositions);
+      setPairConstraints((current) =>
+        current.filter(
+          (constraint) =>
+            constraint.playerA !== name && constraint.playerB !== name
+        )
+      );
     } else {
       setSelected([...selected, name]);
       setLockedPositions({ ...lockedPositions, [name]: [] });
@@ -109,8 +119,17 @@ export default function GroupPageContent() {
     );
     const result =
       sortMode === 'balanced'
-        ? generateBalancedGroups(selectedPlayers, lockedPositions, threshold)
-        : generateRandomGroups(selectedPlayers, lockedPositions);
+        ? generateBalancedGroups(
+            selectedPlayers,
+            lockedPositions,
+            threshold,
+            pairConstraints
+          )
+        : generateRandomGroups(
+            selectedPlayers,
+            lockedPositions,
+            pairConstraints
+          );
 
     const championAssignments = drawChampionAssignments(
       [...result.team1, ...result.team2],
@@ -151,6 +170,7 @@ export default function GroupPageContent() {
     allPlayers,
     championPoolMode,
     heroCountPerPlayer,
+    pairConstraints,
   ]);
 
   const rerollChampions = () => {
@@ -244,6 +264,7 @@ export default function GroupPageContent() {
   const clearAll = () => {
     setSelected([]);
     setLockedPositions({});
+    setPairConstraints([]);
     setTeams(null);
   };
 
@@ -258,6 +279,7 @@ export default function GroupPageContent() {
 
     setSelected(selectedNames);
     setLockedPositions(nextLockedPositions);
+    setPairConstraints([]);
     setTeams(null);
   };
 
@@ -290,8 +312,46 @@ export default function GroupPageContent() {
 
       delete nextLockedPositions[name];
       setLockedPositions(nextLockedPositions);
+      setPairConstraints((current) =>
+        current.filter(
+          (constraint) =>
+            constraint.playerA !== name && constraint.playerB !== name
+        )
+      );
     }
 
+    setTeams(null);
+  };
+
+  const addPairConstraint = (
+    playerA: string,
+    playerB: string,
+    type: PairConstraintType
+  ) => {
+    if (playerA === playerB) return;
+
+    setPairConstraints((current) => [
+      ...current.filter(
+        (constraint) =>
+          !(
+            (constraint.playerA === playerA && constraint.playerB === playerB) ||
+            (constraint.playerA === playerB && constraint.playerB === playerA)
+          )
+      ),
+      {
+        id: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+        playerA,
+        playerB,
+        type,
+      },
+    ]);
+    setTeams(null);
+  };
+
+  const removePairConstraint = (id: string) => {
+    setPairConstraints((current) =>
+      current.filter((constraint) => constraint.id !== id)
+    );
     setTeams(null);
   };
 
@@ -365,6 +425,15 @@ export default function GroupPageContent() {
               players={selectedPlayers}
               lockedPositions={lockedPositions}
               onTogglePosition={togglePosition}
+            />
+          )}
+
+          {selectedPlayers.length >= 2 && (
+            <PairConstraintEditor
+              players={selectedPlayers}
+              constraints={pairConstraints}
+              onAddConstraint={addPairConstraint}
+              onRemoveConstraint={removePairConstraint}
             />
           )}
 

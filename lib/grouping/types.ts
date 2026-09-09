@@ -27,3 +27,12 @@ export interface SplitOutcome {
 }
 
 export type LockedPositions = Record<string, Position[]>;
+
+export type PairConstraintType = 'avoid' | 'require';
+
+export interface PairConstraint {
+  id: string;
+  playerA: string;
+  playerB: string;
+  type: PairConstraintType;
+}
