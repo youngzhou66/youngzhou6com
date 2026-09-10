@@ -1,10 +1,10 @@
 import {
   PLAYERS,
-  TIER_INFO,
   type Player,
   type Position,
 } from '@/data/players';
 import { POSITIONS } from '@/lib/grouping/constants';
+import { buildGroupedPlayer } from '@/lib/grouping/elo';
 import type {
   AssignResult,
   GroupedPlayer,
@@ -18,14 +18,8 @@ export function groupedPlayersWithRoles(
 ): GroupedPlayer[] {
   return players.map((player, index) => {
     const position = POSITIONS[index % POSITIONS.length];
-    const tier = player.positions[position];
 
-    return {
-      player,
-      position,
-      tier,
-      elo: TIER_INFO[tier].elo,
-    };
+    return buildGroupedPlayer(player, position);
   });
 }
 

@@ -17,7 +17,10 @@ import {
 import { championDrawErrorText } from '@/lib/champions/constants';
 import { drawChampionAssignments } from '@/lib/champions/draw';
 import type { ChampionDraws, ChampionPoolMode } from '@/lib/champions/types';
-import { TEAM_NAMES } from '@/lib/grouping/constants';
+import {
+  DEFAULT_ELO_THRESHOLD,
+  TEAM_NAMES,
+} from '@/lib/grouping/constants';
 import {
   generateBalancedGroups,
   generateRandomGroups,
@@ -55,7 +58,7 @@ export default function GroupPageContent() {
     null
   );
   const [sortMode, setSortMode] = useState<SortMode>('balanced');
-  const [threshold, setThreshold] = useState(0.15);
+  const [threshold, setThreshold] = useState(DEFAULT_ELO_THRESHOLD);
   const [showAddForm, setShowAddForm] = useState(false);
   const [showAlgorithm, setShowAlgorithm] = useState(false);
   const [showAnnouncement, setShowAnnouncement] = useState(true);
@@ -145,21 +148,37 @@ export default function GroupPageContent() {
       setChampionDrawError(championDrawErrorText(heroCountPerPlayer));
     }
 
-    const elo1 = result.team1.reduce((sum, player) => sum + player.elo, 0);
-    const elo2 = result.team2.reduce((sum, player) => sum + player.elo, 0);
+    const rawElo1 = result.team1.reduce(
+      (sum, player) => sum + player.rawElo,
+      0
+    );
+    const rawElo2 = result.team2.reduce(
+      (sum, player) => sum + player.rawElo,
+      0
+    );
+    const weightedElo1 = result.team1.reduce(
+      (sum, player) => sum + player.weightedElo,
+      0
+    );
+    const weightedElo2 = result.team2.reduce(
+      (sum, player) => sum + player.weightedElo,
+      0
+    );
 
     setTeams([
       {
         name: TEAM_NAMES[0].zh,
         color: TEAM_NAMES[0].color,
         players: result.team1,
-        totalElo: elo1,
+        totalRawElo: rawElo1,
+        totalWeightedElo: weightedElo1,
       },
       {
         name: TEAM_NAMES[1].zh,
         color: TEAM_NAMES[1].color,
         players: result.team2,
-        totalElo: elo2,
+        totalRawElo: rawElo2,
+        totalWeightedElo: weightedElo2,
       },
     ]);
   }, [
@@ -373,7 +392,7 @@ export default function GroupPageContent() {
               LOL 智能分组
             </h1>
             <p className="text-gray-400 text-lg">
-              选择 10 位玩家，系统将根据 ELO 智能平衡双方实力，并按位置抽取英雄
+              选择 10 位玩家，系统将根据位置加权 ELO 智能平衡双方实力，并按位置抽取英雄
             </p>
           </motion.div>
 

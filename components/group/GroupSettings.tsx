@@ -78,14 +78,14 @@ export default function GroupSettings({
               </button>
             </div>
             <p className="text-[11px] text-gray-500 mt-2">
-              智能平衡按 ELO 均衡实力；真随机只保证能凑成 5v5
+              智能平衡按位置加权 ELO 均衡实力；真随机只保证能凑成 5v5
             </p>
           </div>
 
           <div className="bg-white/5 border border-white/10 rounded-xl p-4">
             <div className="flex items-center justify-between mb-3">
               <span className="text-sm font-medium text-gray-300">
-                ⚖️ ELO 差值阈值
+                ⚖️ 加权 ELO 差值阈值
               </span>
               {sortMode === 'balanced' && (
                 <span className="text-sm font-bold text-cyan-400">
@@ -113,7 +113,7 @@ export default function GroupSettings({
               </>
             ) : (
               <p className="text-xs text-gray-500 leading-relaxed">
-                真随机模式不参与 ELO 均衡，无阈值
+                真随机模式不参与加权 ELO 均衡，无阈值
               </p>
             )}
           </div>

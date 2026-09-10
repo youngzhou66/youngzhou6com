@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { POSITION_LABELS, TIER_INFO } from '@/data/players';
 import type { ChampionDraws } from '@/lib/champions/types';
 import { POSITIONS } from '@/lib/grouping/constants';
+import { formatElo, formatWeight } from '@/lib/grouping/elo';
 import type { Team } from '@/lib/grouping/types';
 import ChampionPickCard from './ChampionPickCard';
 
@@ -46,9 +47,14 @@ export default function TeamCard({
             </div>
           </div>
           <div className="text-right bg-white/15 backdrop-blur-sm rounded-xl px-4 py-2">
-            <div className="text-white/70 text-xs tracking-wide">总 ELO</div>
+            <div className="text-white/70 text-xs tracking-wide">
+              队伍加权总分
+            </div>
             <div className="text-white text-3xl font-bold">
-              {team.totalElo}
+              {formatElo(team.totalWeightedElo)}
+            </div>
+            <div className="text-white/70 text-[10px] mt-0.5">
+              原始总分 {formatElo(team.totalRawElo)}
             </div>
           </div>
         </div>
@@ -105,10 +111,19 @@ export default function TeamCard({
                   </div>
                 )}
               </div>
-              <div
-                className={`px-2.5 py-1 rounded-full text-white text-xs font-bold ${tier.color} flex-shrink-0`}
-              >
-                {tier.icon} {tier.elo}
+              <div className="flex flex-col items-end gap-1 flex-shrink-0">
+                <div
+                  className={`px-2.5 py-1 rounded-full text-white text-xs font-bold ${tier.color}`}
+                  title={`${POSITION_LABELS[position].zh}位置权重 ×${formatWeight(
+                    groupedPlayer.weight
+                  )}`}
+                >
+                  {tier.icon} 原始 {formatElo(groupedPlayer.rawElo)}
+                </div>
+                <div className="text-[10px] text-gray-500 whitespace-nowrap">
+                  加权 {formatElo(groupedPlayer.weightedElo)}（×
+                  {formatWeight(groupedPlayer.weight)}）
+                </div>
               </div>
             </div>
           );

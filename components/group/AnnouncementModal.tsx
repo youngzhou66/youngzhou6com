@@ -33,7 +33,7 @@ export default function AnnouncementModal({
               <div>
                 <h3 className="text-xl font-bold text-white">📢 版本公告</h3>
                 <p className="text-xs text-gray-500 mt-1">
-                  当前版本 v1.3 · 2026-09-09
+                  当前版本 v1.4 · 2026-09-10
                 </p>
               </div>
               <button
@@ -47,7 +47,24 @@ export default function AnnouncementModal({
             <div className="space-y-3">
               <div className="rounded-xl border border-cyan-500/20 bg-cyan-500/5 p-4">
                 <div className="text-sm font-bold text-cyan-300">
-                  🆕 v1.3 · 2026-09-09
+                  🆕 v1.4 · 2026-09-10
+                </div>
+                <ul className="list-disc list-inside space-y-1.5 text-gray-400 text-sm mt-2">
+                  <li>
+                    新增 ELO 位置权重：上单 / AD 0.95，中单 / 打野 1.05，辅助 1.00
+                  </li>
+                  <li>
+                    智能平衡模式改为按加权 ELO 计算蓝红分差，让阵容强度评估更贴近实际对局价值
+                  </li>
+                  <li>默认加权 ELO 差值阈值由 15% 收紧到 10%</li>
+                  <li>队伍卡片同时展示原始 ELO 与加权 ELO，方便核对计算过程</li>
+                  <li>真随机模式仍只保证阵容结构合法，不参与 ELO 平衡</li>
+                </ul>
+              </div>
+
+              <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                <div className="text-sm font-bold text-gray-200">
+                  v1.3 · 2026-09-09
                 </div>
                 <ul className="list-disc list-inside space-y-1.5 text-gray-400 text-sm mt-2">
                   <li>
@@ -55,10 +72,7 @@ export default function AnnouncementModal({
                   </li>
                   <li>智能平衡与真随机两种模式均严格遵守同队约束</li>
                   <li>
-                    同一位置的两人无法“必须同队”；约束冲突或与位置锁定一起导致无解时，页面会明确提示
-                  </li>
-                  <li>
-                    根路径直达分组工具，移除旧作品集页面；新增自动化测试覆盖核心算法
+                    根路径直达分组工具；拆分页面与算法模块，并新增自动化测试覆盖核心算法
                   </li>
                 </ul>
               </div>
@@ -85,21 +99,6 @@ export default function AnnouncementModal({
                   <li>新增分组后按位置直接抽取英雄</li>
                   <li>英雄榜以构建时快照保存，不依赖 OP.GG 实时接口</li>
                   <li>全场英雄不重复，支持重新抽英雄</li>
-                </ul>
-              </div>
-
-              <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-4">
-                <div className="text-sm font-bold text-amber-300">
-                  🔭 v1.4 预告 · ELO 位置权重
-                </div>
-                <ul className="list-disc list-inside space-y-1.5 text-gray-400 text-sm mt-2">
-                  <li>
-                    下一版本将按位置加权计算 ELO，让阵容强度评估更贴近实际对局价值
-                  </li>
-                  <li>初步方案：上单 / AD 0.95，中单 / 打野 1.05，辅助 1.00</li>
-                  <li>
-                    目标是减少“总分接近，但关键位置差距过大”的情况，具体数值会根据测试结果微调
-                  </li>
                 </ul>
               </div>
             </div>

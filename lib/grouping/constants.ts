@@ -14,3 +14,13 @@ export const TEAM_NAMES = [
 ];
 
 export const TIER_KEYS = Object.keys(TIER_INFO) as TierKey[];
+
+export const POSITION_ELO_WEIGHTS: Record<Position, number> = {
+  top: 0.95,
+  adc: 0.95,
+  mid: 1.05,
+  jungle: 1.05,
+  support: 1,
+};
+
+export const DEFAULT_ELO_THRESHOLD = 0.1;

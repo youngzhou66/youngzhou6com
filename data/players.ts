@@ -62,7 +62,6 @@ export const PLAYERS: Player[] = [
   { name: '雷展赫',         positions: { top: 'renshangren',       jungle: 'dingji', mid: 'npc',       adc: 'npc',         support: 'npc' } },
   { name: '许天麒',         positions: { top: 'npc',       jungle: 'lawanle',     mid: 'renshangren', adc: 'lawanle',      support: 'npc' } },
   { name: '张序然',         positions: { top: 'renshangren', jungle: 'npc',        mid: 'npc',       adc: 'npc',     support: 'npc' } },
-  { name: '我一点都不温柔',           positions: { top: 'npc',       jungle: 'renshangren', mid: 'dingji',    adc: 'dingji',      support: 'renshangren' } },
   { name: '羊羊',           positions: { top: 'dingji', jungle: 'hang',   mid: 'hang', adc: 'renshangren',   support: 'renshangren' } },
   { name: '泰隆0u0',           positions: { top: 'renshangren',   jungle: 'dingji', mid: 'hang', adc: 'renshangren',         support: 'renshangren' } },
   { name: '成都meiko',      positions: { top: 'lawanle',   jungle: 'npc',         mid: 'npc',         adc: 'npc',         support: 'renshangren' } },

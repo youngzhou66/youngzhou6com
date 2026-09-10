@@ -6,14 +6,17 @@ export interface GroupedPlayer {
   player: Player;
   position: Position;
   tier: TierKey;
-  elo: number;
+  rawElo: number;
+  weight: number;
+  weightedElo: number;
 }
 
 export interface Team {
   name: string;
   color: string;
   players: GroupedPlayer[];
-  totalElo: number;
+  totalRawElo: number;
+  totalWeightedElo: number;
 }
 
 export interface AssignResult {

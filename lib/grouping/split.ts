@@ -1,6 +1,7 @@
-import { TIER_INFO, type Player, type Position } from '@/data/players';
+import type { Player, Position } from '@/data/players';
 import { POSITIONS } from './constants';
 import { satisfiesPairConstraints } from './constraints';
+import { buildGroupedPlayer } from './elo';
 import type {
   AssignResult,
   GroupedPlayer,
@@ -14,10 +15,7 @@ function buildSplitFromRoles(
   mask: number
 ): { result: AssignResult; diff: number; max: number } {
   const slots: GroupedPlayer[] = players.map((player, index) => ({
-    player,
-    position: roles[index],
-    tier: player.positions[roles[index]],
-    elo: TIER_INFO[player.positions[roles[index]]].elo,
+    ...buildGroupedPlayer(player, roles[index]),
   }));
 
   const team1: GroupedPlayer[] = [];
@@ -33,8 +31,8 @@ function buildSplitFromRoles(
     const blue = (mask >> positionIndex) & 1 ? b : a;
     const red = (mask >> positionIndex) & 1 ? a : b;
 
-    sum1 += blue.elo;
-    sum2 += red.elo;
+    sum1 += blue.weightedElo;
+    sum2 += red.weightedElo;
     team1.push(blue);
     team2.push(red);
   }

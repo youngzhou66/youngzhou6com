@@ -34,7 +34,7 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
   "region": "global",
   "tier": "emerald_plus",
   "patch": "16.17",
-  "updatedAt": "2026-09-08T09:20:49.690Z",
+  "updatedAt": "2026-09-10T07:02:13.658Z",
   "positions": {
     "top": [
       {
@@ -43,9 +43,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Nasus.png",
         "tier": 1,
         "rank": 1,
-        "winRate": 51.0787,
-        "pickRate": 8.31883,
-        "banRate": 45.6955
+        "winRate": 51.12799999999999,
+        "pickRate": 8.25344,
+        "banRate": 45.3185
       },
       {
         "key": "malphite",
@@ -53,9 +53,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Malphite.png",
         "tier": 1,
         "rank": 2,
-        "winRate": 51.441199999999995,
-        "pickRate": 6.6994,
-        "banRate": 15.043000000000001
+        "winRate": 51.3752,
+        "pickRate": 6.71958,
+        "banRate": 15.0636
       },
       {
         "key": "garen",
@@ -63,9 +63,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Garen.png",
         "tier": 1,
         "rank": 3,
-        "winRate": 51.139199999999995,
-        "pickRate": 7.053389999999999,
-        "banRate": 5.15779
+        "winRate": 51.127100000000006,
+        "pickRate": 7.051830000000001,
+        "banRate": 5.13599
       },
       {
         "key": "gangplank",
@@ -73,9 +73,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Gangplank.png",
         "tier": 2,
         "rank": 4,
-        "winRate": 50.8501,
-        "pickRate": 5.46925,
-        "banRate": 7.40353
+        "winRate": 50.819199999999995,
+        "pickRate": 5.46562,
+        "banRate": 7.44353
       },
       {
         "key": "yone",
@@ -83,9 +83,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Yone.png",
         "tier": 2,
         "rank": 5,
-        "winRate": 49.9793,
-        "pickRate": 8.11563,
-        "banRate": 9.51934
+        "winRate": 49.9147,
+        "pickRate": 8.1205,
+        "banRate": 9.53857
       },
       {
         "key": "teemo",
@@ -93,9 +93,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Teemo.png",
         "tier": 2,
         "rank": 6,
-        "winRate": 51.1908,
-        "pickRate": 4.12472,
-        "banRate": 6.3573
+        "winRate": 51.2362,
+        "pickRate": 4.13117,
+        "banRate": 6.347650000000001
       },
       {
         "key": "ornn",
@@ -103,9 +103,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Ornn.png",
         "tier": 2,
         "rank": 7,
-        "winRate": 51.6494,
-        "pickRate": 3.3345100000000003,
-        "banRate": 0.45736400000000005
+        "winRate": 51.5995,
+        "pickRate": 3.34876,
+        "banRate": 0.45813800000000005
       },
       {
         "key": "sett",
@@ -113,9 +113,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Sett.png",
         "tier": 2,
         "rank": 8,
-        "winRate": 50.565599999999996,
-        "pickRate": 5.6234,
-        "banRate": 2.34375
+        "winRate": 50.507000000000005,
+        "pickRate": 5.60763,
+        "banRate": 2.3424199999999997
       },
       {
         "key": "camille",
@@ -123,9 +123,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Camille.png",
         "tier": 2,
         "rank": 9,
-        "winRate": 50.933099999999996,
-        "pickRate": 4.32233,
-        "banRate": 5.6267
+        "winRate": 50.8555,
+        "pickRate": 4.348529999999999,
+        "banRate": 5.52599
       },
       {
         "key": "darius",
@@ -133,29 +133,29 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Darius.png",
         "tier": 2,
         "rank": 10,
-        "winRate": 49.8491,
-        "pickRate": 7.17017,
-        "banRate": 12.8839
-      },
-      {
-        "key": "shen",
-        "name": "暮光之眼",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Shen.png",
-        "tier": 2,
-        "rank": 11,
-        "winRate": 51.1858,
-        "pickRate": 3.59481,
-        "banRate": 0.779519
+        "winRate": 49.8654,
+        "pickRate": 7.1551100000000005,
+        "banRate": 12.8617
       },
       {
         "key": "singed",
         "name": "炼金术士",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Singed.png",
         "tier": 2,
+        "rank": 11,
+        "winRate": 51.6923,
+        "pickRate": 2.6155999999999997,
+        "banRate": 0.891448
+      },
+      {
+        "key": "shen",
+        "name": "暮光之眼",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Shen.png",
+        "tier": 2,
         "rank": 12,
-        "winRate": 51.67119999999999,
-        "pickRate": 2.6172999999999997,
-        "banRate": 0.889181
+        "winRate": 51.1163,
+        "pickRate": 3.5906800000000003,
+        "banRate": 0.779208
       },
       {
         "key": "irelia",
@@ -163,9 +163,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Irelia.png",
         "tier": 2,
         "rank": 13,
-        "winRate": 50.334199999999996,
-        "pickRate": 4.46131,
-        "banRate": 12.841099999999999
+        "winRate": 50.312400000000004,
+        "pickRate": 4.45856,
+        "banRate": 12.8498
       },
       {
         "key": "renekton",
@@ -173,109 +173,109 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Renekton.png",
         "tier": 3,
         "rank": 14,
-        "winRate": 49.7346,
-        "pickRate": 5.52652,
-        "banRate": 3.7917600000000005
-      },
-      {
-        "key": "aatrox",
-        "name": "暗裔剑魔",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Aatrox.png",
-        "tier": 3,
-        "rank": 15,
-        "winRate": 49.4257,
-        "pickRate": 5.899220000000001,
-        "banRate": 7.116649999999999
+        "winRate": 49.7842,
+        "pickRate": 5.51997,
+        "banRate": 3.79298
       },
       {
         "key": "jax",
         "name": "武器大师",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Jax.png",
         "tier": 3,
-        "rank": 16,
-        "winRate": 49.3486,
-        "pickRate": 5.89266,
-        "banRate": 10.0214
+        "rank": 15,
+        "winRate": 49.396,
+        "pickRate": 5.8957299999999995,
+        "banRate": 10.017199999999999
       },
       {
         "key": "olaf",
         "name": "狂战士",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Olaf.png",
         "tier": 3,
+        "rank": 16,
+        "winRate": 50.47239999999999,
+        "pickRate": 3.3143899999999995,
+        "banRate": 3.6203899999999996
+      },
+      {
+        "key": "aatrox",
+        "name": "暗裔剑魔",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Aatrox.png",
+        "tier": 3,
         "rank": 17,
-        "winRate": 50.4757,
-        "pickRate": 3.32257,
-        "banRate": 3.59766
-      },
-      {
-        "key": "illaoi",
-        "name": "海兽祭司",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Illaoi.png",
-        "tier": 3,
-        "rank": 18,
-        "winRate": 50.753400000000006,
-        "pickRate": 2.73596,
-        "banRate": 4.75702
-      },
-      {
-        "key": "mordekaiser",
-        "name": "铁铠冥魂",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Mordekaiser.png",
-        "tier": 3,
-        "rank": 19,
-        "winRate": 49.5434,
-        "pickRate": 5.11792,
-        "banRate": 8.32125
-      },
-      {
-        "key": "urgot",
-        "name": "无畏战车",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Urgot.png",
-        "tier": 3,
-        "rank": 20,
-        "winRate": 50.936099999999996,
-        "pickRate": 2.42866,
-        "banRate": 0.791286
-      },
-      {
-        "key": "kayle",
-        "name": "正义天使",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Kayle.png",
-        "tier": 3,
-        "rank": 21,
-        "winRate": 51.0714,
-        "pickRate": 2.20154,
-        "banRate": 1.3671600000000002
+        "winRate": 49.3762,
+        "pickRate": 5.9032599999999995,
+        "banRate": 7.0899
       },
       {
         "key": "chogath",
         "name": "虚空恐惧",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Chogath.png",
         "tier": 3,
-        "rank": 22,
-        "winRate": 50.5024,
-        "pickRate": 2.97602,
-        "banRate": 1.29047
+        "rank": 18,
+        "winRate": 50.5988,
+        "pickRate": 2.9850499999999998,
+        "banRate": 1.41719
+      },
+      {
+        "key": "urgot",
+        "name": "无畏战车",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Urgot.png",
+        "tier": 3,
+        "rank": 19,
+        "winRate": 50.991699999999994,
+        "pickRate": 2.41567,
+        "banRate": 0.795154
+      },
+      {
+        "key": "mordekaiser",
+        "name": "铁铠冥魂",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Mordekaiser.png",
+        "tier": 3,
+        "rank": 20,
+        "winRate": 49.5616,
+        "pickRate": 5.0925199999999995,
+        "banRate": 8.26901
+      },
+      {
+        "key": "illaoi",
+        "name": "海兽祭司",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Illaoi.png",
+        "tier": 3,
+        "rank": 21,
+        "winRate": 50.7085,
+        "pickRate": 2.72755,
+        "banRate": 4.75881
       },
       {
         "key": "tryndamere",
         "name": "蛮族之王",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Tryndamere.png",
         "tier": 3,
-        "rank": 23,
-        "winRate": 50.3891,
-        "pickRate": 3.16812,
-        "banRate": 2.48547
+        "rank": 22,
+        "winRate": 50.3911,
+        "pickRate": 3.17085,
+        "banRate": 2.49444
       },
       {
-        "key": "kled",
-        "name": "暴怒骑士",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Kled.png",
+        "key": "kayle",
+        "name": "正义天使",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Kayle.png",
+        "tier": 3,
+        "rank": 23,
+        "winRate": 51.0035,
+        "pickRate": 2.19377,
+        "banRate": 1.37184
+      },
+      {
+        "key": "warwick",
+        "name": "祖安怒兽",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Warwick.png",
         "tier": 3,
         "rank": 24,
-        "winRate": 51.21360000000001,
-        "pickRate": 1.79574,
-        "banRate": 0.932773
+        "winRate": 51.7575,
+        "pickRate": 1.3709,
+        "banRate": 1.62344
       },
       {
         "key": "pantheon",
@@ -283,29 +283,29 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Pantheon.png",
         "tier": 3,
         "rank": 25,
-        "winRate": 50.3267,
-        "pickRate": 2.83725,
-        "banRate": 2.41098
+        "winRate": 50.431099999999994,
+        "pickRate": 2.83103,
+        "banRate": 2.41037
       },
       {
-        "key": "warwick",
-        "name": "祖安怒兽",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Warwick.png",
+        "key": "kled",
+        "name": "暴怒骑士",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Kled.png",
         "tier": 3,
         "rank": 26,
-        "winRate": 51.595800000000004,
-        "pickRate": 1.36022,
-        "banRate": 1.61777
+        "winRate": 51.198600000000006,
+        "pickRate": 1.7874700000000001,
+        "banRate": 0.931279
       },
       {
         "key": "drmundo",
         "name": "祖安狂人",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/DrMundo.png",
-        "tier": 4,
+        "tier": 3,
         "rank": 27,
-        "winRate": 49.811499999999995,
-        "pickRate": 3.6296500000000003,
-        "banRate": 2.70146
+        "winRate": 49.8664,
+        "pickRate": 3.6121399999999997,
+        "banRate": 2.68269
       },
       {
         "key": "gwen",
@@ -313,9 +313,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Gwen.png",
         "tier": 4,
         "rank": 28,
-        "winRate": 50.2028,
-        "pickRate": 2.78024,
-        "banRate": 4.09601
+        "winRate": 50.22370000000001,
+        "pickRate": 2.77209,
+        "banRate": 4.06462
       },
       {
         "key": "kennen",
@@ -323,9 +323,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Kennen.png",
         "tier": 4,
         "rank": 29,
-        "winRate": 50.7224,
-        "pickRate": 2.07895,
-        "banRate": 1.1848400000000001
+        "winRate": 50.72560000000001,
+        "pickRate": 2.06855,
+        "banRate": 1.1956
       },
       {
         "key": "fiora",
@@ -333,29 +333,29 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Fiora.png",
         "tier": 4,
         "rank": 30,
-        "winRate": 49.6648,
-        "pickRate": 3.5998799999999997,
-        "banRate": 4.4877199999999995
-      },
-      {
-        "key": "yasuo",
-        "name": "疾风剑豪",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Yasuo.png",
-        "tier": 4,
-        "rank": 31,
-        "winRate": 49.2258,
-        "pickRate": 3.47843,
-        "banRate": 20.0157
+        "winRate": 49.680800000000005,
+        "pickRate": 3.6020200000000004,
+        "banRate": 4.49354
       },
       {
         "key": "quinn",
         "name": "德玛西亚之翼",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Quinn.png",
         "tier": 4,
+        "rank": 31,
+        "winRate": 52.1504,
+        "pickRate": 0.877726,
+        "banRate": 0.928908
+      },
+      {
+        "key": "yasuo",
+        "name": "疾风剑豪",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Yasuo.png",
+        "tier": 4,
         "rank": 32,
-        "winRate": 52.087,
-        "pickRate": 0.874592,
-        "banRate": 0.935211
+        "winRate": 49.221900000000005,
+        "pickRate": 3.4748,
+        "banRate": 20.0212
       },
       {
         "key": "gragas",
@@ -363,9 +363,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Gragas.png",
         "tier": 4,
         "rank": 33,
-        "winRate": 50.2,
-        "pickRate": 2.27346,
-        "banRate": 0.634556
+        "winRate": 50.191900000000004,
+        "pickRate": 2.28053,
+        "banRate": 0.633334
       },
       {
         "key": "ambessa",
@@ -373,29 +373,29 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Ambessa.png",
         "tier": 4,
         "rank": 34,
-        "winRate": 48.952,
-        "pickRate": 4.02776,
-        "banRate": 4.8761600000000005
-      },
-      {
-        "key": "gnar",
-        "name": "迷失之牙",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Gnar.png",
-        "tier": 4,
-        "rank": 35,
-        "winRate": 49.147999999999996,
-        "pickRate": 3.59691,
-        "banRate": 1.1596600000000001
+        "winRate": 49.0186,
+        "pickRate": 4.02452,
+        "banRate": 4.89018
       },
       {
         "key": "zaahen",
         "name": "不落魔锋",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Zaahen.png",
         "tier": 4,
+        "rank": 35,
+        "winRate": 49.733,
+        "pickRate": 2.60912,
+        "banRate": 1.08705
+      },
+      {
+        "key": "gnar",
+        "name": "迷失之牙",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Gnar.png",
+        "tier": 4,
         "rank": 36,
-        "winRate": 49.7108,
-        "pickRate": 2.61499,
-        "banRate": 1.09077
+        "winRate": 48.9832,
+        "pickRate": 3.595,
+        "banRate": 1.15892
       },
       {
         "key": "yorick",
@@ -403,9 +403,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Yorick.png",
         "tier": 4,
         "rank": 37,
-        "winRate": 49.1528,
-        "pickRate": 3.1349299999999998,
-        "banRate": 5.9778199999999995
+        "winRate": 49.1435,
+        "pickRate": 3.12215,
+        "banRate": 5.9710600000000005
       },
       {
         "key": "akali",
@@ -413,9 +413,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Akali.png",
         "tier": 4,
         "rank": 38,
-        "winRate": 49.2246,
-        "pickRate": 2.59641,
-        "banRate": 15.840399999999999
+        "winRate": 49.1042,
+        "pickRate": 2.59531,
+        "banRate": 15.8672
       },
       {
         "key": "sion",
@@ -423,9 +423,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Sion.png",
         "tier": 4,
         "rank": 39,
-        "winRate": 49.268699999999995,
-        "pickRate": 2.84849,
-        "banRate": 0.502602
+        "winRate": 49.2491,
+        "pickRate": 2.83778,
+        "banRate": 0.502707
       },
       {
         "key": "riven",
@@ -433,9 +433,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Riven.png",
         "tier": 4,
         "rank": 40,
-        "winRate": 49.6197,
-        "pickRate": 2.2648,
-        "banRate": 1.81174
+        "winRate": 49.594300000000004,
+        "pickRate": 2.25839,
+        "banRate": 1.8001699999999998
       },
       {
         "key": "anivia",
@@ -443,39 +443,39 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Anivia.png",
         "tier": 4,
         "rank": 41,
-        "winRate": 51.3402,
-        "pickRate": 0.753535,
-        "banRate": 2.45057
-      },
-      {
-        "key": "jayce",
-        "name": "未来守护者",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Jayce.png",
-        "tier": 4,
-        "rank": 42,
-        "winRate": 47.5887,
-        "pickRate": 5.50803,
-        "banRate": 5.93642
-      },
-      {
-        "key": "zac",
-        "name": "生化魔人",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Zac.png",
-        "tier": 4,
-        "rank": 43,
-        "winRate": 51.8251,
-        "pickRate": 0.519815,
-        "banRate": 1.11119
+        "winRate": 51.451800000000006,
+        "pickRate": 0.748704,
+        "banRate": 2.45832
       },
       {
         "key": "monkeyking",
         "name": "齐天大圣",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/MonkeyKing.png",
         "tier": 4,
+        "rank": 42,
+        "winRate": 50.740700000000004,
+        "pickRate": 0.964133,
+        "banRate": 3.16626
+      },
+      {
+        "key": "jayce",
+        "name": "未来守护者",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Jayce.png",
+        "tier": 4,
+        "rank": 43,
+        "winRate": 47.5781,
+        "pickRate": 5.56717,
+        "banRate": 5.982
+      },
+      {
+        "key": "zac",
+        "name": "生化魔人",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Zac.png",
+        "tier": 4,
         "rank": 44,
-        "winRate": 50.61750000000001,
-        "pickRate": 0.9629469999999999,
-        "banRate": 3.14706
+        "winRate": 51.75189999999999,
+        "pickRate": 0.521895,
+        "banRate": 1.10788
       },
       {
         "key": "heimerdinger",
@@ -483,9 +483,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Heimerdinger.png",
         "tier": 4,
         "rank": 45,
-        "winRate": 50.1999,
-        "pickRate": 1.24686,
-        "banRate": 1.7794999999999999
+        "winRate": 50.2267,
+        "pickRate": 1.23752,
+        "banRate": 1.77877
       },
       {
         "key": "volibear",
@@ -493,9 +493,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Volibear.png",
         "tier": 4,
         "rank": 46,
-        "winRate": 48.4822,
-        "pickRate": 3.16414,
-        "banRate": 1.20133
+        "winRate": 48.4585,
+        "pickRate": 3.16669,
+        "banRate": 1.20267
       },
       {
         "key": "tahmkench",
@@ -503,9 +503,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/TahmKench.png",
         "tier": 4,
         "rank": 47,
-        "winRate": 49.5338,
-        "pickRate": 1.6553200000000001,
-        "banRate": 1.93996
+        "winRate": 49.553999999999995,
+        "pickRate": 1.6540599999999999,
+        "banRate": 1.9375099999999998
       },
       {
         "key": "cassiopeia",
@@ -513,29 +513,29 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Cassiopeia.png",
         "tier": 5,
         "rank": 48,
-        "winRate": 51.028099999999995,
-        "pickRate": 0.569829,
-        "banRate": 1.84494
-      },
-      {
-        "key": "vladimir",
-        "name": "猩红收割者",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Vladimir.png",
-        "tier": 5,
-        "rank": 49,
-        "winRate": 49.4519,
-        "pickRate": 1.26032,
-        "banRate": 5.75409
+        "winRate": 51.047,
+        "pickRate": 0.56969,
+        "banRate": 1.87113
       },
       {
         "key": "trundle",
         "name": "巨魔之王",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Trundle.png",
         "tier": 5,
+        "rank": 49,
+        "winRate": 48.928399999999996,
+        "pickRate": 1.81082,
+        "banRate": 0.435961
+      },
+      {
+        "key": "vladimir",
+        "name": "猩红收割者",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Vladimir.png",
+        "tier": 5,
         "rank": 50,
-        "winRate": 48.837399999999995,
-        "pickRate": 1.8030899999999999,
-        "banRate": 0.43678399999999995
+        "winRate": 49.4081,
+        "pickRate": 1.26628,
+        "banRate": 5.75054
       },
       {
         "key": "poppy",
@@ -543,9 +543,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Poppy.png",
         "tier": 5,
         "rank": 51,
-        "winRate": 49.8253,
-        "pickRate": 0.9757129999999999,
-        "banRate": 4.73721
+        "winRate": 49.877,
+        "pickRate": 0.9731190000000001,
+        "banRate": 4.73106
       },
       {
         "key": "ksante",
@@ -553,9 +553,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/KSante.png",
         "tier": 5,
         "rank": 52,
-        "winRate": 46.9929,
-        "pickRate": 3.7327399999999997,
-        "banRate": 2.49471
+        "winRate": 47.0157,
+        "pickRate": 3.74544,
+        "banRate": 2.4989399999999997
       },
       {
         "key": "rumble",
@@ -563,9 +563,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Rumble.png",
         "tier": 5,
         "rank": 53,
-        "winRate": 48.3723,
-        "pickRate": 1.6397599999999999,
-        "banRate": 0.694768
+        "winRate": 48.427,
+        "pickRate": 1.65147,
+        "banRate": 0.69308
       },
       {
         "key": "swain",
@@ -573,9 +573,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Swain.png",
         "tier": 5,
         "rank": 54,
-        "winRate": 49.6903,
-        "pickRate": 0.550593,
-        "banRate": 1.5746799999999999
+        "winRate": 49.9469,
+        "pickRate": 0.554033,
+        "banRate": 1.5786399999999998
       },
       {
         "key": "malzahar",
@@ -583,9 +583,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Malzahar.png",
         "tier": 5,
         "rank": 55,
-        "winRate": 49.6194,
-        "pickRate": 0.511202,
-        "banRate": 8.79337
+        "winRate": 49.858599999999996,
+        "pickRate": 0.513223,
+        "banRate": 8.820540000000001
       },
       {
         "key": "vayne",
@@ -593,9 +593,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Vayne.png",
         "tier": 5,
         "rank": 56,
-        "winRate": 46.8456,
-        "pickRate": 2.04149,
-        "banRate": 7.179589999999999
+        "winRate": 46.8694,
+        "pickRate": 2.02809,
+        "banRate": 7.1036
       },
       {
         "key": "ryze",
@@ -603,9 +603,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Ryze.png",
         "tier": 5,
         "rank": 57,
-        "winRate": 48.6127,
-        "pickRate": 0.742124,
-        "banRate": 0.484009
+        "winRate": 48.5742,
+        "pickRate": 0.7389330000000001,
+        "banRate": 0.487604
       },
       {
         "key": "varus",
@@ -613,9 +613,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Varus.png",
         "tier": 5,
         "rank": 58,
-        "winRate": 47.3321,
-        "pickRate": 0.759524,
-        "banRate": 0.677357
+        "winRate": 47.4037,
+        "pickRate": 0.779115,
+        "banRate": 0.6829609999999999
       },
       {
         "key": "udyr",
@@ -623,9 +623,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Udyr.png",
         "tier": 5,
         "rank": 59,
-        "winRate": 47.5964,
-        "pickRate": 0.532012,
-        "banRate": 1.07525
+        "winRate": 47.700900000000004,
+        "pickRate": 0.536767,
+        "banRate": 1.06948
       }
     ],
     "jungle": [
@@ -635,9 +635,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/MonkeyKing.png",
         "tier": 1,
         "rank": 1,
-        "winRate": 51.8026,
-        "pickRate": 6.16549,
-        "banRate": 3.22719
+        "winRate": 51.787000000000006,
+        "pickRate": 6.16031,
+        "banRate": 3.24054
       },
       {
         "key": "sylas",
@@ -645,29 +645,29 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Sylas.png",
         "tier": 1,
         "rank": 2,
-        "winRate": 50.5645,
-        "pickRate": 7.6866699999999994,
-        "banRate": 17.4706
-      },
-      {
-        "key": "rammus",
-        "name": "披甲龙龟",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Rammus.png",
-        "tier": 1,
-        "rank": 3,
-        "winRate": 52.7465,
-        "pickRate": 2.02606,
-        "banRate": 3.68129
+        "winRate": 50.5342,
+        "pickRate": 7.71251,
+        "banRate": 17.5556
       },
       {
         "key": "talon",
         "name": "刀锋之影",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Talon.png",
         "tier": 1,
+        "rank": 3,
+        "winRate": 50.9514,
+        "pickRate": 6.31736,
+        "banRate": 9.74597
+      },
+      {
+        "key": "rammus",
+        "name": "披甲龙龟",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Rammus.png",
+        "tier": 1,
         "rank": 4,
-        "winRate": 50.943099999999994,
-        "pickRate": 6.28672,
-        "banRate": 9.63789
+        "winRate": 52.654999999999994,
+        "pickRate": 2.02698,
+        "banRate": 3.69013
       },
       {
         "key": "nocturne",
@@ -675,9 +675,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Nocturne.png",
         "tier": 1,
         "rank": 5,
-        "winRate": 50.7762,
-        "pickRate": 6.18844,
-        "banRate": 13.115099999999998
+        "winRate": 50.84760000000001,
+        "pickRate": 6.18422,
+        "banRate": 13.119900000000001
       },
       {
         "key": "shyvana",
@@ -685,69 +685,69 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Shyvana.png",
         "tier": 1,
         "rank": 6,
-        "winRate": 51.0374,
-        "pickRate": 5.36613,
-        "banRate": 5.27562
+        "winRate": 51.021499999999996,
+        "pickRate": 5.33899,
+        "banRate": 5.29228
       },
       {
         "key": "leesin",
         "name": "盲僧",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/LeeSin.png",
-        "tier": 1,
+        "tier": 2,
         "rank": 7,
-        "winRate": 49.284800000000004,
-        "pickRate": 13.459,
-        "banRate": 16.8517
-      },
-      {
-        "key": "chogath",
-        "name": "虚空恐惧",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Chogath.png",
-        "tier": 1,
-        "rank": 8,
-        "winRate": 51.5926,
-        "pickRate": 2.97772,
-        "banRate": 1.28502
+        "winRate": 49.2431,
+        "pickRate": 13.509699999999999,
+        "banRate": 16.9394
       },
       {
         "key": "briar",
         "name": "狂厄蔷薇",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Briar.png",
-        "tier": 1,
+        "tier": 2,
+        "rank": 8,
+        "winRate": 50.964,
+        "pickRate": 4.60101,
+        "banRate": 8.7788
+      },
+      {
+        "key": "chogath",
+        "name": "虚空恐惧",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Chogath.png",
+        "tier": 2,
         "rank": 9,
-        "winRate": 50.87429999999999,
-        "pickRate": 4.61514,
-        "banRate": 8.80067
+        "winRate": 51.504099999999994,
+        "pickRate": 3.1922699999999997,
+        "banRate": 1.41235
       },
       {
         "key": "warwick",
         "name": "祖安怒兽",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Warwick.png",
-        "tier": 1,
-        "rank": 10,
-        "winRate": 51.472899999999996,
-        "pickRate": 3.1402600000000005,
-        "banRate": 1.64497
-      },
-      {
-        "key": "shaco",
-        "name": "恶魔小丑",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Shaco.png",
         "tier": 2,
-        "rank": 11,
-        "winRate": 50.549,
-        "pickRate": 4.5169500000000005,
-        "banRate": 16.7853
+        "rank": 10,
+        "winRate": 51.4424,
+        "pickRate": 3.1344,
+        "banRate": 1.64787
       },
       {
         "key": "kayn",
         "name": "影流之镰",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Kayn.png",
         "tier": 2,
+        "rank": 11,
+        "winRate": 50.0293,
+        "pickRate": 6.909700000000001,
+        "banRate": 5.2296700000000005
+      },
+      {
+        "key": "shaco",
+        "name": "恶魔小丑",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Shaco.png",
+        "tier": 2,
         "rank": 12,
-        "winRate": 50.0166,
-        "pickRate": 6.9281,
-        "banRate": 5.24231
+        "winRate": 50.521300000000004,
+        "pickRate": 4.5227,
+        "banRate": 16.8099
       },
       {
         "key": "graves",
@@ -755,9 +755,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Graves.png",
         "tier": 2,
         "rank": 13,
-        "winRate": 49.259100000000004,
-        "pickRate": 10.2367,
-        "banRate": 14.6431
+        "winRate": 49.284,
+        "pickRate": 10.188899999999999,
+        "banRate": 14.5876
       },
       {
         "key": "fiddlesticks",
@@ -765,169 +765,169 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Fiddlesticks.png",
         "tier": 2,
         "rank": 14,
-        "winRate": 51.5178,
-        "pickRate": 2.40268,
-        "banRate": 1.38917
+        "winRate": 51.4827,
+        "pickRate": 2.38999,
+        "banRate": 1.3819299999999999
       },
       {
         "key": "evelynn",
         "name": "痛苦之拥",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Evelynn.png",
-        "tier": 2,
+        "tier": 3,
         "rank": 15,
-        "winRate": 51.382799999999996,
-        "pickRate": 2.38307,
-        "banRate": 2.02639
+        "winRate": 51.41139999999999,
+        "pickRate": 2.38528,
+        "banRate": 2.02565
       },
       {
         "key": "udyr",
         "name": "兽灵行者",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Udyr.png",
-        "tier": 2,
+        "tier": 3,
         "rank": 16,
-        "winRate": 51.4452,
-        "pickRate": 2.23529,
-        "banRate": 1.11624
+        "winRate": 51.384600000000006,
+        "pickRate": 2.22321,
+        "banRate": 1.10636
       },
       {
         "key": "lillia",
         "name": "含羞蓓蕾",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Lillia.png",
-        "tier": 2,
+        "tier": 3,
         "rank": 17,
-        "winRate": 50.7897,
-        "pickRate": 3.17284,
-        "banRate": 1.84906
-      },
-      {
-        "key": "reksai",
-        "name": "虚空遁地兽",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/RekSai.png",
-        "tier": 2,
-        "rank": 18,
-        "winRate": 51.9192,
-        "pickRate": 1.4887299999999999,
-        "banRate": 0.680581
+        "winRate": 50.808,
+        "pickRate": 3.15913,
+        "banRate": 1.85235
       },
       {
         "key": "nidalee",
         "name": "狂野女猎手",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Nidalee.png",
-        "tier": 2,
+        "tier": 3,
+        "rank": 18,
+        "winRate": 50.791,
+        "pickRate": 3.12606,
+        "banRate": 2.10345
+      },
+      {
+        "key": "reksai",
+        "name": "虚空遁地兽",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/RekSai.png",
+        "tier": 3,
         "rank": 19,
-        "winRate": 50.7216,
-        "pickRate": 3.1327099999999994,
-        "banRate": 2.0882
-      },
-      {
-        "key": "zac",
-        "name": "生化魔人",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Zac.png",
-        "tier": 2,
-        "rank": 20,
-        "winRate": 50.7471,
-        "pickRate": 3.04042,
-        "banRate": 1.19102
-      },
-      {
-        "key": "sejuani",
-        "name": "北地之怒",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Sejuani.png",
-        "tier": 2,
-        "rank": 21,
-        "winRate": 51.3604,
-        "pickRate": 2.0030200000000002,
-        "banRate": 0.185896
+        "winRate": 51.885099999999994,
+        "pickRate": 1.48733,
+        "banRate": 0.680094
       },
       {
         "key": "ekko",
         "name": "时间刺客",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Ekko.png",
-        "tier": 2,
-        "rank": 22,
-        "winRate": 50.2182,
-        "pickRate": 4.056719999999999,
-        "banRate": 1.55306
+        "tier": 3,
+        "rank": 20,
+        "winRate": 50.287800000000004,
+        "pickRate": 4.03866,
+        "banRate": 1.55042
       },
       {
         "key": "ivern",
         "name": "翠神",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Ivern.png",
-        "tier": 2,
+        "tier": 3,
+        "rank": 21,
+        "winRate": 52.04299999999999,
+        "pickRate": 1.2761500000000001,
+        "banRate": 0.405606
+      },
+      {
+        "key": "sejuani",
+        "name": "北地之怒",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Sejuani.png",
+        "tier": 3,
+        "rank": 22,
+        "winRate": 51.3098,
+        "pickRate": 2.00385,
+        "banRate": 0.18505
+      },
+      {
+        "key": "zac",
+        "name": "生化魔人",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Zac.png",
+        "tier": 3,
         "rank": 23,
-        "winRate": 51.9945,
-        "pickRate": 1.2835400000000001,
-        "banRate": 0.407497
+        "winRate": 50.6606,
+        "pickRate": 3.0122,
+        "banRate": 1.18024
       },
       {
         "key": "jarvaniv",
         "name": "德玛西亚皇子",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/JarvanIV.png",
-        "tier": 2,
+        "tier": 3,
         "rank": 24,
-        "winRate": 49.4929,
-        "pickRate": 5.848310000000001,
-        "banRate": 1.2215200000000002
+        "winRate": 49.4766,
+        "pickRate": 5.88515,
+        "banRate": 1.21587
       },
       {
         "key": "belveth",
         "name": "虚空女皇",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Belveth.png",
-        "tier": 2,
+        "tier": 3,
         "rank": 25,
-        "winRate": 50.2818,
-        "pickRate": 3.22612,
-        "banRate": 6.46732
+        "winRate": 50.3313,
+        "pickRate": 3.22657,
+        "banRate": 6.43715
       },
       {
         "key": "hecarim",
         "name": "战争之影",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Hecarim.png",
-        "tier": 2,
+        "tier": 3,
         "rank": 26,
-        "winRate": 49.4777,
-        "pickRate": 5.395239999999999,
-        "banRate": 6.35284
-      },
-      {
-        "key": "khazix",
-        "name": "虚空掠夺者",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Khazix.png",
-        "tier": 2,
-        "rank": 27,
-        "winRate": 49.4175,
-        "pickRate": 5.59058,
-        "banRate": 3.1614000000000004
+        "winRate": 49.4537,
+        "pickRate": 5.4172199999999995,
+        "banRate": 6.352679999999999
       },
       {
         "key": "zyra",
         "name": "荆棘之兴",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Zyra.png",
         "tier": 3,
-        "rank": 28,
-        "winRate": 51.302400000000006,
-        "pickRate": 1.37258,
-        "banRate": 2.3343
+        "rank": 27,
+        "winRate": 51.48160000000001,
+        "pickRate": 1.37463,
+        "banRate": 2.33707
       },
       {
-        "key": "nunu",
-        "name": "雪原双子",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Nunu.png",
+        "key": "khazix",
+        "name": "虚空掠夺者",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Khazix.png",
         "tier": 3,
-        "rank": 29,
-        "winRate": 50.763999999999996,
-        "pickRate": 1.97057,
-        "banRate": 0.447926
+        "rank": 28,
+        "winRate": 49.3412,
+        "pickRate": 5.55048,
+        "banRate": 3.15461
       },
       {
         "key": "viego",
         "name": "破败之王",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Viego.png",
         "tier": 3,
+        "rank": 29,
+        "winRate": 48.3478,
+        "pickRate": 8.81245,
+        "banRate": 7.634779999999999
+      },
+      {
+        "key": "nunu",
+        "name": "雪原双子",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Nunu.png",
+        "tier": 3,
         "rank": 30,
-        "winRate": 48.2862,
-        "pickRate": 8.855920000000001,
-        "banRate": 7.675559999999999
+        "winRate": 50.6917,
+        "pickRate": 1.9647499999999998,
+        "banRate": 0.449469
       },
       {
         "key": "vi",
@@ -935,59 +935,59 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Vi.png",
         "tier": 3,
         "rank": 31,
-        "winRate": 49.1348,
-        "pickRate": 5.19049,
-        "banRate": 1.87656
-      },
-      {
-        "key": "naafiri",
-        "name": "百裂冥犬",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Naafiri.png",
-        "tier": 3,
-        "rank": 32,
-        "winRate": 49.4965,
-        "pickRate": 3.7832,
-        "banRate": 13.5627
+        "winRate": 49.1796,
+        "pickRate": 5.18587,
+        "banRate": 1.8746200000000002
       },
       {
         "key": "masteryi",
         "name": "无极剑圣",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/MasterYi.png",
         "tier": 3,
+        "rank": 32,
+        "winRate": 49.0685,
+        "pickRate": 5.0523,
+        "banRate": 11.3469
+      },
+      {
+        "key": "naafiri",
+        "name": "百裂冥犬",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Naafiri.png",
+        "tier": 3,
         "rank": 33,
-        "winRate": 49.0139,
-        "pickRate": 5.073160000000001,
-        "banRate": 11.3783
+        "winRate": 49.4214,
+        "pickRate": 3.7790700000000004,
+        "banRate": 13.4759
       },
       {
         "key": "elise",
         "name": "蜘蛛女皇",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Elise.png",
-        "tier": 3,
+        "tier": 4,
         "rank": 34,
-        "winRate": 50.42680000000001,
-        "pickRate": 1.89589,
-        "banRate": 1.0023
-      },
-      {
-        "key": "qiyana",
-        "name": "元素女皇",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Qiyana.png",
-        "tier": 3,
-        "rank": 35,
-        "winRate": 48.7128,
-        "pickRate": 4.83721,
-        "banRate": 6.514290000000001
+        "winRate": 50.2757,
+        "pickRate": 1.89256,
+        "banRate": 1.00715
       },
       {
         "key": "amumu",
         "name": "殇之木乃伊",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Amumu.png",
-        "tier": 3,
+        "tier": 4,
+        "rank": 35,
+        "winRate": 50.1748,
+        "pickRate": 1.98306,
+        "banRate": 0.882923
+      },
+      {
+        "key": "qiyana",
+        "name": "元素女皇",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Qiyana.png",
+        "tier": 4,
         "rank": 36,
-        "winRate": 50.106300000000005,
-        "pickRate": 1.99938,
-        "banRate": 0.8868090000000001
+        "winRate": 48.6301,
+        "pickRate": 4.91632,
+        "banRate": 6.64385
       },
       {
         "key": "taliyah",
@@ -995,9 +995,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Taliyah.png",
         "tier": 4,
         "rank": 37,
-        "winRate": 51.195100000000004,
-        "pickRate": 0.8804120000000001,
-        "banRate": 0.352685
+        "winRate": 51.2208,
+        "pickRate": 0.8883719999999999,
+        "banRate": 0.355293
       },
       {
         "key": "trundle",
@@ -1005,9 +1005,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Trundle.png",
         "tier": 4,
         "rank": 38,
-        "winRate": 50.7032,
-        "pickRate": 1.05822,
-        "banRate": 0.429958
+        "winRate": 50.731,
+        "pickRate": 1.04679,
+        "banRate": 0.429835
       },
       {
         "key": "quinn",
@@ -1015,69 +1015,69 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Quinn.png",
         "tier": 4,
         "rank": 39,
-        "winRate": 50.2887,
-        "pickRate": 1.34511,
-        "banRate": 0.9425720000000001
-      },
-      {
-        "key": "aatrox",
-        "name": "暗裔剑魔",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Aatrox.png",
-        "tier": 4,
-        "rank": 40,
-        "winRate": 50.285500000000006,
-        "pickRate": 1.13975,
-        "banRate": 6.981800000000001
-      },
-      {
-        "key": "diana",
-        "name": "皎月女神",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Diana.png",
-        "tier": 4,
-        "rank": 41,
-        "winRate": 48.916,
-        "pickRate": 2.8098899999999998,
-        "banRate": 3.18622
+        "winRate": 50.202999999999996,
+        "pickRate": 1.33332,
+        "banRate": 0.9355600000000001
       },
       {
         "key": "skarner",
         "name": "上古领主",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Skarner.png",
         "tier": 4,
-        "rank": 42,
-        "winRate": 50.2441,
-        "pickRate": 1.19078,
-        "banRate": 0.243049
+        "rank": 40,
+        "winRate": 50.3892,
+        "pickRate": 1.19052,
+        "banRate": 0.244161
       },
       {
-        "key": "rengar",
-        "name": "傲之追猎者",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Rengar.png",
+        "key": "aatrox",
+        "name": "暗裔剑魔",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Aatrox.png",
         "tier": 4,
-        "rank": 43,
-        "winRate": 48.3523,
-        "pickRate": 3.7986,
-        "banRate": 6.60504
+        "rank": 41,
+        "winRate": 50.3151,
+        "pickRate": 1.1247099999999999,
+        "banRate": 6.96815
+      },
+      {
+        "key": "diana",
+        "name": "皎月女神",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Diana.png",
+        "tier": 4,
+        "rank": 42,
+        "winRate": 48.9247,
+        "pickRate": 2.79218,
+        "banRate": 3.1676200000000003
       },
       {
         "key": "darius",
         "name": "诺克萨斯之手",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Darius.png",
         "tier": 4,
-        "rank": 44,
-        "winRate": 50.5399,
-        "pickRate": 0.7674259999999999,
-        "banRate": 12.485
+        "rank": 43,
+        "winRate": 50.6868,
+        "pickRate": 0.762591,
+        "banRate": 12.5018
       },
       {
-        "key": "xinzhao",
-        "name": "德邦总管",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/XinZhao.png",
+        "key": "gragas",
+        "name": "酒桶",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Gragas.png",
+        "tier": 4,
+        "rank": 44,
+        "winRate": 50.769,
+        "pickRate": 0.7823729999999999,
+        "banRate": 0.615165
+      },
+      {
+        "key": "rengar",
+        "name": "傲之追猎者",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Rengar.png",
         "tier": 4,
         "rank": 45,
-        "winRate": 48.9403,
-        "pickRate": 2.5548499999999996,
-        "banRate": 0.647718
+        "winRate": 48.3132,
+        "pickRate": 3.7815300000000005,
+        "banRate": 6.59208
       },
       {
         "key": "maokai",
@@ -1085,19 +1085,19 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Maokai.png",
         "tier": 4,
         "rank": 46,
-        "winRate": 50.9819,
-        "pickRate": 0.658389,
-        "banRate": 0.158833
+        "winRate": 51.0265,
+        "pickRate": 0.660058,
+        "banRate": 0.15945700000000002
       },
       {
-        "key": "gragas",
-        "name": "酒桶",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Gragas.png",
+        "key": "xinzhao",
+        "name": "德邦总管",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/XinZhao.png",
         "tier": 4,
         "rank": 47,
-        "winRate": 50.680800000000005,
-        "pickRate": 0.783957,
-        "banRate": 0.614772
+        "winRate": 48.9523,
+        "pickRate": 2.53669,
+        "banRate": 0.642104
       },
       {
         "key": "kindred",
@@ -1105,49 +1105,49 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Kindred.png",
         "tier": 4,
         "rank": 48,
-        "winRate": 49.1038,
-        "pickRate": 2.1762799999999998,
-        "banRate": 1.62399
-      },
-      {
-        "key": "jax",
-        "name": "武器大师",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Jax.png",
-        "tier": 4,
-        "rank": 49,
-        "winRate": 49.1916,
-        "pickRate": 1.7900200000000002,
-        "banRate": 9.965309999999999
+        "winRate": 49.1433,
+        "pickRate": 2.18403,
+        "banRate": 1.62779
       },
       {
         "key": "gwen",
         "name": "灵罗娃娃",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Gwen.png",
         "tier": 4,
+        "rank": 49,
+        "winRate": 50.0549,
+        "pickRate": 1.06427,
+        "banRate": 4.0275
+      },
+      {
+        "key": "jax",
+        "name": "武器大师",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Jax.png",
+        "tier": 4,
         "rank": 50,
-        "winRate": 50.050799999999995,
-        "pickRate": 1.06829,
-        "banRate": 4.0547699999999995
+        "winRate": 49.026399999999995,
+        "pickRate": 1.78192,
+        "banRate": 9.966890000000001
       },
       {
         "key": "karthus",
         "name": "死亡颂唱者",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Karthus.png",
-        "tier": 5,
+        "tier": 4,
         "rank": 51,
-        "winRate": 49.385400000000004,
-        "pickRate": 1.36954,
-        "banRate": 0.8640260000000001
+        "winRate": 49.2906,
+        "pickRate": 1.37775,
+        "banRate": 0.8679370000000001
       },
       {
         "key": "fizz",
         "name": "潮汐海灵",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Fizz.png",
-        "tier": 5,
+        "tier": 4,
         "rank": 52,
-        "winRate": 49.7533,
-        "pickRate": 0.7827860000000001,
-        "banRate": 6.92824
+        "winRate": 49.842,
+        "pickRate": 0.776298,
+        "banRate": 6.95375
       },
       {
         "key": "zed",
@@ -1155,9 +1155,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Zed.png",
         "tier": 5,
         "rank": 53,
-        "winRate": 47.2898,
-        "pickRate": 2.62961,
-        "banRate": 24.2558
+        "winRate": 47.2901,
+        "pickRate": 2.63688,
+        "banRate": 24.309
       },
       {
         "key": "jayce",
@@ -1165,9 +1165,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Jayce.png",
         "tier": 5,
         "rank": 54,
-        "winRate": 48.1891,
-        "pickRate": 1.83051,
-        "banRate": 5.88846
+        "winRate": 48.0841,
+        "pickRate": 1.8353899999999999,
+        "banRate": 5.937329999999999
       },
       {
         "key": "poppy",
@@ -1175,49 +1175,49 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Poppy.png",
         "tier": 5,
         "rank": 55,
-        "winRate": 50.034,
-        "pickRate": 0.510865,
-        "banRate": 4.6156299999999995
-      },
-      {
-        "key": "olaf",
-        "name": "狂战士",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Olaf.png",
-        "tier": 5,
-        "rank": 56,
-        "winRate": 49.8437,
-        "pickRate": 0.513512,
-        "banRate": 3.4114400000000002
+        "winRate": 50.0192,
+        "pickRate": 0.507836,
+        "banRate": 4.62007
       },
       {
         "key": "malphite",
         "name": "熔岩巨兽",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Malphite.png",
         "tier": 5,
-        "rank": 57,
-        "winRate": 48.9495,
-        "pickRate": 0.7393529999999999,
-        "banRate": 14.568
+        "rank": 56,
+        "winRate": 49.0835,
+        "pickRate": 0.735059,
+        "banRate": 14.635100000000001
       },
       {
         "key": "ambessa",
         "name": "铁血狼母",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Ambessa.png",
         "tier": 5,
-        "rank": 58,
-        "winRate": 48.7236,
-        "pickRate": 0.965411,
-        "banRate": 4.791659999999999
+        "rank": 57,
+        "winRate": 48.653800000000004,
+        "pickRate": 0.966138,
+        "banRate": 4.81349
       },
       {
         "key": "volibear",
         "name": "不灭狂雷",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Volibear.png",
         "tier": 5,
+        "rank": 58,
+        "winRate": 48.478300000000004,
+        "pickRate": 1.05816,
+        "banRate": 1.18001
+      },
+      {
+        "key": "olaf",
+        "name": "狂战士",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Olaf.png",
+        "tier": 5,
         "rank": 59,
-        "winRate": 48.5765,
-        "pickRate": 1.06837,
-        "banRate": 1.17695
+        "winRate": 49.5021,
+        "pickRate": 0.520063,
+        "banRate": 3.4507700000000003
       },
       {
         "key": "teemo",
@@ -1225,9 +1225,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Teemo.png",
         "tier": 5,
         "rank": 60,
-        "winRate": 48.797200000000004,
-        "pickRate": 0.638517,
-        "banRate": 6.00103
+        "winRate": 48.7301,
+        "pickRate": 0.63019,
+        "banRate": 6.0216199999999995
       },
       {
         "key": "pantheon",
@@ -1235,9 +1235,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Pantheon.png",
         "tier": 5,
         "rank": 61,
-        "winRate": 47.0462,
-        "pickRate": 0.9467110000000001,
-        "banRate": 2.33968
+        "winRate": 47.1637,
+        "pickRate": 0.9439019999999999,
+        "banRate": 2.34492
       },
       {
         "key": "locke",
@@ -1245,9 +1245,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Locke.png",
         "tier": 5,
         "rank": 62,
-        "winRate": 45.2365,
-        "pickRate": 0.7687710000000001,
-        "banRate": 31.623600000000003
+        "winRate": 45.2238,
+        "pickRate": 0.771703,
+        "banRate": 31.699500000000004
       }
     ],
     "mid": [
@@ -1257,9 +1257,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Ahri.png",
         "tier": 1,
         "rank": 1,
-        "winRate": 50.8815,
-        "pickRate": 9.449200000000001,
-        "banRate": 3.10499
+        "winRate": 50.913799999999995,
+        "pickRate": 9.422329999999999,
+        "banRate": 3.09222
       },
       {
         "key": "viktor",
@@ -1267,29 +1267,29 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Viktor.png",
         "tier": 1,
         "rank": 2,
-        "winRate": 50.3366,
-        "pickRate": 9.354949999999999,
-        "banRate": 16.1839
-      },
-      {
-        "key": "syndra",
-        "name": "暗黑元首",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Syndra.png",
-        "tier": 1,
-        "rank": 3,
-        "winRate": 50.5019,
-        "pickRate": 8.52635,
-        "banRate": 12.8229
+        "winRate": 50.4112,
+        "pickRate": 9.37394,
+        "banRate": 16.1513
       },
       {
         "key": "fizz",
         "name": "潮汐海灵",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Fizz.png",
         "tier": 1,
+        "rank": 3,
+        "winRate": 51.346199999999996,
+        "pickRate": 5.26113,
+        "banRate": 7.3087100000000005
+      },
+      {
+        "key": "syndra",
+        "name": "暗黑元首",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Syndra.png",
+        "tier": 1,
         "rank": 4,
-        "winRate": 51.294799999999995,
-        "pickRate": 5.25052,
-        "banRate": 7.31348
+        "winRate": 50.44689999999999,
+        "pickRate": 8.51945,
+        "banRate": 12.8008
       },
       {
         "key": "zed",
@@ -1297,9 +1297,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Zed.png",
         "tier": 1,
         "rank": 5,
-        "winRate": 50.0837,
-        "pickRate": 8.84505,
-        "banRate": 24.402099999999997
+        "winRate": 50.0784,
+        "pickRate": 8.84691,
+        "banRate": 24.4403
       },
       {
         "key": "twistedfate",
@@ -1307,19 +1307,19 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/TwistedFate.png",
         "tier": 1,
         "rank": 6,
-        "winRate": 51.297599999999996,
-        "pickRate": 4.99211,
-        "banRate": 1.05111
+        "winRate": 51.2776,
+        "pickRate": 5.0157300000000005,
+        "banRate": 1.05822
       },
       {
-        "key": "lissandra",
-        "name": "冰霜女巫",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Lissandra.png",
+        "key": "katarina",
+        "name": "不祥之刃",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Katarina.png",
         "tier": 1,
         "rank": 7,
-        "winRate": 50.9224,
-        "pickRate": 5.53142,
-        "banRate": 3.7836300000000005
+        "winRate": 50.412400000000005,
+        "pickRate": 7.0791900000000005,
+        "banRate": 11.953999999999999
       },
       {
         "key": "vex",
@@ -1327,19 +1327,19 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Vex.png",
         "tier": 1,
         "rank": 8,
-        "winRate": 51.962399999999995,
-        "pickRate": 2.94226,
-        "banRate": 3.60223
+        "winRate": 51.922599999999996,
+        "pickRate": 2.96102,
+        "banRate": 3.63263
       },
       {
-        "key": "katarina",
-        "name": "不祥之刃",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Katarina.png",
+        "key": "lissandra",
+        "name": "冰霜女巫",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Lissandra.png",
         "tier": 1,
         "rank": 9,
-        "winRate": 50.3317,
-        "pickRate": 7.09134,
-        "banRate": 11.9746
+        "winRate": 50.8498,
+        "pickRate": 5.53013,
+        "banRate": 3.78089
       },
       {
         "key": "leblanc",
@@ -1347,9 +1347,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Leblanc.png",
         "tier": 1,
         "rank": 10,
-        "winRate": 50.6089,
-        "pickRate": 5.55918,
-        "banRate": 15.6578
+        "winRate": 50.600199999999994,
+        "pickRate": 5.5435,
+        "banRate": 15.7142
       },
       {
         "key": "vladimir",
@@ -1357,9 +1357,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Vladimir.png",
         "tier": 1,
         "rank": 11,
-        "winRate": 51.2084,
-        "pickRate": 4.00567,
-        "banRate": 5.83446
+        "winRate": 51.1575,
+        "pickRate": 4.01978,
+        "banRate": 5.82304
       },
       {
         "key": "nasus",
@@ -1367,29 +1367,29 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Nasus.png",
         "tier": 1,
         "rank": 12,
-        "winRate": 51.1642,
-        "pickRate": 2.1487,
-        "banRate": 45.4119
-      },
-      {
-        "key": "xerath",
-        "name": "远古巫灵",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Xerath.png",
-        "tier": 1,
-        "rank": 13,
-        "winRate": 50.7949,
-        "pickRate": 4.41347,
-        "banRate": 12.446200000000001
+        "winRate": 51.2328,
+        "pickRate": 2.11893,
+        "banRate": 45.064
       },
       {
         "key": "hwei",
         "name": "异画师",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Hwei.png",
         "tier": 1,
+        "rank": 13,
+        "winRate": 51.09629999999999,
+        "pickRate": 4.0688,
+        "banRate": 3.0317
+      },
+      {
+        "key": "xerath",
+        "name": "远古巫灵",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Xerath.png",
+        "tier": 1,
         "rank": 14,
-        "winRate": 51.0833,
-        "pickRate": 4.06847,
-        "banRate": 3.05309
+        "winRate": 50.784600000000005,
+        "pickRate": 4.4117299999999995,
+        "banRate": 12.3818
       },
       {
         "key": "locke",
@@ -1397,19 +1397,19 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Locke.png",
         "tier": 1,
         "rank": 15,
-        "winRate": 49.7939,
-        "pickRate": 6.4635,
-        "banRate": 32.4844
+        "winRate": 49.7657,
+        "pickRate": 6.552860000000001,
+        "banRate": 32.476699999999994
       },
       {
         "key": "lux",
         "name": "光辉女郎",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Lux.png",
-        "tier": 2,
+        "tier": 1,
         "rank": 16,
-        "winRate": 50.727999999999994,
-        "pickRate": 3.9507,
-        "banRate": 3.4479500000000005
+        "winRate": 50.8281,
+        "pickRate": 3.93854,
+        "banRate": 3.46372
       },
       {
         "key": "yasuo",
@@ -1417,9 +1417,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Yasuo.png",
         "tier": 2,
         "rank": 17,
-        "winRate": 48.9633,
-        "pickRate": 8.75136,
-        "banRate": 20.077
+        "winRate": 48.958800000000004,
+        "pickRate": 8.75132,
+        "banRate": 20.0763
       },
       {
         "key": "sylas",
@@ -1427,9 +1427,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Sylas.png",
         "tier": 2,
         "rank": 18,
-        "winRate": 49.3236,
-        "pickRate": 6.8521600000000005,
-        "banRate": 17.467299999999998
+        "winRate": 49.3001,
+        "pickRate": 6.8672200000000005,
+        "banRate": 17.552599999999998
       },
       {
         "key": "yone",
@@ -1437,9 +1437,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Yone.png",
         "tier": 2,
         "rank": 19,
-        "winRate": 49.3267,
-        "pickRate": 7.195690000000001,
-        "banRate": 9.518880000000001
+        "winRate": 49.357,
+        "pickRate": 7.20315,
+        "banRate": 9.53816
       },
       {
         "key": "malzahar",
@@ -1447,379 +1447,389 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Malzahar.png",
         "tier": 2,
         "rank": 20,
-        "winRate": 49.9233,
-        "pickRate": 5.36388,
-        "banRate": 9.32939
-      },
-      {
-        "key": "veigar",
-        "name": "邪恶小法师",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Veigar.png",
-        "tier": 2,
-        "rank": 21,
-        "winRate": 50.205200000000005,
-        "pickRate": 3.79936,
-        "banRate": 1.83293
+        "winRate": 49.9658,
+        "pickRate": 5.34346,
+        "banRate": 9.31314
       },
       {
         "key": "diana",
         "name": "皎月女神",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Diana.png",
         "tier": 2,
-        "rank": 22,
-        "winRate": 50.51409999999999,
-        "pickRate": 3.04582,
-        "banRate": 3.1879699999999995
+        "rank": 21,
+        "winRate": 50.544999999999995,
+        "pickRate": 3.0528,
+        "banRate": 3.1691200000000004
       },
       {
-        "key": "qiyana",
-        "name": "元素女皇",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Qiyana.png",
-        "tier": 3,
-        "rank": 23,
-        "winRate": 50.239599999999996,
-        "pickRate": 3.0738499999999997,
-        "banRate": 6.511069999999999
+        "key": "veigar",
+        "name": "邪恶小法师",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Veigar.png",
+        "tier": 2,
+        "rank": 22,
+        "winRate": 50.1066,
+        "pickRate": 3.77353,
+        "banRate": 1.82071
       },
       {
         "key": "zoe",
         "name": "暮光星灵",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Zoe.png",
-        "tier": 3,
-        "rank": 24,
-        "winRate": 50.3769,
-        "pickRate": 2.80959,
-        "banRate": 3.31073
+        "tier": 2,
+        "rank": 23,
+        "winRate": 50.475899999999996,
+        "pickRate": 2.80977,
+        "banRate": 3.3106700000000004
       },
       {
-        "key": "ekko",
-        "name": "时间刺客",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Ekko.png",
-        "tier": 3,
-        "rank": 25,
-        "winRate": 50.161100000000005,
-        "pickRate": 3.13219,
-        "banRate": 1.5491
+        "key": "qiyana",
+        "name": "元素女皇",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Qiyana.png",
+        "tier": 2,
+        "rank": 24,
+        "winRate": 50.192499999999995,
+        "pickRate": 3.04868,
+        "banRate": 6.64096
       },
       {
         "key": "akali",
         "name": "离群之刺",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Akali.png",
-        "tier": 3,
+        "tier": 2,
+        "rank": 25,
+        "winRate": 48.9855,
+        "pickRate": 5.6921100000000004,
+        "banRate": 15.9364
+      },
+      {
+        "key": "ekko",
+        "name": "时间刺客",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Ekko.png",
+        "tier": 2,
         "rank": 26,
-        "winRate": 48.979,
-        "pickRate": 5.68245,
-        "banRate": 15.9169
+        "winRate": 50.14999999999999,
+        "pickRate": 3.1228100000000003,
+        "banRate": 1.54687
       },
       {
         "key": "annie",
         "name": "黑暗之女",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Annie.png",
-        "tier": 3,
+        "tier": 2,
         "rank": 27,
-        "winRate": 50.848400000000005,
-        "pickRate": 1.80231,
-        "banRate": 0.47889899999999996
-      },
-      {
-        "key": "gwen",
-        "name": "灵罗娃娃",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Gwen.png",
-        "tier": 3,
-        "rank": 28,
-        "winRate": 51.8822,
-        "pickRate": 0.841122,
-        "banRate": 3.9626200000000003
+        "winRate": 50.8382,
+        "pickRate": 1.80406,
+        "banRate": 0.480417
       },
       {
         "key": "aurelionsol",
         "name": "铸星龙王",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/AurelionSol.png",
-        "tier": 3,
-        "rank": 29,
-        "winRate": 50.647200000000005,
-        "pickRate": 1.84368,
-        "banRate": 0.651281
+        "tier": 2,
+        "rank": 28,
+        "winRate": 50.6995,
+        "pickRate": 1.83928,
+        "banRate": 0.6473180000000001
       },
       {
         "key": "galio",
         "name": "正义巨像",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Galio.png",
-        "tier": 3,
+        "tier": 2,
+        "rank": 29,
+        "winRate": 49.4296,
+        "pickRate": 3.8776699999999997,
+        "banRate": 1.7550799999999998
+      },
+      {
+        "key": "gwen",
+        "name": "灵罗娃娃",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Gwen.png",
+        "tier": 2,
         "rank": 30,
-        "winRate": 49.3037,
-        "pickRate": 3.8721699999999997,
-        "banRate": 1.75501
+        "winRate": 51.80010000000001,
+        "pickRate": 0.820594,
+        "banRate": 3.93948
       },
       {
         "key": "anivia",
         "name": "冰晶凤凰",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Anivia.png",
-        "tier": 3,
+        "tier": 2,
         "rank": 31,
-        "winRate": 49.9766,
-        "pickRate": 2.31641,
-        "banRate": 2.53029
+        "winRate": 50.0445,
+        "pickRate": 2.31387,
+        "banRate": 2.53105
       },
       {
         "key": "kassadin",
         "name": "虚空行者",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Kassadin.png",
-        "tier": 3,
+        "tier": 2,
         "rank": 32,
-        "winRate": 49.711,
-        "pickRate": 2.74275,
-        "banRate": 2.3188299999999997
+        "winRate": 49.719,
+        "pickRate": 2.74551,
+        "banRate": 2.31663
       },
       {
         "key": "akshan",
         "name": "影哨",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Akshan.png",
-        "tier": 3,
+        "tier": 2,
         "rank": 33,
-        "winRate": 49.932300000000005,
-        "pickRate": 2.2083,
-        "banRate": 2.07473
-      },
-      {
-        "key": "pantheon",
-        "name": "不屈之枪",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Pantheon.png",
-        "tier": 4,
-        "rank": 34,
-        "winRate": 51.365,
-        "pickRate": 0.7790090000000001,
-        "banRate": 2.3393
+        "winRate": 50.002599999999994,
+        "pickRate": 2.20542,
+        "banRate": 2.06654
       },
       {
         "key": "irelia",
         "name": "刀锋舞者",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Irelia.png",
-        "tier": 4,
+        "tier": 3,
+        "rank": 34,
+        "winRate": 48.963,
+        "pickRate": 2.8638,
+        "banRate": 12.8276
+      },
+      {
+        "key": "pantheon",
+        "name": "不屈之枪",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Pantheon.png",
+        "tier": 3,
         "rank": 35,
-        "winRate": 48.9198,
-        "pickRate": 2.86494,
-        "banRate": 12.8163
+        "winRate": 51.1393,
+        "pickRate": 0.781333,
+        "banRate": 2.34586
       },
       {
         "key": "velkoz",
         "name": "虚空之眼",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Velkoz.png",
-        "tier": 4,
+        "tier": 3,
         "rank": 36,
-        "winRate": 50.7777,
-        "pickRate": 0.8938780000000001,
-        "banRate": 1.61713
-      },
-      {
-        "key": "malphite",
-        "name": "熔岩巨兽",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Malphite.png",
-        "tier": 4,
-        "rank": 37,
-        "winRate": 50.5735,
-        "pickRate": 0.8421609999999999,
-        "banRate": 14.724200000000002
-      },
-      {
-        "key": "aurora",
-        "name": "双界灵兔",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Aurora.png",
-        "tier": 4,
-        "rank": 38,
-        "winRate": 49.499900000000004,
-        "pickRate": 1.91406,
-        "banRate": 1.11392
-      },
-      {
-        "key": "garen",
-        "name": "德玛西亚之力",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Garen.png",
-        "tier": 4,
-        "rank": 39,
-        "winRate": 51.410900000000005,
-        "pickRate": 0.552605,
-        "banRate": 4.92885
+        "winRate": 50.903200000000005,
+        "pickRate": 0.893013,
+        "banRate": 1.62239
       },
       {
         "key": "swain",
         "name": "诺克萨斯统领",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Swain.png",
-        "tier": 4,
+        "tier": 3,
+        "rank": 37,
+        "winRate": 51.2704,
+        "pickRate": 0.6440750000000001,
+        "banRate": 1.6050200000000001
+      },
+      {
+        "key": "aurora",
+        "name": "双界灵兔",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Aurora.png",
+        "tier": 3,
+        "rank": 38,
+        "winRate": 49.534,
+        "pickRate": 1.91026,
+        "banRate": 1.10554
+      },
+      {
+        "key": "garen",
+        "name": "德玛西亚之力",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Garen.png",
+        "tier": 3,
+        "rank": 39,
+        "winRate": 51.33990000000001,
+        "pickRate": 0.551209,
+        "banRate": 4.92748
+      },
+      {
+        "key": "malphite",
+        "name": "熔岩巨兽",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Malphite.png",
+        "tier": 3,
         "rank": 40,
-        "winRate": 51.2056,
-        "pickRate": 0.643132,
-        "banRate": 1.60306
+        "winRate": 50.3885,
+        "pickRate": 0.840419,
+        "banRate": 14.7711
       },
       {
         "key": "talon",
         "name": "刀锋之影",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Talon.png",
-        "tier": 4,
+        "tier": 3,
         "rank": 41,
-        "winRate": 49.3701,
-        "pickRate": 1.71222,
-        "banRate": 9.54649
+        "winRate": 49.3091,
+        "pickRate": 1.7020199999999999,
+        "banRate": 9.662410000000001
       },
       {
         "key": "riven",
         "name": "放逐之刃",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Riven.png",
-        "tier": 4,
+        "tier": 3,
         "rank": 42,
-        "winRate": 51.247,
-        "pickRate": 0.5140549999999999,
-        "banRate": 1.75569
+        "winRate": 51.29820000000001,
+        "pickRate": 0.504523,
+        "banRate": 1.74799
+      },
+      {
+        "key": "kayle",
+        "name": "正义天使",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Kayle.png",
+        "tier": 3,
+        "rank": 43,
+        "winRate": 51.174699999999994,
+        "pickRate": 0.503007,
+        "banRate": 1.3122099999999999
       },
       {
         "key": "cassiopeia",
         "name": "魔蛇之拥",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Cassiopeia.png",
-        "tier": 4,
-        "rank": 43,
-        "winRate": 48.4966,
-        "pickRate": 1.7703900000000001,
-        "banRate": 1.90794
+        "tier": 3,
+        "rank": 44,
+        "winRate": 48.4441,
+        "pickRate": 1.7788000000000002,
+        "banRate": 1.92858
       },
       {
         "key": "taliyah",
         "name": "岩雀",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Taliyah.png",
-        "tier": 5,
-        "rank": 44,
-        "winRate": 48.6306,
-        "pickRate": 1.37904,
-        "banRate": 0.360824
-      },
-      {
-        "key": "ziggs",
-        "name": "爆破鬼才",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Ziggs.png",
-        "tier": 5,
+        "tier": 4,
         "rank": 45,
-        "winRate": 49.850899999999996,
-        "pickRate": 0.638973,
-        "banRate": 1.50938
+        "winRate": 48.6161,
+        "pickRate": 1.37351,
+        "banRate": 0.362624
       },
       {
         "key": "chogath",
         "name": "虚空恐惧",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Chogath.png",
-        "tier": 5,
+        "tier": 4,
         "rank": 46,
-        "winRate": 49.9477,
-        "pickRate": 0.579893,
-        "banRate": 1.2422499999999999
+        "winRate": 49.929899999999996,
+        "pickRate": 0.582035,
+        "banRate": 1.37259
+      },
+      {
+        "key": "ziggs",
+        "name": "爆破鬼才",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Ziggs.png",
+        "tier": 4,
+        "rank": 47,
+        "winRate": 49.7653,
+        "pickRate": 0.6376999999999999,
+        "banRate": 1.48607
       },
       {
         "key": "ryze",
         "name": "符文法师",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Ryze.png",
-        "tier": 5,
-        "rank": 47,
-        "winRate": 46.7842,
-        "pickRate": 3.13358,
-        "banRate": 0.503159
+        "tier": 4,
+        "rank": 48,
+        "winRate": 46.758300000000006,
+        "pickRate": 3.1387400000000003,
+        "banRate": 0.50493
       },
       {
         "key": "orianna",
         "name": "发条魔灵",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Orianna.png",
-        "tier": 5,
-        "rank": 48,
-        "winRate": 46.7453,
-        "pickRate": 3.03629,
-        "banRate": 0.399858
+        "tier": 4,
+        "rank": 49,
+        "winRate": 46.7555,
+        "pickRate": 3.02943,
+        "banRate": 0.39965900000000004
       },
       {
         "key": "brand",
         "name": "复仇焰魂",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Brand.png",
-        "tier": 5,
-        "rank": 49,
-        "winRate": 49.188700000000004,
-        "pickRate": 0.6540039999999999,
-        "banRate": 2.9428099999999997
+        "tier": 4,
+        "rank": 50,
+        "winRate": 49.2201,
+        "pickRate": 0.652899,
+        "banRate": 2.93268
       },
       {
         "key": "azir",
         "name": "沙漠皇帝",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Azir.png",
-        "tier": 5,
-        "rank": 50,
-        "winRate": 47.5753,
-        "pickRate": 1.7685300000000002,
-        "banRate": 0.290005
+        "tier": 4,
+        "rank": 51,
+        "winRate": 47.5459,
+        "pickRate": 1.76375,
+        "banRate": 0.289389
       },
       {
         "key": "naafiri",
         "name": "百裂冥犬",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Naafiri.png",
-        "tier": 5,
-        "rank": 51,
-        "winRate": 48.444500000000005,
-        "pickRate": 0.8367899999999999,
-        "banRate": 13.2691
+        "tier": 4,
+        "rank": 52,
+        "winRate": 48.4863,
+        "pickRate": 0.835871,
+        "banRate": 13.211300000000001
       },
       {
         "key": "sion",
         "name": "亡灵战神",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Sion.png",
-        "tier": 5,
-        "rank": 52,
-        "winRate": 49.343599999999995,
-        "pickRate": 0.544418,
-        "banRate": 0.480037
+        "tier": 4,
+        "rank": 53,
+        "winRate": 49.3693,
+        "pickRate": 0.542346,
+        "banRate": 0.48229700000000003
       },
       {
         "key": "gangplank",
         "name": "海洋之灾",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Gangplank.png",
-        "tier": 5,
-        "rank": 53,
-        "winRate": 49.1817,
-        "pickRate": 0.553168,
-        "banRate": 7.18853
+        "tier": 4,
+        "rank": 54,
+        "winRate": 49.0242,
+        "pickRate": 0.549732,
+        "banRate": 7.249750000000001
       },
       {
         "key": "tristana",
         "name": "麦林炮手",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Tristana.png",
-        "tier": 5,
-        "rank": 54,
-        "winRate": 47.936499999999995,
-        "pickRate": 0.966647,
-        "banRate": 5.82872
+        "tier": 4,
+        "rank": 55,
+        "winRate": 47.803000000000004,
+        "pickRate": 0.967842,
+        "banRate": 5.89626
       },
       {
         "key": "jayce",
         "name": "未来守护者",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Jayce.png",
-        "tier": 5,
-        "rank": 55,
-        "winRate": 47.348099999999995,
-        "pickRate": 0.807683,
-        "banRate": 5.82247
+        "tier": 4,
+        "rank": 56,
+        "winRate": 47.4557,
+        "pickRate": 0.8112650000000001,
+        "banRate": 5.87902
       },
       {
         "key": "mel",
         "name": "流光镜影",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Mel.png",
-        "tier": 5,
-        "rank": 56,
-        "winRate": 45.225,
-        "pickRate": 2.0291900000000003,
-        "banRate": 19.8683
+        "tier": 4,
+        "rank": 57,
+        "winRate": 45.2343,
+        "pickRate": 2.03306,
+        "banRate": 19.7212
       },
       {
         "key": "smolder",
         "name": "炽炎雏龙",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Smolder.png",
         "tier": 5,
-        "rank": 57,
-        "winRate": 43.9905,
-        "pickRate": 0.527959,
-        "banRate": 1.47426
+        "rank": 58,
+        "winRate": 43.789899999999996,
+        "pickRate": 0.529868,
+        "banRate": 1.46457
       }
     ],
     "adc": [
@@ -1829,9 +1839,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Jinx.png",
         "tier": 0,
         "rank": 1,
-        "winRate": 52.3119,
-        "pickRate": 17.3264,
-        "banRate": 6.424449999999999
+        "winRate": 52.287499999999994,
+        "pickRate": 17.3826,
+        "banRate": 6.543400000000001
       },
       {
         "key": "tristana",
@@ -1839,9 +1849,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Tristana.png",
         "tier": 1,
         "rank": 2,
-        "winRate": 51.420500000000004,
-        "pickRate": 9.27891,
-        "banRate": 5.96418
+        "winRate": 51.471900000000005,
+        "pickRate": 9.26902,
+        "banRate": 6.019
       },
       {
         "key": "kaisa",
@@ -1849,9 +1859,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Kaisa.png",
         "tier": 1,
         "rank": 3,
-        "winRate": 49.3417,
-        "pickRate": 20.055400000000002,
-        "banRate": 4.96093
+        "winRate": 49.356,
+        "pickRate": 20.0109,
+        "banRate": 4.934
       },
       {
         "key": "jhin",
@@ -1859,9 +1869,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Jhin.png",
         "tier": 1,
         "rank": 4,
-        "winRate": 49.5463,
-        "pickRate": 16.2894,
-        "banRate": 1.3559999999999999
+        "winRate": 49.527100000000004,
+        "pickRate": 16.3843,
+        "banRate": 1.36871
       },
       {
         "key": "zeri",
@@ -1869,89 +1879,89 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Zeri.png",
         "tier": 2,
         "rank": 5,
-        "winRate": 51.6255,
-        "pickRate": 4.90096,
-        "banRate": 0.810666
-      },
-      {
-        "key": "twitch",
-        "name": "瘟疫之源",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Twitch.png",
-        "tier": 2,
-        "rank": 6,
-        "winRate": 51.19010000000001,
-        "pickRate": 5.63651,
-        "banRate": 6.752320000000001
+        "winRate": 51.644400000000005,
+        "pickRate": 4.8932,
+        "banRate": 0.823134
       },
       {
         "key": "xayah",
         "name": "逆羽",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Xayah.png",
         "tier": 2,
-        "rank": 7,
-        "winRate": 51.600699999999996,
-        "pickRate": 4.6046,
-        "banRate": 0.8083109999999999
+        "rank": 6,
+        "winRate": 51.5676,
+        "pickRate": 4.60013,
+        "banRate": 0.8038770000000001
       },
       {
-        "key": "caitlyn",
-        "name": "皮城女警",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Caitlyn.png",
+        "key": "twitch",
+        "name": "瘟疫之源",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Twitch.png",
         "tier": 2,
-        "rank": 8,
-        "winRate": 48.9938,
-        "pickRate": 15.201799999999999,
-        "banRate": 20.6466
+        "rank": 7,
+        "winRate": 51.1274,
+        "pickRate": 5.6184199999999995,
+        "banRate": 6.788819999999999
       },
       {
         "key": "yunara",
         "name": "不破之誓",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Yunara.png",
         "tier": 2,
-        "rank": 9,
-        "winRate": 50.193299999999994,
-        "pickRate": 9.092310000000001,
-        "banRate": 1.78793
+        "rank": 8,
+        "winRate": 50.2497,
+        "pickRate": 9.20837,
+        "banRate": 1.8421
       },
       {
-        "key": "seraphine",
-        "name": "星籁歌姬",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Seraphine.png",
+        "key": "caitlyn",
+        "name": "皮城女警",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Caitlyn.png",
         "tier": 2,
-        "rank": 10,
-        "winRate": 52.3728,
-        "pickRate": 1.95157,
-        "banRate": 10.1316
+        "rank": 9,
+        "winRate": 48.9542,
+        "pickRate": 15.1974,
+        "banRate": 20.670099999999998
       },
       {
         "key": "viktor",
         "name": "奥术先驱",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Viktor.png",
         "tier": 2,
-        "rank": 11,
-        "winRate": 51.21679999999999,
-        "pickRate": 3.4160999999999997,
-        "banRate": 16.1637
+        "rank": 10,
+        "winRate": 51.225699999999996,
+        "pickRate": 3.3718,
+        "banRate": 16.1332
       },
       {
-        "key": "ashe",
-        "name": "寒冰射手",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Ashe.png",
+        "key": "seraphine",
+        "name": "星籁歌姬",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Seraphine.png",
         "tier": 2,
-        "rank": 12,
-        "winRate": 50.3664,
-        "pickRate": 6.44164,
-        "banRate": 1.7959699999999998
+        "rank": 11,
+        "winRate": 52.2917,
+        "pickRate": 1.91929,
+        "banRate": 10.1091
       },
       {
         "key": "yasuo",
         "name": "疾风剑豪",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Yasuo.png",
         "tier": 2,
+        "rank": 12,
+        "winRate": 51.638,
+        "pickRate": 2.39034,
+        "banRate": 19.985500000000002
+      },
+      {
+        "key": "ashe",
+        "name": "寒冰射手",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Ashe.png",
+        "tier": 2,
         "rank": 13,
-        "winRate": 51.6594,
-        "pickRate": 2.3940099999999997,
-        "banRate": 19.9759
+        "winRate": 50.3039,
+        "pickRate": 6.45731,
+        "banRate": 1.7841200000000002
       },
       {
         "key": "kogmaw",
@@ -1959,9 +1969,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/KogMaw.png",
         "tier": 2,
         "rank": 14,
-        "winRate": 52.3608,
-        "pickRate": 1.8879,
-        "banRate": 0.36486999999999997
+        "winRate": 52.308600000000006,
+        "pickRate": 1.8818899999999998,
+        "banRate": 0.364235
       },
       {
         "key": "hwei",
@@ -1969,9 +1979,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Hwei.png",
         "tier": 3,
         "rank": 15,
-        "winRate": 52.453399999999995,
-        "pickRate": 1.34131,
-        "banRate": 3.01853
+        "winRate": 52.5419,
+        "pickRate": 1.33222,
+        "banRate": 3.00051
       },
       {
         "key": "sivir",
@@ -1979,69 +1989,69 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Sivir.png",
         "tier": 3,
         "rank": 16,
-        "winRate": 50.3338,
-        "pickRate": 4.315440000000001,
-        "banRate": 1.4932400000000001
-      },
-      {
-        "key": "veigar",
-        "name": "邪恶小法师",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Veigar.png",
-        "tier": 3,
-        "rank": 17,
-        "winRate": 51.5899,
-        "pickRate": 1.97412,
-        "banRate": 1.82212
+        "winRate": 50.3505,
+        "pickRate": 4.33699,
+        "banRate": 1.4978
       },
       {
         "key": "lux",
         "name": "光辉女郎",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Lux.png",
         "tier": 3,
+        "rank": 17,
+        "winRate": 52.7167,
+        "pickRate": 0.994356,
+        "banRate": 3.38764
+      },
+      {
+        "key": "veigar",
+        "name": "邪恶小法师",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Veigar.png",
+        "tier": 3,
         "rank": 18,
-        "winRate": 52.733,
-        "pickRate": 0.99465,
-        "banRate": 3.36408
-      },
-      {
-        "key": "samira",
-        "name": "沙漠玫瑰",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Samira.png",
-        "tier": 3,
-        "rank": 19,
-        "winRate": 50.032,
-        "pickRate": 3.94957,
-        "banRate": 5.09856
-      },
-      {
-        "key": "xerath",
-        "name": "远古巫灵",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Xerath.png",
-        "tier": 3,
-        "rank": 20,
-        "winRate": 51.3486,
-        "pickRate": 1.60714,
-        "banRate": 12.3858
+        "winRate": 51.501200000000004,
+        "pickRate": 1.9532299999999998,
+        "banRate": 1.81101
       },
       {
         "key": "missfortune",
         "name": "赏金猎人",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/MissFortune.png",
         "tier": 3,
-        "rank": 21,
-        "winRate": 49.2731,
-        "pickRate": 5.792619999999999,
-        "banRate": 0.658099
+        "rank": 19,
+        "winRate": 49.3181,
+        "pickRate": 5.79574,
+        "banRate": 0.657609
+      },
+      {
+        "key": "samira",
+        "name": "沙漠玫瑰",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Samira.png",
+        "tier": 3,
+        "rank": 20,
+        "winRate": 49.966300000000004,
+        "pickRate": 3.9363599999999996,
+        "banRate": 5.09847
       },
       {
         "key": "lucian",
         "name": "圣枪游侠",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Lucian.png",
         "tier": 3,
+        "rank": 21,
+        "winRate": 48.5291,
+        "pickRate": 8.44606,
+        "banRate": 2.4751100000000004
+      },
+      {
+        "key": "xerath",
+        "name": "远古巫灵",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Xerath.png",
+        "tier": 3,
         "rank": 22,
-        "winRate": 48.5113,
-        "pickRate": 8.41147,
-        "banRate": 2.45508
+        "winRate": 51.3085,
+        "pickRate": 1.5969,
+        "banRate": 12.3267
       },
       {
         "key": "swain",
@@ -2049,39 +2059,39 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Swain.png",
         "tier": 3,
         "rank": 23,
-        "winRate": 52.5635,
-        "pickRate": 0.851356,
-        "banRate": 1.6108600000000002
-      },
-      {
-        "key": "ziggs",
-        "name": "爆破鬼才",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Ziggs.png",
-        "tier": 3,
-        "rank": 24,
-        "winRate": 50.8335,
-        "pickRate": 2.06785,
-        "banRate": 1.59483
+        "winRate": 52.461999999999996,
+        "pickRate": 0.8541679999999999,
+        "banRate": 1.61151
       },
       {
         "key": "aphelios",
         "name": "残月之肃",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Aphelios.png",
         "tier": 3,
-        "rank": 25,
-        "winRate": 49.2953,
-        "pickRate": 4.77932,
-        "banRate": 1.40926
+        "rank": 24,
+        "winRate": 49.317699999999995,
+        "pickRate": 4.7712900000000005,
+        "banRate": 1.40159
       },
       {
         "key": "karthus",
         "name": "死亡颂唱者",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Karthus.png",
         "tier": 3,
+        "rank": 25,
+        "winRate": 53.14149999999999,
+        "pickRate": 0.5469339999999999,
+        "banRate": 0.817354
+      },
+      {
+        "key": "ziggs",
+        "name": "爆破鬼才",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Ziggs.png",
+        "tier": 3,
         "rank": 26,
-        "winRate": 53.1508,
-        "pickRate": 0.551135,
-        "banRate": 0.808997
+        "winRate": 50.7508,
+        "pickRate": 2.05786,
+        "banRate": 1.56359
       },
       {
         "key": "smolder",
@@ -2089,29 +2099,29 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Smolder.png",
         "tier": 3,
         "rank": 27,
-        "winRate": 49.7446,
-        "pickRate": 3.55901,
-        "banRate": 1.5515599999999998
-      },
-      {
-        "key": "draven",
-        "name": "荣耀行刑官",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Draven.png",
-        "tier": 3,
-        "rank": 28,
-        "winRate": 49.5209,
-        "pickRate": 3.6069400000000003,
-        "banRate": 10.7509
+        "winRate": 49.6781,
+        "pickRate": 3.5502,
+        "banRate": 1.53453
       },
       {
         "key": "syndra",
         "name": "暗黑元首",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Syndra.png",
         "tier": 3,
+        "rank": 28,
+        "winRate": 50.2016,
+        "pickRate": 2.2338400000000003,
+        "banRate": 12.7607
+      },
+      {
+        "key": "draven",
+        "name": "荣耀行刑官",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Draven.png",
+        "tier": 3,
         "rank": 29,
-        "winRate": 50.1178,
-        "pickRate": 2.25633,
-        "banRate": 12.778500000000001
+        "winRate": 49.5293,
+        "pickRate": 3.5889200000000003,
+        "banRate": 10.7644
       },
       {
         "key": "velkoz",
@@ -2119,9 +2129,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Velkoz.png",
         "tier": 3,
         "rank": 30,
-        "winRate": 52.6841,
-        "pickRate": 0.601429,
-        "banRate": 1.57459
+        "winRate": 52.6686,
+        "pickRate": 0.601308,
+        "banRate": 1.5833599999999999
       },
       {
         "key": "katarina",
@@ -2129,9 +2139,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Katarina.png",
         "tier": 3,
         "rank": 31,
-        "winRate": 51.4509,
-        "pickRate": 0.9486,
-        "banRate": 11.6557
+        "winRate": 51.5995,
+        "pickRate": 0.9442910000000001,
+        "banRate": 11.6648
       },
       {
         "key": "nilah",
@@ -2139,9 +2149,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Nilah.png",
         "tier": 3,
         "rank": 32,
-        "winRate": 51.4169,
-        "pickRate": 1.11059,
-        "banRate": 1.6244600000000002
+        "winRate": 51.5135,
+        "pickRate": 1.10857,
+        "banRate": 1.6291799999999999
       },
       {
         "key": "aurelionsol",
@@ -2149,9 +2159,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/AurelionSol.png",
         "tier": 3,
         "rank": 33,
-        "winRate": 51.9419,
-        "pickRate": 0.746309,
-        "banRate": 0.6349600000000001
+        "winRate": 51.9099,
+        "pickRate": 0.743458,
+        "banRate": 0.632328
       },
       {
         "key": "kalista",
@@ -2159,39 +2169,39 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Kalista.png",
         "tier": 4,
         "rank": 34,
-        "winRate": 49.0583,
-        "pickRate": 2.9618700000000002,
-        "banRate": 0.664595
-      },
-      {
-        "key": "brand",
-        "name": "复仇焰魂",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Brand.png",
-        "tier": 4,
-        "rank": 35,
-        "winRate": 51.6618,
-        "pickRate": 0.670846,
-        "banRate": 2.89919
+        "winRate": 49.0442,
+        "pickRate": 3.01358,
+        "banRate": 0.686229
       },
       {
         "key": "ezreal",
         "name": "探险家",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Ezreal.png",
         "tier": 4,
-        "rank": 36,
-        "winRate": 46.091,
-        "pickRate": 12.6035,
-        "banRate": 4.54612
+        "rank": 35,
+        "winRate": 46.0997,
+        "pickRate": 12.5863,
+        "banRate": 4.54948
       },
       {
         "key": "vladimir",
         "name": "猩红收割者",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Vladimir.png",
         "tier": 4,
+        "rank": 36,
+        "winRate": 51.648300000000006,
+        "pickRate": 0.62101,
+        "banRate": 5.64855
+      },
+      {
+        "key": "brand",
+        "name": "复仇焰魂",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Brand.png",
+        "tier": 4,
         "rank": 37,
-        "winRate": 51.5485,
-        "pickRate": 0.6188370000000001,
-        "banRate": 5.64003
+        "winRate": 51.5102,
+        "pickRate": 0.663763,
+        "banRate": 2.8933299999999997
       },
       {
         "key": "corki",
@@ -2199,9 +2209,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Corki.png",
         "tier": 4,
         "rank": 38,
-        "winRate": 49.574200000000005,
-        "pickRate": 1.7975100000000002,
-        "banRate": 0.280349
+        "winRate": 49.527300000000004,
+        "pickRate": 1.78268,
+        "banRate": 0.278135
       },
       {
         "key": "vayne",
@@ -2209,9 +2219,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Vayne.png",
         "tier": 4,
         "rank": 39,
-        "winRate": 47.5726,
-        "pickRate": 3.50619,
-        "banRate": 7.2071700000000005
+        "winRate": 47.6477,
+        "pickRate": 3.46316,
+        "banRate": 7.12916
       },
       {
         "key": "senna",
@@ -2219,9 +2229,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Senna.png",
         "tier": 5,
         "rank": 40,
-        "winRate": 50.123799999999996,
-        "pickRate": 0.5887800000000001,
-        "banRate": 1.8485
+        "winRate": 50.18,
+        "pickRate": 0.577065,
+        "banRate": 1.83199
       },
       {
         "key": "varus",
@@ -2229,9 +2239,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Varus.png",
         "tier": 5,
         "rank": 41,
-        "winRate": 47.2863,
-        "pickRate": 2.71207,
-        "banRate": 0.7073740000000001
+        "winRate": 47.3495,
+        "pickRate": 2.7389,
+        "banRate": 0.7101879999999999
       },
       {
         "key": "mel",
@@ -2239,9 +2249,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Mel.png",
         "tier": 5,
         "rank": 42,
-        "winRate": 46.3827,
-        "pickRate": 1.57112,
-        "banRate": 19.8655
+        "winRate": 46.3545,
+        "pickRate": 1.57231,
+        "banRate": 19.718
       }
     ],
     "support": [
@@ -2251,9 +2261,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Thresh.png",
         "tier": 0,
         "rank": 1,
-        "winRate": 51.729,
-        "pickRate": 14.9001,
-        "banRate": 11.5272
+        "winRate": 51.7282,
+        "pickRate": 14.8782,
+        "banRate": 11.5723
       },
       {
         "key": "leona",
@@ -2261,9 +2271,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Leona.png",
         "tier": 1,
         "rank": 2,
-        "winRate": 51.585899999999995,
-        "pickRate": 7.77891,
-        "banRate": 8.30882
+        "winRate": 51.5914,
+        "pickRate": 7.7801800000000005,
+        "banRate": 8.30179
       },
       {
         "key": "lulu",
@@ -2271,9 +2281,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Lulu.png",
         "tier": 1,
         "rank": 3,
-        "winRate": 50.42569999999999,
-        "pickRate": 11.335,
-        "banRate": 8.90807
+        "winRate": 50.3943,
+        "pickRate": 11.41,
+        "banRate": 9.0026
       },
       {
         "key": "seraphine",
@@ -2281,9 +2291,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Seraphine.png",
         "tier": 1,
         "rank": 4,
-        "winRate": 50.8947,
-        "pickRate": 8.79938,
-        "banRate": 10.1811
+        "winRate": 50.8448,
+        "pickRate": 8.753260000000001,
+        "banRate": 10.1539
       },
       {
         "key": "braum",
@@ -2291,9 +2301,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Braum.png",
         "tier": 1,
         "rank": 5,
-        "winRate": 52.073899999999995,
-        "pickRate": 4.90742,
-        "banRate": 4.94881
+        "winRate": 52.06229999999999,
+        "pickRate": 4.9108600000000004,
+        "banRate": 4.96403
       },
       {
         "key": "blitzcrank",
@@ -2301,9 +2311,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Blitzcrank.png",
         "tier": 1,
         "rank": 6,
-        "winRate": 51.359500000000004,
-        "pickRate": 6.352180000000001,
-        "banRate": 11.8025
+        "winRate": 51.3472,
+        "pickRate": 6.40447,
+        "banRate": 11.8598
       },
       {
         "key": "nami",
@@ -2311,9 +2321,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Nami.png",
         "tier": 1,
         "rank": 7,
-        "winRate": 50.687099999999994,
-        "pickRate": 9.246369999999999,
-        "banRate": 1.12822
+        "winRate": 50.7072,
+        "pickRate": 9.20683,
+        "banRate": 1.1212099999999998
       },
       {
         "key": "nautilus",
@@ -2321,9 +2331,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Nautilus.png",
         "tier": 1,
         "rank": 8,
-        "winRate": 49.9805,
-        "pickRate": 10.9179,
-        "banRate": 14.376700000000001
+        "winRate": 50.0092,
+        "pickRate": 10.925,
+        "banRate": 14.4375
       },
       {
         "key": "milio",
@@ -2331,9 +2341,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Milio.png",
         "tier": 1,
         "rank": 9,
-        "winRate": 50.75150000000001,
-        "pickRate": 6.86532,
-        "banRate": 4.31905
+        "winRate": 50.7621,
+        "pickRate": 6.89466,
+        "banRate": 4.33354
       },
       {
         "key": "senna",
@@ -2341,39 +2351,39 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Senna.png",
         "tier": 1,
         "rank": 10,
-        "winRate": 51.138099999999994,
-        "pickRate": 5.6420900000000005,
-        "banRate": 1.9025899999999998
-      },
-      {
-        "key": "alistar",
-        "name": "牛头酋长",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Alistar.png",
-        "tier": 1,
-        "rank": 11,
-        "winRate": 51.2748,
-        "pickRate": 4.94916,
-        "banRate": 1.7651
+        "winRate": 51.1696,
+        "pickRate": 5.6364,
+        "banRate": 1.8807999999999998
       },
       {
         "key": "rell",
         "name": "镕铁少女",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Rell.png",
         "tier": 1,
+        "rank": 11,
+        "winRate": 51.768499999999996,
+        "pickRate": 3.88032,
+        "banRate": 1.41567
+      },
+      {
+        "key": "alistar",
+        "name": "牛头酋长",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Alistar.png",
+        "tier": 1,
         "rank": 12,
-        "winRate": 51.77460000000001,
-        "pickRate": 3.8663700000000003,
-        "banRate": 1.41686
+        "winRate": 51.2308,
+        "pickRate": 4.95667,
+        "banRate": 1.76858
       },
       {
         "key": "janna",
         "name": "风暴之怒",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Janna.png",
-        "tier": 1,
+        "tier": 2,
         "rank": 13,
-        "winRate": 51.6128,
-        "pickRate": 3.97342,
-        "banRate": 0.8459110000000001
+        "winRate": 51.532500000000006,
+        "pickRate": 3.95767,
+        "banRate": 0.844328
       },
       {
         "key": "soraka",
@@ -2381,9 +2391,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Soraka.png",
         "tier": 2,
         "rank": 14,
-        "winRate": 50.6845,
-        "pickRate": 5.14642,
-        "banRate": 2.14977
+        "winRate": 50.7196,
+        "pickRate": 5.11377,
+        "banRate": 2.14619
       },
       {
         "key": "zilean",
@@ -2391,9 +2401,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Zilean.png",
         "tier": 2,
         "rank": 15,
-        "winRate": 51.439800000000005,
-        "pickRate": 3.2976400000000003,
-        "banRate": 1.9028300000000002
+        "winRate": 51.45960000000001,
+        "pickRate": 3.2821700000000003,
+        "banRate": 1.89801
       },
       {
         "key": "sona",
@@ -2401,29 +2411,29 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Sona.png",
         "tier": 2,
         "rank": 16,
-        "winRate": 51.3369,
-        "pickRate": 2.99539,
-        "banRate": 0.24322800000000003
-      },
-      {
-        "key": "rakan",
-        "name": "幻翎",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Rakan.png",
-        "tier": 2,
-        "rank": 17,
-        "winRate": 50.9219,
-        "pickRate": 3.4637599999999997,
-        "banRate": 0.321969
+        "winRate": 51.2839,
+        "pickRate": 2.97831,
+        "banRate": 0.243712
       },
       {
         "key": "taric",
         "name": "瓦洛兰之盾",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Taric.png",
         "tier": 2,
+        "rank": 17,
+        "winRate": 52.7652,
+        "pickRate": 1.38782,
+        "banRate": 0.312568
+      },
+      {
+        "key": "rakan",
+        "name": "幻翎",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Rakan.png",
+        "tier": 2,
         "rank": 18,
-        "winRate": 52.599399999999996,
-        "pickRate": 1.3967399999999999,
-        "banRate": 0.314482
+        "winRate": 50.878299999999996,
+        "pickRate": 3.46393,
+        "banRate": 0.321042
       },
       {
         "key": "morgana",
@@ -2431,9 +2441,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Morgana.png",
         "tier": 2,
         "rank": 19,
-        "winRate": 49.992,
-        "pickRate": 4.4253800000000005,
-        "banRate": 16.636
+        "winRate": 49.9333,
+        "pickRate": 4.41049,
+        "banRate": 16.6857
       },
       {
         "key": "pyke",
@@ -2441,49 +2451,49 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Pyke.png",
         "tier": 2,
         "rank": 20,
-        "winRate": 49.018499999999996,
-        "pickRate": 6.37659,
-        "banRate": 24.988
-      },
-      {
-        "key": "karma",
-        "name": "天启者",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Karma.png",
-        "tier": 2,
-        "rank": 21,
-        "winRate": 48.876799999999996,
-        "pickRate": 7.00949,
-        "banRate": 3.09738
+        "winRate": 49.0937,
+        "pickRate": 6.368169999999999,
+        "banRate": 24.976599999999998
       },
       {
         "key": "lux",
         "name": "光辉女郎",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Lux.png",
         "tier": 2,
-        "rank": 22,
-        "winRate": 48.9574,
-        "pickRate": 6.498379999999999,
-        "banRate": 3.45417
+        "rank": 21,
+        "winRate": 49.0287,
+        "pickRate": 6.506209999999999,
+        "banRate": 3.4693099999999997
       },
       {
-        "key": "velkoz",
-        "name": "虚空之眼",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Velkoz.png",
+        "key": "karma",
+        "name": "天启者",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Karma.png",
         "tier": 2,
-        "rank": 23,
-        "winRate": 50.526199999999996,
-        "pickRate": 2.7582,
-        "banRate": 1.67591
+        "rank": 22,
+        "winRate": 48.826,
+        "pickRate": 7.0149799999999995,
+        "banRate": 3.10695
       },
       {
         "key": "bard",
         "name": "星界游神",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Bard.png",
         "tier": 2,
+        "rank": 23,
+        "winRate": 49.2195,
+        "pickRate": 5.06863,
+        "banRate": 2.55496
+      },
+      {
+        "key": "velkoz",
+        "name": "虚空之眼",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Velkoz.png",
+        "tier": 2,
         "rank": 24,
-        "winRate": 49.1863,
-        "pickRate": 5.06496,
-        "banRate": 2.55573
+        "winRate": 50.3551,
+        "pickRate": 2.7451,
+        "banRate": 1.67565
       },
       {
         "key": "poppy",
@@ -2491,9 +2501,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Poppy.png",
         "tier": 3,
         "rank": 25,
-        "winRate": 50.7359,
-        "pickRate": 2.0648199999999997,
-        "banRate": 4.78974
+        "winRate": 50.67700000000001,
+        "pickRate": 2.05768,
+        "banRate": 4.7782
       },
       {
         "key": "zyra",
@@ -2501,9 +2511,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Zyra.png",
         "tier": 3,
         "rank": 26,
-        "winRate": 49.9178,
-        "pickRate": 2.46105,
-        "banRate": 2.36707
+        "winRate": 49.8095,
+        "pickRate": 2.46468,
+        "banRate": 2.3666300000000002
       },
       {
         "key": "maokai",
@@ -2511,9 +2521,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Maokai.png",
         "tier": 3,
         "rank": 27,
-        "winRate": 50.511300000000006,
-        "pickRate": 1.68583,
-        "banRate": 0.16659400000000002
+        "winRate": 50.402499999999996,
+        "pickRate": 1.6862700000000002,
+        "banRate": 0.166644
       },
       {
         "key": "brand",
@@ -2521,9 +2531,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Brand.png",
         "tier": 3,
         "rank": 28,
-        "winRate": 49.5848,
-        "pickRate": 2.48432,
-        "banRate": 3.04608
+        "winRate": 49.4948,
+        "pickRate": 2.48394,
+        "banRate": 3.02536
       },
       {
         "key": "yuumi",
@@ -2531,9 +2541,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Yuumi.png",
         "tier": 3,
         "rank": 29,
-        "winRate": 47.782799999999995,
-        "pickRate": 5.27863,
-        "banRate": 6.74858
+        "winRate": 47.762,
+        "pickRate": 5.29683,
+        "banRate": 6.81572
       },
       {
         "key": "pantheon",
@@ -2541,39 +2551,39 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Pantheon.png",
         "tier": 3,
         "rank": 30,
-        "winRate": 48.2465,
-        "pickRate": 3.6632100000000003,
-        "banRate": 2.4152400000000003
-      },
-      {
-        "key": "galio",
-        "name": "正义巨像",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Galio.png",
-        "tier": 3,
-        "rank": 31,
-        "winRate": 50.800599999999996,
-        "pickRate": 1.00257,
-        "banRate": 1.70192
-      },
-      {
-        "key": "tahmkench",
-        "name": "河流之王",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/TahmKench.png",
-        "tier": 3,
-        "rank": 32,
-        "winRate": 49.2347,
-        "pickRate": 2.16101,
-        "banRate": 1.9482300000000001
+        "winRate": 48.2742,
+        "pickRate": 3.66427,
+        "banRate": 2.41419
       },
       {
         "key": "renata",
         "name": "炼金男爵",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Renata.png",
         "tier": 3,
+        "rank": 31,
+        "winRate": 50.1973,
+        "pickRate": 1.4503300000000001,
+        "banRate": 0.20175200000000001
+      },
+      {
+        "key": "galio",
+        "name": "正义巨像",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Galio.png",
+        "tier": 3,
+        "rank": 32,
+        "winRate": 50.7614,
+        "pickRate": 0.992495,
+        "banRate": 1.70668
+      },
+      {
+        "key": "tahmkench",
+        "name": "河流之王",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/TahmKench.png",
+        "tier": 3,
         "rank": 33,
-        "winRate": 50.1158,
-        "pickRate": 1.42374,
-        "banRate": 0.20085200000000003
+        "winRate": 49.2208,
+        "pickRate": 2.15984,
+        "banRate": 1.9449299999999998
       },
       {
         "key": "amumu",
@@ -2581,9 +2591,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Amumu.png",
         "tier": 3,
         "rank": 34,
-        "winRate": 51.80590000000001,
-        "pickRate": 0.577219,
-        "banRate": 0.8259610000000001
+        "winRate": 51.827400000000004,
+        "pickRate": 0.578742,
+        "banRate": 0.827322
       },
       {
         "key": "xerath",
@@ -2591,9 +2601,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Xerath.png",
         "tier": 3,
         "rank": 35,
-        "winRate": 47.8475,
-        "pickRate": 2.96786,
-        "banRate": 12.428
+        "winRate": 47.902,
+        "pickRate": 2.9652499999999997,
+        "banRate": 12.3655
       },
       {
         "key": "elise",
@@ -2601,29 +2611,29 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Elise.png",
         "tier": 3,
         "rank": 36,
-        "winRate": 51.078,
-        "pickRate": 0.646667,
-        "banRate": 0.96936
-      },
-      {
-        "key": "swain",
-        "name": "诺克萨斯统领",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Swain.png",
-        "tier": 3,
-        "rank": 37,
-        "winRate": 47.747299999999996,
-        "pickRate": 2.59964,
-        "banRate": 1.67689
+        "winRate": 51.0701,
+        "pickRate": 0.647207,
+        "banRate": 0.9770449999999999
       },
       {
         "key": "neeko",
         "name": "万花通灵",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Neeko.png",
         "tier": 3,
+        "rank": 37,
+        "winRate": 48.8324,
+        "pickRate": 1.55301,
+        "banRate": 0.568756
+      },
+      {
+        "key": "swain",
+        "name": "诺克萨斯统领",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Swain.png",
+        "tier": 3,
         "rank": 38,
-        "winRate": 48.7044,
-        "pickRate": 1.53616,
-        "banRate": 0.561485
+        "winRate": 47.695,
+        "pickRate": 2.60564,
+        "banRate": 1.67217
       },
       {
         "key": "shen",
@@ -2631,9 +2641,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Shen.png",
         "tier": 3,
         "rank": 39,
-        "winRate": 49.061,
-        "pickRate": 1.17564,
-        "banRate": 0.763841
+        "winRate": 49.079499999999996,
+        "pickRate": 1.16392,
+        "banRate": 0.765138
       },
       {
         "key": "hwei",
@@ -2641,9 +2651,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Hwei.png",
         "tier": 3,
         "rank": 40,
-        "winRate": 49.9469,
-        "pickRate": 0.6620159999999999,
-        "banRate": 2.96081
+        "winRate": 49.9463,
+        "pickRate": 0.6618470000000001,
+        "banRate": 2.9482399999999997
       },
       {
         "key": "leblanc",
@@ -2651,9 +2661,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Leblanc.png",
         "tier": 3,
         "rank": 41,
-        "winRate": 49.1168,
-        "pickRate": 0.8241780000000001,
-        "banRate": 15.2003
+        "winRate": 49.113600000000005,
+        "pickRate": 0.82139,
+        "banRate": 15.2996
       },
       {
         "key": "sylas",
@@ -2661,49 +2671,49 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Sylas.png",
         "tier": 4,
         "rank": 42,
-        "winRate": 47.4146,
-        "pickRate": 1.35755,
-        "banRate": 17.142
-      },
-      {
-        "key": "shaco",
-        "name": "恶魔小丑",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Shaco.png",
-        "tier": 4,
-        "rank": 43,
-        "winRate": 47.4282,
-        "pickRate": 1.27407,
-        "banRate": 16.5669
+        "winRate": 47.4947,
+        "pickRate": 1.36327,
+        "banRate": 17.2592
       },
       {
         "key": "fiddlesticks",
         "name": "远古恐惧",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Fiddlesticks.png",
         "tier": 4,
-        "rank": 44,
-        "winRate": 49.5056,
-        "pickRate": 0.511554,
-        "banRate": 1.30358
+        "rank": 43,
+        "winRate": 49.6776,
+        "pickRate": 0.514025,
+        "banRate": 1.30338
       },
       {
-        "key": "camille",
-        "name": "青钢影",
-        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Camille.png",
+        "key": "shaco",
+        "name": "恶魔小丑",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Shaco.png",
         "tier": 4,
-        "rank": 45,
-        "winRate": 46.057500000000005,
-        "pickRate": 2.44091,
-        "banRate": 5.6164
+        "rank": 44,
+        "winRate": 47.4691,
+        "pickRate": 1.27697,
+        "banRate": 16.610500000000002
       },
       {
         "key": "zoe",
         "name": "暮光星灵",
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Zoe.png",
         "tier": 4,
+        "rank": 45,
+        "winRate": 48.1297,
+        "pickRate": 0.9346840000000001,
+        "banRate": 3.2395899999999997
+      },
+      {
+        "key": "camille",
+        "name": "青钢影",
+        "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Camille.png",
+        "tier": 4,
         "rank": 46,
-        "winRate": 48.046499999999995,
-        "pickRate": 0.9343529999999999,
-        "banRate": 3.2338
+        "winRate": 46.1617,
+        "pickRate": 2.42838,
+        "banRate": 5.5167399999999995
       },
       {
         "key": "teemo",
@@ -2711,9 +2721,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Teemo.png",
         "tier": 4,
         "rank": 47,
-        "winRate": 48.513099999999994,
-        "pickRate": 0.538339,
-        "banRate": 5.9919899999999995
+        "winRate": 48.2794,
+        "pickRate": 0.538964,
+        "banRate": 6.01643
       },
       {
         "key": "veigar",
@@ -2721,9 +2731,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Veigar.png",
         "tier": 5,
         "rank": 48,
-        "winRate": 44.599,
-        "pickRate": 0.651461,
-        "banRate": 1.7501099999999998
+        "winRate": 44.7271,
+        "pickRate": 0.64847,
+        "banRate": 1.74525
       },
       {
         "key": "ashe",
@@ -2731,9 +2741,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Ashe.png",
         "tier": 5,
         "rank": 49,
-        "winRate": 43.819599999999994,
-        "pickRate": 0.750068,
-        "banRate": 1.733
+        "winRate": 43.8422,
+        "pickRate": 0.7520169999999999,
+        "banRate": 1.7275200000000002
       },
       {
         "key": "mel",
@@ -2741,9 +2751,9 @@ export const CHAMPIONS_DATA: ChampionsSnapshot = {
         "imageUrl": "https://opgg-static.akamaized.net/meta/images/lol/16.17.1/champion/Mel.png",
         "tier": 5,
         "rank": 50,
-        "winRate": 42.623,
-        "pickRate": 0.767617,
-        "banRate": 19.4297
+        "winRate": 42.7316,
+        "pickRate": 0.7679590000000001,
+        "banRate": 19.3268
       }
     ]
   }

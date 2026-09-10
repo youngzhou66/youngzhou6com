@@ -12,6 +12,10 @@ export default function TierTable() {
       className="mt-8 bg-[#1a1d27] border border-white/5 rounded-2xl p-6 shadow-xl"
     >
       <h3 className="text-lg font-bold text-white mb-4">档次对照表</h3>
+      <p className="text-xs text-gray-500 mb-4">
+        分组按位置权重计算 ELO：上单 / AD ×0.95，中单 / 打野
+        ×1.05，辅助 ×1.00。
+      </p>
       <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-3">
         {Object.entries(TIER_INFO).map(([key, info]) => (
           <div

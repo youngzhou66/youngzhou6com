@@ -41,8 +41,27 @@ export default function AlgorithmModal({
               <div>
                 <div className="font-bold text-cyan-400 mb-1">🎯 目标</div>
                 <p>
-                  把 10 人分成两队，每队 5 人，让两队 ELO 总分尽量接近；
+                  把 10 人分成两队，每队 5 人，让两队按位置加权后的 ELO
+                  总分尽量接近；
                   同时避免某个玩家总是被安排到同一个弱位置。
+                </p>
+              </div>
+
+              <div>
+                <div className="font-bold text-cyan-400 mb-1">
+                  ⚖️ ELO 位置权重
+                </div>
+                <p className="text-gray-400">
+                  分组时会先按玩家所在位置乘以权重，再进行蓝红平衡：
+                </p>
+                <ul className="list-disc list-inside space-y-1 text-gray-400 mt-2">
+                  <li>上单 / AD：×0.95</li>
+                  <li>中单 / 打野：×1.05</li>
+                  <li>辅助：×1.00</li>
+                </ul>
+                <p className="text-gray-400 mt-2">
+                  页面中的“加权 ELO”就是原始 ELO
+                  乘以位置权重后的结果；队伍卡片会同时展示原始 ELO，方便核对。
                 </p>
               </div>
               <div>
@@ -73,7 +92,7 @@ export default function AlgorithmModal({
                 <p className="text-gray-400">
                   <span className="text-white">智能平衡</span>
                   ：随机生成 300 套位置分配，
-                  每套都找出蓝红最优切分，再从分差达标的结果中随机返回一套
+                  每套都找出蓝红最优切分，再从分差达标的结果中随机返回一套（默认阈值 10%）
                   <br />
                   <span className="text-white">真随机</span>
                   ：位置和蓝红双方完全随机
