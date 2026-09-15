@@ -11,6 +11,7 @@ import {
   formatWeight,
   positionEloWeight,
   rawEloFor,
+  winProbabilityFor,
   weightedEloFor,
 } from '@/lib/grouping/elo';
 import { TEST_PLAYERS } from '../helpers';
@@ -70,5 +71,53 @@ describe('ELO 位置权重', () => {
     expect(formatElo(123.06)).toBe('123.1');
     expect(formatWeight(1)).toBe('1.00');
     expect(formatWeight(0.95)).toBe('0.95');
+  });
+});
+
+describe('winProbabilityFor 胜率换算方向', () => {
+  it('分差为 0 时双方各 50%', () => {
+    expect(winProbabilityFor(0)).toBe(0.5);
+  });
+
+  it('分差为正（己方更强）时胜率高于 50%，为负时低于 50%', () => {
+    expect(winProbabilityFor(100)).toBeGreaterThan(0.5);
+    expect(winProbabilityFor(-100)).toBeLessThan(0.5);
+  });
+
+  it('己方与对方互换时，两者胜率相加恒为 1', () => {
+    for (const diff of [0, 1, 30, 100, 400, 900, -30, -400, -900]) {
+      expect(winProbabilityFor(diff) + winProbabilityFor(-diff)).toBeCloseTo(
+        1,
+        12
+      );
+    }
+  });
+
+  it('单调递增：分差越大胜率越高', () => {
+    const diffs = [-900, -400, -100, -30, 0, 30, 100, 400, 900];
+
+    for (let i = 1; i < diffs.length; i++) {
+      expect(winProbabilityFor(diffs[i])).toBeGreaterThan(
+        winProbabilityFor(diffs[i - 1])
+      );
+    }
+  });
+
+  it('Δ400 对应约 10 倍胜算（标准 ELO 尺度）', () => {
+    expect(winProbabilityFor(400)).toBeCloseTo(10 / 11, 10);
+    expect(winProbabilityFor(-400)).toBeCloseTo(1 / 11, 10);
+  });
+
+  it('回归：绝不能把绝对值当参数传入', () => {
+    // 曾经的 bug：先用 Math.abs 求分差、再算“蓝方胜率”，
+    // 导致结果恒 ≥ 50%，低分一方反而显示更高胜算。
+    const blue = 100;
+    const red = 1000;
+    const signedDiffFromBlue = blue - red;
+    const buggyAbsoluteValue = Math.abs(signedDiffFromBlue);
+
+    expect(winProbabilityFor(signedDiffFromBlue)).toBeLessThan(0.5);
+    // 反例保留：这正是错误写法会得到的荒谬结果
+    expect(winProbabilityFor(buggyAbsoluteValue)).toBeGreaterThan(0.5);
   });
 });

@@ -5,14 +5,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { CHAMPION_POOL_OPTIONS } from '@/lib/champions/constants';
 import type { ChampionDraws, ChampionPoolMode } from '@/lib/champions/types';
 import { DEFAULT_ELO_THRESHOLD } from '@/lib/grouping/constants';
-import { formatElo } from '@/lib/grouping/elo';
+import { formatElo, winProbabilityFor } from '@/lib/grouping/elo';
 import type { Team } from '@/lib/grouping/types';
 import TeamCard from './TeamCard';
-
-/** 用标准 ELO 公式把分差换算成胜率，比百分比分差更直观 */
-function winProbabilityFor(diff: number): number {
-  return 1 / (1 + Math.pow(10, -diff / 400));
-}
 
 interface TeamResultProps {
   teams: Team[] | null;
@@ -33,11 +28,12 @@ export default function TeamResult({
   resultRef,
   onRerollChampions,
 }: TeamResultProps) {
-  const eloDiff = teams
-    ? Math.abs(
-        teams[0].totalWeightedElo - teams[1].totalWeightedElo
-      )
+  // eloDiff 是「分差绝对值」用于展示；算胜率必须用带符号的差值，
+  // 否则绝对值恒 ≥ 0 会让蓝方胜率永远 ≥ 50%（即使蓝方总分更低）。
+  const signedEloDiffFromBlue = teams
+    ? teams[0].totalWeightedElo - teams[1].totalWeightedElo
     : 0;
+  const eloDiff = Math.abs(signedEloDiffFromBlue);
   const maxElo = teams
     ? Math.max(teams[0].totalWeightedElo, teams[1].totalWeightedElo)
     : 1;
@@ -58,7 +54,9 @@ export default function TeamResult({
     ? '🙂 差距不大'
     : '😅 有一定差距';
 
-  const blueWinRate = teams ? winProbabilityFor(eloDiff) : 0.5;
+  // 蓝方胜率用带符号差值，红方取其补数：两者恒为 100%，
+  // 且 ELO 更高的一方胜率必然更高。
+  const blueWinRate = teams ? winProbabilityFor(signedEloDiffFromBlue) : 0.5;
   const formatWinRate = (value: number) => `${(value * 100).toFixed(1)}%`;
 
   return (
