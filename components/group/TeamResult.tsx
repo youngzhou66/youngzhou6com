@@ -9,6 +9,11 @@ import { formatElo } from '@/lib/grouping/elo';
 import type { Team } from '@/lib/grouping/types';
 import TeamCard from './TeamCard';
 
+/** 用标准 ELO 公式把分差换算成胜率，比百分比分差更直观 */
+function winProbabilityFor(diff: number): number {
+  return 1 / (1 + Math.pow(10, -diff / 400));
+}
+
 interface TeamResultProps {
   teams: Team[] | null;
   championDraws: ChampionDraws;
@@ -37,6 +42,24 @@ export default function TeamResult({
     ? Math.max(teams[0].totalWeightedElo, teams[1].totalWeightedElo)
     : 1;
   const diffRatio = maxElo > 0 ? eloDiff / maxElo : 0;
+
+  // 颜色一律按用户当前阈值判定：过去最严格的一档写死在 10%，
+  // 导致把阈值调到 5% 时，8% 的分差仍会显示成黄色“差距不大”。
+  const withinStrict = diffRatio <= DEFAULT_ELO_THRESHOLD;
+  const withinThreshold = diffRatio <= threshold;
+  const balanceColor = withinStrict
+    ? 'text-green-400'
+    : withinThreshold
+    ? 'text-yellow-400'
+    : 'text-red-400';
+  const balanceLabel = withinStrict
+    ? '⚖️ 势均力敌'
+    : withinThreshold
+    ? '🙂 差距不大'
+    : '😅 有一定差距';
+
+  const blueWinRate = teams ? winProbabilityFor(eloDiff) : 0.5;
+  const formatWinRate = (value: number) => `${(value * 100).toFixed(1)}%`;
 
   return (
     <AnimatePresence mode="wait">
@@ -84,13 +107,7 @@ export default function TeamResult({
                   <div className="flex flex-col items-center">
                     <span className="text-xs text-gray-500">VS</span>
                     <span
-                      className={`text-lg font-bold ${
-                        diffRatio <= DEFAULT_ELO_THRESHOLD
-                          ? 'text-green-400'
-                          : diffRatio <= threshold
-                          ? 'text-yellow-400'
-                          : 'text-red-400'
-                      }`}
+                      className={`text-lg font-bold ${balanceColor}`}
                     >
                       {formatElo(eloDiff)} ({(diffRatio * 100).toFixed(1)}%)
                     </span>
@@ -103,24 +120,24 @@ export default function TeamResult({
                   </div>
                 </div>
                 <div className="mt-3">
-                  <span
-                    className={`text-sm ${
-                      diffRatio <= DEFAULT_ELO_THRESHOLD
-                        ? 'text-green-400'
-                        : diffRatio <= threshold
-                        ? 'text-yellow-400'
-                        : 'text-red-400'
-                    }`}
-                  >
-                    {diffRatio <= DEFAULT_ELO_THRESHOLD
-                      ? '⚖️ 势均力敌'
-                      : diffRatio <= threshold
-                      ? '🙂 差距不大'
-                      : '😅 有一定差距'}
+                  <span className={`text-sm ${balanceColor}`}>
+                    {balanceLabel}
+                  </span>
+                </div>
+                <div className="mt-3 flex flex-wrap items-center justify-center gap-3 text-xs">
+                  <span className="rounded-lg border border-blue-500/20 bg-blue-500/10 px-3 py-1 text-blue-300">
+                    蓝方胜算 {formatWinRate(blueWinRate)}
+                  </span>
+                  <span className="rounded-lg border border-red-500/20 bg-red-500/10 px-3 py-1 text-red-300">
+                    红方胜算 {formatWinRate(1 - blueWinRate)}
                   </span>
                 </div>
                 <div className="mt-2 text-[11px] text-gray-500">
-                  分差按位置加权 ELO 计算
+                  分差按位置加权 ELO 计算 · 胜率由标准 ELO 公式（Δ400 ≈ 10 倍胜算）估算，仅供参考
+                </div>
+                <div className="mx-auto mt-2 max-w-lg text-[11px] leading-relaxed text-gray-500">
+                  注意：这里衡量的是“队伍总分差”。总分为 0 不等于每条路都公平——
+                  某一路可能差好几个档次，被另一路反向抵消掉，算法只保证总分接近。
                 </div>
                 {championDrawError && (
                   <div className="mt-4 mx-auto max-w-lg rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">

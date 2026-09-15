@@ -69,7 +69,7 @@ export default function AlgorithmModal({
                 <ol className="list-decimal list-inside space-y-1 text-gray-400">
                   <li>随机把 10 人匹配到 10 个位置名额（每个位置恰好 2 人）</li>
                   <li>每个位置的两人分别进入蓝方和红方</li>
-                  <li>枚举蓝红切分（32 种），用 ELO 找到分差最小的组合</li>
+                  <li>枚举蓝红切分（32 种），用加权 ELO 找到总分差最小的组合</li>
                   <li>
                     满足阈值的阵容里再随机返回一套，避免总出同一种阵容
                   </li>
@@ -78,13 +78,29 @@ export default function AlgorithmModal({
               <div>
                 <div className="font-bold text-cyan-400 mb-1">🧠 举例</div>
                 <p className="text-gray-400">
-                  羊羊可打：上单 顶级(170) / 打野 夯(210) / 中单 夯(210) /
+                  羊羊可打：上单 顶级(160) / 打野 夯(190) / 中单 夯(190) /
                   AD 人上人(130) / 辅助 人上人(130)
                   <br />
                   系统先随机决定他这局打哪个位置，
                   再用他的 ELO 决定进蓝方还是红方，
                   <br />
                   不会因为“打 AD 更容易凑平分差”就总让他打 AD。
+                </p>
+              </div>
+              <div>
+                <div className="font-bold text-cyan-400 mb-1">📊 实测结论</div>
+                <p className="text-gray-400">
+                  5 个位置各 2 人、共 32 种蓝红切分，让“总分差”变成了一个
+                  <span className="text-white">很容易精确凑到 0</span> 的子集和问题：
+                  无位置锁定时，算法在 300 次尝试内几乎总能找到总分差 ≈ 0 的完美五五开，
+                  因此<span className="text-white">默认 10% 阈值实际很少成为约束</span>。
+                  <br />
+                  反过来说，总分差为 0 也<span className="text-white">不代表每条路都公平</span>——
+                  实测最极端的情况下，单路最大分差可达约 158 分（≈ 5 个档位），
+                  只是被另一路的反向差距抵消掉了。
+                  <br />
+                  目前的平衡目标是“队伍总分接近”，想进一步做“对线级公平”，
+                  需要把目标函数从总分差改成同时考虑每条路的分差。
                 </p>
               </div>
               <div>

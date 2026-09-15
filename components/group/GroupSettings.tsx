@@ -110,6 +110,13 @@ export default function GroupSettings({
                   <span>严格 5%</span>
                   <span>宽松 60%</span>
                 </div>
+                <p className="text-[11px] text-gray-500 mt-2 leading-relaxed">
+                  阈值只管“队伍总分差”。算法会重试 300 套位置组合，
+                  无位置锁定时几乎总能凑出总分差 ≈ 0 的完美五五开，
+                  所以这个滑杆平时拉大拉小结果一样；
+                  只有位置锁定或同队约束把组合压得凑不出完美平衡时，它才真正生效
+                  ——拉得越紧，越可能返回“当前最优”而不是达标阵容。
+                </p>
               </>
             ) : (
               <p className="text-xs text-gray-500 leading-relaxed">

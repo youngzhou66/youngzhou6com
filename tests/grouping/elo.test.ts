@@ -20,7 +20,7 @@ describe('ELO 位置权重', () => {
     expect(DEFAULT_ELO_THRESHOLD).toBe(0.1);
   });
 
-  it('权重表符合 v1.4 方案', () => {
+  it('权重表符合 v1.5 方案', () => {
     expect(POSITION_ELO_WEIGHTS).toEqual({
       top: 0.95,
       adc: 0.95,
@@ -64,7 +64,7 @@ describe('ELO 位置权重', () => {
   });
 
   it('ELO 和权重显示格式稳定', () => {
-    expect(formatElo(90)).toBe('90');
+    expect(formatElo(100)).toBe('100');
     expect(formatElo(85.5)).toBe('85.5');
     expect(formatElo(123.04)).toBe('123');
     expect(formatElo(123.06)).toBe('123.1');

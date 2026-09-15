@@ -33,7 +33,7 @@ export default function AnnouncementModal({
               <div>
                 <h3 className="text-xl font-bold text-white">📢 版本公告</h3>
                 <p className="text-xs text-gray-500 mt-1">
-                  当前版本 v1.4 · 2026-09-10
+                  当前版本 v1.5.1 · 2026-09-10
                 </p>
               </div>
               <button
@@ -47,7 +47,29 @@ export default function AnnouncementModal({
             <div className="space-y-3">
               <div className="rounded-xl border border-cyan-500/20 bg-cyan-500/5 p-4">
                 <div className="text-sm font-bold text-cyan-300">
-                  🆕 v1.4 · 2026-09-10
+                  🆕 v1.5 · 2026-09-10
+                </div>
+                <ul className="list-disc list-inside space-y-1.5 text-gray-400 text-sm mt-2">
+                  <li>
+                    档位 ELO 重新标定：相邻档位统一相差 30 分，对应单人胜率约 54%
+                  </li>
+                  <li>
+                    修掉旧刻度里两个“相当于抛硬币”的 10 分档：夯爆了 / 夯、拉完了 / 人机
+                  </li>
+                  <li>
+                    新刻度：220 / 190 / 160 / 130 / 100 / 70 / 40（位置权重与默认 10% 阈值不变）
+                  </li>
+                  <li>结果卡片新增估算胜率，双方胜算一眼可见</li>
+                  <li>
+                    说明补全：加权 ELO 阈值只管“队伍总分差”，无位置锁定时算法几乎总能凑出
+                    总分差 ≈ 0，滑杆平时拉大拉小结果一样；总分为 0 也不等于每条路都公平
+                  </li>
+                </ul>
+              </div>
+
+              <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                <div className="text-sm font-bold text-gray-200">
+                  v1.4 · 2026-09-10
                 </div>
                 <ul className="list-disc list-inside space-y-1.5 text-gray-400 text-sm mt-2">
                   <li>

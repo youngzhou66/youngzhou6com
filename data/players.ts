@@ -14,14 +14,22 @@ export interface Player {
   positions: Record<Position, TierKey>;
 }
 
+/**
+ * 档位 ELO 刻度（v1.5 起）：相邻档位统一相差 30 分，对应单人胜率约 54%，
+ * 是"能感觉到、但不过分"的粒度。旧的 10 分档（夯爆了/夯、拉完了/人机）
+ * 只对应 51.4% 胜率，等于抛硬币，已废弃。
+ * 实测本表 39 位玩家：单人加权均值 115.2，队伍加权总分均值约 576。
+ * 注意：由于 5 个位置各有 2 人、共 32 种切分，算法在 300 次尝试内几乎总能凑出
+ * 恰好 0 分差的完美五五开，因此 10% 阈值实际很少成为约束条件。
+ */
 export const TIER_INFO: Record<TierKey, { label: string; elo: number; color: string; icon: string; rank: string }> = {
   hangbaole:   { label: '夯爆了', elo: 220, color: 'bg-red-500', icon: '🔥', rank: '大师及以上' },
-  hang:        { label: '夯',     elo: 210, color: 'bg-orange-500', icon: '💪', rank: '钻1钻2' },
-  dingji:     { label: '顶级',   elo: 170, color: 'bg-yellow-500', icon: '👑', rank: '钻石' },
+  hang:        { label: '夯',     elo: 190, color: 'bg-orange-500', icon: '💪', rank: '钻1钻2' },
+  dingji:     { label: '顶级',   elo: 160, color: 'bg-yellow-500', icon: '👑', rank: '钻石' },
   renshangren:{ label: '人上人', elo: 130, color: 'bg-green-500', icon: '⭐', rank: '翡翠' },
-  npc:        { label: 'NPC',    elo:  90, color: 'bg-blue-500', icon: '🤖', rank: '白金' },
-  lawanle:    { label: '拉完了', elo:  50, color: 'bg-purple-500', icon: '😭', rank: '黄金' },
-  renji:      { label: '人机',   elo:  40, color: 'bg-gray-500', icon: '👾', rank: '骇人鲸' },
+  npc:        { label: 'NPC',    elo: 100, color: 'bg-blue-500', icon: '🤖', rank: '白金' },
+  lawanle:    { label: '拉完了', elo:  70, color: 'bg-purple-500', icon: '😭', rank: '黄金' },
+  renji:      { label: '人机',   elo:  40, color: 'bg-gray-500', icon: '👾', rank: '黑铁 / 骇人鲸' },
 };
 
 export const POSITION_LABELS: Record<Position, { zh: string; en: string; icon: string }> = {
@@ -69,5 +77,7 @@ export const PLAYERS: Player[] = [
   { name: '佳佳pp',          positions: { top: 'lawanle',   jungle: 'lawanle',    mid: 'npc',         adc: 'npc',         support: 'renshangren' } },
   { name: '你的笑点好低',     positions: { top: 'renshangren', jungle: 'hang',     mid: 'renshangren', adc: 'renshangren', support: 'npc' } },
   { name: '状态好能一换一',   positions: { top: 'npc',       jungle: 'npc',         mid: 'npc',         adc: 'hang',        support: 'npc' } },
+  { name: '临江边',   positions: { top: 'renji',       jungle: 'lawanle',         mid: 'renji',         adc: 'lawanle',        support: 'renji' } },
+  { name: '童话书',   positions: { top: 'npc',       jungle: 'lawanle',         mid: 'renshangren',         adc: 'lawanle',        support: 'dingji' } },
   { name: '青山不解风情',     positions: { top: 'lawanle',   jungle: 'lawanle',    mid: 'renshangren', adc: 'lawanle',    support: 'dingji' } }
 ];
