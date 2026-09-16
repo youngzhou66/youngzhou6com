@@ -14,7 +14,7 @@ import {
 } from '@/lib/players/tags';
 
 describe('预设标签', () => {
-  it('包含群里的 5 个既有标签', () => {
+  it('包含群里的 6 个既有标签', () => {
     const labels = TAG_PRESETS.map((preset) => preset.label);
 
     expect(labels).toEqual([
@@ -23,6 +23,7 @@ describe('预设标签', () => {
       'ikun翡翠兄弟',
       'ikun战神',
       '再次抽象',
+      '水豚噜噜',
     ]);
   });
 

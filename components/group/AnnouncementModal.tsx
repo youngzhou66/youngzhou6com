@@ -75,7 +75,7 @@ export default function AnnouncementModal({
                     临时玩家在「➕ 添加玩家」时选；选人页与结果页都会显示
                   </li>
                   <li>
-                    预设标签：咕咕嘎嘎 / 精英咕咕嘎嘎 / ikun翡翠兄弟 / ikun战神 / 再次抽象，
+                    预设标签：咕咕嘎嘎 / 精英咕咕嘎嘎 / ikun翡翠兄弟 / ikun战神 / 再次抽象 / 水豚噜噜，
                     也可输入自定义标签；配色统一成青色调
                   </li>
                   <li>

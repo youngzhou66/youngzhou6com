@@ -30,6 +30,7 @@ export const TAG_PRESETS: TagDefinition[] = [
   { label: 'ikun翡翠兄弟', chain: 'ikun' },
   { label: 'ikun战神', chain: 'ikun' },
   { label: '再次抽象' },
+  { label: '水豚噜噜' },
 ];
 
 const PRESET_MAP = new Map(TAG_PRESETS.map((tag) => [tag.label, tag]));
