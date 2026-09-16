@@ -5,7 +5,7 @@
 
 在线演示：[youngzhou6.space](https://youngzhou6.space)
 
-> 📦 当前版本：**v1.7**（2026-09-15）｜版本公告见 [CHANGELOG.md](CHANGELOG.md)
+> 📦 当前版本：**v1.7**（2026-09-16）｜版本公告见 [CHANGELOG.md](CHANGELOG.md)
 >
 > v1.7 新增玩家搜索与标签筛选：按 id 搜索（支持空格分词）、按标签筛选（可多选），两者取交集。
 > v1.6 新增玩家标签（常驻成员标签写在 `data/players.ts`，统一青色调）、

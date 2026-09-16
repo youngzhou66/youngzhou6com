@@ -33,7 +33,7 @@ export default function AnnouncementModal({
               <div>
                 <h3 className="text-xl font-bold text-white">📢 版本公告</h3>
                 <p className="text-xs text-gray-500 mt-1">
-                  当前版本 v1.7 · 2026-09-15
+                  当前版本 v1.7 · 2026-09-16
                 </p>
               </div>
               <button
@@ -47,7 +47,7 @@ export default function AnnouncementModal({
             <div className="space-y-3">
               <div className="rounded-xl border border-cyan-500/20 bg-cyan-500/5 p-4">
                 <div className="text-sm font-bold text-cyan-300">
-                  🆕 v1.7 · 2026-09-15
+                  🆕 v1.7 · 2026-09-16
                 </div>
                 <ul className="list-disc list-inside space-y-1.5 text-gray-400 text-sm mt-2">
                   <li>
