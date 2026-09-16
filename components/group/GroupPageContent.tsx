@@ -17,6 +17,13 @@ import {
 import { championDrawErrorText } from '@/lib/champions/constants';
 import { drawChampionAssignments } from '@/lib/champions/draw';
 import type { ChampionDraws, ChampionPoolMode } from '@/lib/champions/types';
+import { normalizeTags } from '@/lib/players/tags';
+import {
+  loadCustomPlayers,
+  sanitizePlayerName,
+  saveCustomPlayers,
+  validateNewPlayerName,
+} from '@/lib/players/storage';
 import {
   DEFAULT_ELO_THRESHOLD,
   TEAM_NAMES,
@@ -45,6 +52,7 @@ import TierTable from './TierTable';
 
 export default function GroupPageContent() {
   const [customPlayers, setCustomPlayers] = useState<Player[]>([]);
+  const [addPlayerError, setAddPlayerError] = useState<string | null>(null);
   const [selected, setSelected] = useState<string[]>([]);
   const [lockedPositions, setLockedPositions] = useState<LockedPositions>({});
   const [pairConstraints, setPairConstraints] = useState<PairConstraint[]>([]);
@@ -72,9 +80,13 @@ export default function GroupPageContent() {
     adc: 'npc',
     support: 'npc',
   });
+  // 标签在"添加玩家"时一次定好，随玩家一起存进本地缓存
+  const [newPlayerTags, setNewPlayerTags] = useState<string[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const resultRef = useRef<HTMLDivElement>(null);
 
+  // 基础名单（构建时常量）没有标签，只有临时玩家带标签
   const allPlayers = useMemo(
     () => [...BASE_PLAYERS, ...customPlayers],
     [customPlayers]
@@ -83,6 +95,21 @@ export default function GroupPageContent() {
     () => allPlayers.filter((player) => selected.includes(player.name)),
     [allPlayers, selected]
   );
+
+  // 只在挂载时恢复一次缓存。
+  // - 必须放在 effect 里：静态导出时服务端渲染拿不到 localStorage，直接进 state 会 hydration 不一致
+  // - 依赖为空是刻意的：读取的 BASE_PLAYERS 是模块常量，setState 函数是稳定引用，
+  //   没有需要响应变化的闭包变量
+  useEffect(() => {
+    setCustomPlayers(
+      loadCustomPlayers(BASE_PLAYERS.map((player) => player.name))
+    );
+  }, []);
+
+  const updateCustomPlayers = useCallback((next: Player[]) => {
+    setCustomPlayers(next);
+    saveCustomPlayers(next);
+  }, []);
 
   const togglePlayer = (name: string) => {
     if (selected.includes(name)) {
@@ -302,15 +329,7 @@ export default function GroupPageContent() {
     setTeams(null);
   };
 
-  const addCustomPlayer = () => {
-    if (!newPlayerName.trim()) return;
-
-    const newPlayer: Player = {
-      name: newPlayerName.trim(),
-      positions: { ...newPlayerTiers },
-    };
-
-    setCustomPlayers([...customPlayers, newPlayer]);
+  const resetNewPlayerForm = () => {
     setNewPlayerName('');
     setNewPlayerTiers({
       top: 'npc',
@@ -319,28 +338,80 @@ export default function GroupPageContent() {
       adc: 'npc',
       support: 'npc',
     });
+    setNewPlayerTags([]);
+  };
+
+  const addCustomPlayer = () => {
+    // 名字在整条链路里充当主键，重名会导致"点一个选中两个"这类静默错误，必须拦住
+    const error = validateNewPlayerName(
+      newPlayerName,
+      allPlayers.map((player) => player.name)
+    );
+
+    if (error) {
+      setAddPlayerError(error);
+      return;
+    }
+
+    const tags = normalizeTags(newPlayerTags);
+    const newPlayer: Player = {
+      name: sanitizePlayerName(newPlayerName),
+      positions: { ...newPlayerTiers },
+      ...(tags.length > 0 ? { tags } : {}),
+    };
+
+    updateCustomPlayers([...customPlayers, newPlayer]);
+    resetNewPlayerForm();
+    setAddPlayerError(null);
     setShowAddForm(false);
   };
 
-  const removeCustomPlayer = (name: string) => {
-    setCustomPlayers(customPlayers.filter((player) => player.name !== name));
+  /**
+   * 批量移除临时玩家。
+   * 注意不能循环调用 removeCustomPlayer —— 那些 setState 都基于同一次渲染的旧数组，
+   * 循环会互相覆盖，所以这里一次性算好所有要清理的状态。
+   */
+  const removeCustomPlayers = (names: string[]) => {
+    if (names.length === 0) return;
 
-    if (selected.includes(name)) {
-      setSelected(selected.filter((selectedName) => selectedName !== name));
-      const nextLockedPositions = { ...lockedPositions };
+    const removed = new Set(names);
 
-      delete nextLockedPositions[name];
-      setLockedPositions(nextLockedPositions);
-      setPairConstraints((current) =>
-        current.filter(
-          (constraint) =>
-            constraint.playerA !== name && constraint.playerB !== name
-        )
-      );
-    }
+    updateCustomPlayers(
+      customPlayers.filter((player) => !removed.has(player.name))
+    );
 
+    setSelected((current) => current.filter((name) => !removed.has(name)));
+
+    setLockedPositions((current) => {
+      const next = { ...current };
+
+      names.forEach((name) => delete next[name]);
+      return next;
+    });
+
+    setPairConstraints((current) =>
+      current.filter(
+        (constraint) =>
+          !removed.has(constraint.playerA) && !removed.has(constraint.playerB)
+      )
+    );
+
+    // 英雄抽取结果同样以玩家名为 key，不清理会留下孤儿数据
+    setChampionDraws((current) => {
+      const next = { ...current };
+
+      names.forEach((name) => delete next[name]);
+      return next;
+    });
+
+    // 标签随玩家记录一起存在 customPlayers 里，上面 updateCustomPlayers 已一并移除
     setTeams(null);
   };
+
+  const removeCustomPlayer = (name: string) => removeCustomPlayers([name]);
+
+  const clearCustomPlayers = () =>
+    removeCustomPlayers(customPlayers.map((player) => player.name));
 
   const addPairConstraint = (
     playerA: string,
@@ -414,15 +485,24 @@ export default function GroupPageContent() {
               onClearAll={clearAll}
               onToggleAddForm={() => setShowAddForm(!showAddForm)}
               onShowAlgorithm={() => setShowAlgorithm(true)}
-              onNewPlayerNameChange={setNewPlayerName}
+              onNewPlayerNameChange={(value) => {
+                setNewPlayerName(value);
+                setAddPlayerError(null);
+              }}
               onNewPlayerTierChange={(position, tier) =>
                 setNewPlayerTiers({
                   ...newPlayerTiers,
                   [position]: tier,
                 })
               }
+              addPlayerError={addPlayerError}
+              newPlayerTags={newPlayerTags}
+              onNewPlayerTagsChange={setNewPlayerTags}
+              searchQuery={searchQuery}
+              onSearchQueryChange={setSearchQuery}
               onAddCustomPlayer={addCustomPlayer}
               onRemoveCustomPlayer={removeCustomPlayer}
+              onClearCustomPlayers={clearCustomPlayers}
             />
             <GroupSettings
               selectedCount={selected.length}

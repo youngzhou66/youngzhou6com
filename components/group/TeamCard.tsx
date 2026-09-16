@@ -5,6 +5,7 @@ import { POSITION_LABELS, TIER_INFO } from '@/data/players';
 import type { ChampionDraws } from '@/lib/champions/types';
 import { POSITIONS } from '@/lib/grouping/constants';
 import { formatElo, formatWeight } from '@/lib/grouping/elo';
+import { tagStyleFor } from '@/lib/players/tags';
 import type { Team } from '@/lib/grouping/types';
 import ChampionPickCard from './ChampionPickCard';
 
@@ -70,6 +71,7 @@ export default function TeamCard({
 
           const tier = TIER_INFO[groupedPlayer.tier];
           const champions = championDraws[groupedPlayer.player.name];
+          const tags = groupedPlayer.player.tags ?? [];
 
           return (
             <div
@@ -92,6 +94,20 @@ export default function TeamCard({
                 <div className="font-semibold text-white text-sm truncate">
                   {groupedPlayer.player.name}
                 </div>
+                {tags.length > 0 && (
+                  <div className="mt-1 flex flex-wrap gap-1">
+                    {tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className={`rounded-full border px-1.5 py-0.5 text-[10px] leading-tight ${tagStyleFor(
+                          tag
+                        )}`}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
                 {champions && champions.length > 0 && (
                   <div
                     className={`mt-2 grid gap-1.5 ${

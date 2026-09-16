@@ -12,6 +12,12 @@ export type TierKey =
 export interface Player {
   name: string;
   positions: Record<Position, TierKey>;
+  /**
+   * 玩家标签，纯展示信息，不参与分组计算。
+   * 常驻成员直接写在这里（进 git，所有人可见）；
+   * 临时玩家的标签在页面「添加玩家」时确定，存浏览器本地，见 lib/players/。
+   */
+  tags?: string[];
 }
 
 /**
@@ -41,39 +47,39 @@ export const POSITION_LABELS: Record<Position, { zh: string; en: string; icon: s
 };
 
 export const PLAYERS: Player[] = [
-  { name: '大灰蛛',         positions: { top: 'npc',    jungle: 'dingji', mid: 'lawanle',        adc: 'renshangren', support: 'npc' } },
-  { name: '忘绝尘',         positions: { top: 'lawanle',    jungle: 'lawanle', mid: 'lawanle',      adc: 'lawanle',      support: 'renshangren' } },
-  { name: '夜行少女',       positions: { top: 'renshangren',jungle: 'lawanle', mid: 'renshangren',        adc: 'hang',       support: 'dingji' } },
-  { name: '牢王Ovo',    positions: { top: 'hang',       jungle: 'hangbaole',mid: 'dingji',      adc: 'renshangren',     support: 'hang' } },
-  { name: '余晖光年',     positions: { top: 'lawanle',    jungle: 'npc',    mid: 'dingji',        adc: 'renshangren',support: 'hang' } },
-  { name: '打弟弟专用号',   positions: { top: 'dingji',     jungle: 'npc',    mid: 'renshangren',   adc: 'lawanle',    support: 'npc' } },
-  { name: '充钱怪',         positions: { top: 'lawanle',    jungle: 'npc',    mid: 'hang',          adc: 'renshangren',     support: 'dingji' } },
-  { name: '朗哥',           positions: { top: 'lawanle',    jungle: 'dingji', mid: 'npc',          adc: 'npc',        support: 'dingji' } },
-  { name: '杨晓豪塞拉斯石头人', positions: { top: 'dingji',   jungle: 'npc',    mid: 'renshangren', adc: 'lawanle',    support: 'npc' } },
-  { name: '小岩',           positions: { top: 'lawanle',    jungle: 'renshangren',mid: 'npc',      adc: 'renshangren',     support: 'dingji' } },
-  { name: '青衫持刹那',     positions: { top: 'npc',       jungle: 'hang',    mid: 'renshangren',   adc: 'renshangren', support: 'dingji' } },
-  { name: '吕庚辰',         positions: { top: 'dingji',    jungle: 'lawanle', mid: 'renshangren',   adc: 'lawanle',     support: 'renshangren' } },
-  { name: '早春野湖',       positions: { top: 'lawanle',       jungle: 'renshangren', mid: 'npc', adc: 'dingji',     support: 'renshangren' } },
-  { name: '水里de石头',     positions: { top: 'dingji',    jungle: 'lawanle', mid: 'renshangren',   adc: 'dingji',      support: 'renshangren' } },
-  { name: '再见时心动',     positions: { top: 'lawanle',   jungle: 'lawanle', mid: 'npc',          adc: 'renshangren', support: 'dingji' } },
-  { name: '不发脾气',       positions: { top: 'lawanle',   jungle: 'lawanle', mid: 'lawanle',       adc: 'npc',         support: 'renshangren' } },
-  { name: '恶魔人',         positions: { top: 'dingji',    jungle: 'renshangren', mid: 'hangbaole', adc: 'renshangren', support: 'renshangren' } },
-  { name: 'BUG天翼',           positions: { top: 'npc',       jungle: 'npc',    mid: 'npc',           adc: 'lawanle',     support: 'npc' } },
-  { name: '10子',           positions: { top: 'npc',       jungle: 'npc',    mid: 'dingji',        adc: 'npc',         support: 'npc' } },
-  { name: '老五',           positions: { top: 'lawanle',   jungle: 'lawanle', mid: 'lawanle',       adc: 'npc',         support: 'npc' } },
-  { name: '阳哥',           positions: { top: 'npc',       jungle: 'npc',    mid: 'dingji',        adc: 'renshangren', support: 'npc' } },
-  { name: '万一赢了呢',           positions: { top: 'dingji',    jungle: 'npc',    mid: 'dingji',        adc: 'npc',         support: 'renshangren' } },
-  { name: '一头一尾',       positions: { top: 'npc',       jungle: 'npc',    mid: 'npc',           adc: 'npc',         support: 'npc' } },
+  { name: '大灰蛛',         tags: ['咕咕嘎嘎'], positions: { top: 'npc',    jungle: 'dingji', mid: 'lawanle',        adc: 'renshangren', support: 'npc' } },
+  { name: '忘绝尘',         tags: ['咕咕嘎嘎'], positions: { top: 'lawanle',    jungle: 'lawanle', mid: 'lawanle',      adc: 'lawanle',      support: 'renshangren' } },
+  { name: '夜行少女',       tags: ['咕咕嘎嘎'], positions: { top: 'renshangren',jungle: 'lawanle', mid: 'renshangren',        adc: 'hang',       support: 'dingji' } },
+  { name: '牢王Ovo',    tags: ['牢王'], positions: { top: 'hang',       jungle: 'hangbaole',mid: 'dingji',      adc: 'renshangren',     support: 'hang' } },
+  { name: '余晖光年',     tags: ['咕咕嘎嘎'], positions: { top: 'lawanle',    jungle: 'npc',    mid: 'dingji',        adc: 'renshangren',support: 'hang' } },
+  { name: '打弟弟专用号',   tags: ['咕咕嘎嘎'], positions: { top: 'dingji',     jungle: 'npc',    mid: 'renshangren',   adc: 'lawanle',    support: 'npc' } },
+  { name: '充钱怪',         tags: ['咕咕嘎嘎'], positions: { top: 'lawanle',    jungle: 'npc',    mid: 'hang',          adc: 'renshangren',     support: 'dingji' } },
+  { name: '朗哥',           tags: ['咕咕嘎嘎'], positions: { top: 'lawanle',    jungle: 'dingji', mid: 'npc',          adc: 'npc',        support: 'dingji' } },
+  { name: '杨晓豪石头人', tags: ['咕咕嘎嘎'], positions: { top: 'dingji',   jungle: 'npc',    mid: 'renshangren', adc: 'lawanle',    support: 'npc' } },
+  { name: '小岩',           tags: ['咕咕嘎嘎'], positions: { top: 'lawanle',    jungle: 'renshangren',mid: 'npc',      adc: 'renshangren',     support: 'dingji' } },
+  { name: '青衫持刹那',     tags: ['再次抽象'], positions: { top: 'npc',       jungle: 'hang',    mid: 'renshangren',   adc: 'renshangren', support: 'dingji' } },
+  { name: '吕庚辰',         tags: ['再次抽象'], positions: { top: 'dingji',    jungle: 'lawanle', mid: 'renshangren',   adc: 'lawanle',     support: 'renshangren' } },
+  { name: '早春野湖',       tags: ['再次抽象'], positions: { top: 'lawanle',       jungle: 'renshangren', mid: 'npc', adc: 'dingji',     support: 'renshangren' } },
+  { name: '水里de石头',     tags: ['再次抽象'], positions: { top: 'dingji',    jungle: 'lawanle', mid: 'renshangren',   adc: 'dingji',      support: 'renshangren' } },
+  { name: '再见时心动',     tags: ['再次抽象'], positions: { top: 'lawanle',   jungle: 'lawanle', mid: 'npc',          adc: 'renshangren', support: 'dingji' } },
+  { name: '不发脾气',       tags: ['再次抽象'], positions: { top: 'lawanle',   jungle: 'lawanle', mid: 'lawanle',       adc: 'npc',         support: 'renshangren' } },
+  { name: '恶魔人',         tags: ['再次抽象'], positions: { top: 'dingji',    jungle: 'renshangren', mid: 'hangbaole', adc: 'renshangren', support: 'renshangren' } },
+  { name: 'BUG天翼',           tags: ['精英咕咕嘎嘎'], positions: { top: 'npc',       jungle: 'npc',    mid: 'npc',           adc: 'lawanle',     support: 'npc' } },
+  { name: '10子',           tags: ['精英咕咕嘎嘎'], positions: { top: 'npc',       jungle: 'npc',    mid: 'dingji',        adc: 'npc',         support: 'npc' } },
+  { name: '老五',           tags: ['精英咕咕嘎嘎'], positions: { top: 'lawanle',   jungle: 'lawanle', mid: 'lawanle',       adc: 'npc',         support: 'npc' } },
+  { name: '阳哥',           tags: ['精英咕咕嘎嘎'], positions: { top: 'npc',       jungle: 'npc',    mid: 'dingji',        adc: 'renshangren', support: 'npc' } },
+  { name: '万一赢了呢',           tags: ['精英咕咕嘎嘎'], positions: { top: 'dingji',    jungle: 'npc',    mid: 'dingji',        adc: 'npc',         support: 'renshangren' } },
+  { name: '一头一尾',       tags: ['精英咕咕嘎嘎'], positions: { top: 'npc',       jungle: 'npc',    mid: 'npc',           adc: 'npc',         support: 'npc' } },
   { name: '我从未觉得',     positions: { top: 'npc',       jungle: 'renshangren', mid: 'npc',      adc: 'npc',         support: 'npc' } },
-  { name: '哄完老婆',     positions: { top: 'lawanle',       jungle: 'lawanle', mid: 'npc',      adc: 'npc',         support: 'renshangren' } },
+  { name: '哄完老婆',     tags: ['大董'], positions: { top: 'lawanle',       jungle: 'lawanle', mid: 'npc',      adc: 'npc',         support: 'renshangren' } },
   { name: '雇佣者',         positions: { top: 'renshangren', jungle: 'renshangren', mid: 'npc',     adc: 'npc',         support: 'npc' } },
   { name: '雷展赫',         positions: { top: 'renshangren',       jungle: 'dingji', mid: 'npc',       adc: 'npc',         support: 'npc' } },
   { name: '许天麒',         positions: { top: 'npc',       jungle: 'lawanle',     mid: 'renshangren', adc: 'lawanle',      support: 'npc' } },
   { name: '张序然',         positions: { top: 'renshangren', jungle: 'npc',        mid: 'npc',       adc: 'npc',     support: 'npc' } },
-  { name: '羊羊',           positions: { top: 'dingji', jungle: 'hang',   mid: 'hang', adc: 'renshangren',   support: 'renshangren' } },
+  { name: '羊羊',           tags: ['羊羊'], positions: { top: 'dingji', jungle: 'hang',   mid: 'hang', adc: 'renshangren',   support: 'renshangren' } },
   { name: '泰隆0u0',           positions: { top: 'renshangren',   jungle: 'dingji', mid: 'hang', adc: 'renshangren',         support: 'renshangren' } },
   { name: '成都meiko',      positions: { top: 'lawanle',   jungle: 'npc',         mid: 'npc',         adc: 'npc',         support: 'renshangren' } },
-  { name: '孤独娱乐',           positions: { top: 'npc',       jungle: 'dingji',     mid: 'renshangren',         adc: 'dingji',      support: 'npc' } },
+  { name: '孤独娱乐',           tags: ['白虎'], positions: { top: 'npc',       jungle: 'dingji',     mid: 'renshangren',         adc: 'dingji',      support: 'npc' } },
   { name: '佳佳pp',          positions: { top: 'lawanle',   jungle: 'lawanle',    mid: 'npc',         adc: 'npc',         support: 'renshangren' } },
   { name: '你的笑点好低',     positions: { top: 'renshangren', jungle: 'hang',     mid: 'renshangren', adc: 'renshangren', support: 'npc' } },
   { name: '状态好能一换一',   positions: { top: 'npc',       jungle: 'npc',         mid: 'npc',         adc: 'hang',        support: 'npc' } },

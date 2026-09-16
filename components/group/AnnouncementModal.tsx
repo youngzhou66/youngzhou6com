@@ -33,7 +33,7 @@ export default function AnnouncementModal({
               <div>
                 <h3 className="text-xl font-bold text-white">📢 版本公告</h3>
                 <p className="text-xs text-gray-500 mt-1">
-                  当前版本 v1.5.1 · 2026-09-10
+                  当前版本 v1.7 · 2026-09-15
                 </p>
               </div>
               <button
@@ -47,11 +47,71 @@ export default function AnnouncementModal({
             <div className="space-y-3">
               <div className="rounded-xl border border-cyan-500/20 bg-cyan-500/5 p-4">
                 <div className="text-sm font-bold text-cyan-300">
-                  🆕 v1.5 · 2026-09-10
+                  🆕 v1.7 · 2026-09-15
                 </div>
                 <ul className="list-disc list-inside space-y-1.5 text-gray-400 text-sm mt-2">
                   <li>
-                    档位 ELO 重新标定：相邻档位统一相差 30 分，对应单人胜率约 54%
+                    选人页新增搜索框：按玩家 id 实时过滤，大小写不敏感，
+                    支持空格分词（如「状态 一换一」）
+                  </li>
+                  <li>
+                    新增标签筛选栏：列出当前名单里出现过的标签，点击即筛、可多选
+                  </li>
+                  <li>
+                    搜索词与标签之间取<span className="text-white">交集</span>（越筛越窄），
+                    可组合使用；带实时匹配计数与「重置筛选」
+                  </li>
+                  <li>搜索只影响展示，不会改变你已经选中的玩家</li>
+                  <li>
+                    新增玩家标签：常驻成员的标签写在 data/players.ts（跟着 git 走），
+                    临时玩家在「➕ 添加玩家」时选；选人页与结果页都会显示
+                  </li>
+                  <li>
+                    预设标签：咕咕嘎嘎 / 精英咕咕嘎嘎 / ikun翡翠兄弟 / ikun战神 / 再次抽象，
+                    也可输入自定义标签；配色统一成青色调
+                  </li>
+                  <li>
+                    标签只做识别用，<span className="text-white">不影响分组算法</span>；
+                    想“不要同队”请用「同队约束」
+                  </li>
+                  <li>
+                    选人页玩家卡片改为统一尺寸（132×72），名字长短、有无标签都不影响卡片大小；
+                    多标签只显示第一个，多余用 +N，悬停可看全部
+                  </li>
+                  <li>玩家名长度上限调整为 8 字，超长自动省略号并显示全名</li>
+                  <li>
+                    临时玩家改为存在你自己的浏览器里，刷新不丢；
+                    选人页新增管理区块，支持逐个删除与一键全部删除
+                  </li>
+                  <li>
+                    修复重名隐患：玩家名是选中 / 位置锁定 / 同队约束 / 英雄抽取的主键，
+                    现在添加重名会明确报错
+                  </li>
+                </ul>
+              </div>
+
+              <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                <div className="text-sm font-bold text-gray-200">
+                  v1.5.1 · 2026-09-15
+                </div>
+                <ul className="list-disc list-inside space-y-1.5 text-gray-400 text-sm mt-2">
+                  <li>
+                    修复胜率显示方向：曾误用分差绝对值，导致蓝方胜率恒不低于 50%
+                  </li>
+                  <li>
+                    说明补全：加权 ELO 阈值只管“队伍总分差”，无位置锁定时算法几乎总能凑出
+                    总分差 ≈ 0，滑杆平时拉大拉小结果一样；总分为 0 也不等于每条路都公平
+                  </li>
+                </ul>
+              </div>
+
+              <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                <div className="text-sm font-bold text-gray-200">
+                  v1.5 · 2026-09-15
+                </div>
+                <ul className="list-disc list-inside space-y-1.5 text-gray-400 text-sm mt-2">
+                  <li>
+                    档位 ELO 重新标定，相邻档位统一相差 30 分，对应单人胜率约 54%
                   </li>
                   <li>
                     修掉旧刻度里两个“相当于抛硬币”的 10 分档：夯爆了 / 夯、拉完了 / 人机
@@ -60,10 +120,6 @@ export default function AnnouncementModal({
                     新刻度：220 / 190 / 160 / 130 / 100 / 70 / 40（位置权重与默认 10% 阈值不变）
                   </li>
                   <li>结果卡片新增估算胜率，双方胜算一眼可见</li>
-                  <li>
-                    说明补全：加权 ELO 阈值只管“队伍总分差”，无位置锁定时算法几乎总能凑出
-                    总分差 ≈ 0，滑杆平时拉大拉小结果一样；总分为 0 也不等于每条路都公平
-                  </li>
                 </ul>
               </div>
 
