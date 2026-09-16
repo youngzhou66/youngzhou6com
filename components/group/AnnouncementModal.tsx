@@ -62,6 +62,14 @@ export default function AnnouncementModal({
                     可组合使用；带实时匹配计数与「重置筛选」
                   </li>
                   <li>搜索只影响展示，不会改变你已经选中的玩家</li>
+                </ul>
+              </div>
+
+              <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                <div className="text-sm font-bold text-gray-200">
+                  v1.6 · 2026-09-15
+                </div>
+                <ul className="list-disc list-inside space-y-1.5 text-gray-400 text-sm mt-2">
                   <li>
                     新增玩家标签：常驻成员的标签写在 data/players.ts（跟着 git 走），
                     临时玩家在「➕ 添加玩家」时选；选人页与结果页都会显示
