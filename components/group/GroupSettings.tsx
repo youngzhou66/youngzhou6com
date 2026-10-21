@@ -137,13 +137,13 @@ export default function GroupSettings({
                 👁 查看英雄
               </button>
             </div>
-            <div className="grid grid-cols-3 gap-1.5 bg-[#0f1117] rounded-lg p-1 border border-white/10">
+            <div className="grid grid-cols-2 gap-1.5 bg-[#0f1117] rounded-lg p-1 border border-white/10">
               {CHAMPION_POOL_OPTIONS.map((option) => (
                 <button
                   key={option.id}
                   onClick={() => onChampionPoolModeChange(option.id)}
                   title={option.hint}
-                  className={`px-2 py-2 rounded-md text-xs transition-colors ${
+                  className={`px-2 py-2 rounded-md text-xs leading-tight transition-colors ${
                     championPoolMode === option.id
                       ? 'bg-cyan-500 text-white font-medium'
                       : 'text-gray-400 hover:text-gray-200'

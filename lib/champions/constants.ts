@@ -8,18 +8,23 @@ export const CHAMPION_POOL_OPTIONS: {
 }[] = [
   {
     id: 'all',
-    label: '全英雄',
-    hint: '从该位置 OP.GG 全部榜单英雄中抽取',
-  },
-  {
-    id: 'top20',
-    label: '热门 前20',
-    hint: '只从该位置胜率/登场率前 20 名中抽取',
+    label: '本位置全池',
+    hint: '玩家分到的那个位置的全部英雄（该位置 OP.GG 完整榜单），不做档位筛选',
   },
   {
     id: 'meta',
-    label: 'Tier 1~2',
-    hint: '只从 OP.GG 版本强势（Tier 1~2）英雄中抽取',
+    label: 'T0~T2（版本强势）',
+    hint: '只从 OP.GG 版本强势（Tier 0~2）英雄中抽取',
+  },
+  {
+    id: 'mainstream',
+    label: 'T0~T3（版本相对主流）',
+    hint: '只从 OP.GG 版本相对主流（Tier 0~3）英雄中抽取，比强势档多一档',
+  },
+  {
+    id: 'bottom',
+    label: 'T4~T5（版本下水道）',
+    hint: '只从 OP.GG 版本下水道（Tier 4~5）英雄中抽取',
   },
 ];
 

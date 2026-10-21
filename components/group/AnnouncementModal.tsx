@@ -33,7 +33,7 @@ export default function AnnouncementModal({
               <div>
                 <h3 className="text-xl font-bold text-white">📢 版本公告</h3>
                 <p className="text-xs text-gray-500 mt-1">
-                  当前版本 v1.7.2 · 2026-10-21
+                  当前版本 v1.8 · 2026-10-21
                 </p>
               </div>
               <button
@@ -47,7 +47,30 @@ export default function AnnouncementModal({
             <div className="space-y-3">
               <div className="rounded-xl border border-cyan-500/20 bg-cyan-500/5 p-4">
                 <div className="text-sm font-bold text-cyan-300">
-                  🆕 v1.7.2 · 2026-10-21
+                  🆕 v1.8 · 2026-10-21
+                </div>
+                <ul className="list-disc list-inside space-y-1.5 text-gray-400 text-sm mt-2">
+                  <li>
+                    英雄池调整为 4 种：本位置全池 /
+                    <span className="text-white">T0~T2（版本强势）</span> /
+                    <span className="text-white">T0~T3（版本相对主流）</span> /
+                    <span className="text-white">T4~T5（版本下水道）</span>
+                  </li>
+                  <li>
+                    更名：原「Tier 1~2」→「T0~T2（版本强势）」
+                    （判断条件一直是 tier ≤ 2，T0 本来就包含在内）；
+                    原「全英雄」→「本位置全池」（仍然只抽本位置英雄）
+                  </li>
+                  <li>
+                    新增「T0~T3（版本相对主流）」与「T4~T5（版本下水道）」两档，
+                    去掉「热门前 20」
+                  </li>
+                </ul>
+              </div>
+
+              <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                <div className="text-sm font-bold text-gray-200">
+                  v1.7.2 · 2026-10-21
                 </div>
                 <ul className="list-disc list-inside space-y-1.5 text-gray-400 text-sm mt-2">
                   <li>

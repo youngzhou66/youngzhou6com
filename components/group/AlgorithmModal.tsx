@@ -124,7 +124,9 @@ export default function AlgorithmModal({
                   之间调整（默认 2 个）。
                 </p>
                 <ol className="list-decimal list-inside space-y-1 text-gray-400 mt-2">
-                  <li>选择英雄池：全英雄 / 热门前 20 / Tier 1~2</li>
+                  <li>
+                    选择英雄池：本位置全池 / T0~T2（版本强势）/ T0~T3（版本相对主流）/ T4~T5（版本下水道）
+                  </li>
                   <li>每次尝试前随机打乱 10 人顺序，避免固定先后手</li>
                   <li>每个人从自己位置剩余可选的英雄中随机取所需数量</li>
                   <li>

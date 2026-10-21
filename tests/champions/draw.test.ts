@@ -4,7 +4,7 @@ import { championPoolFor } from '@/lib/champions/pool';
 import type { ChampionPoolMode } from '@/lib/champions/types';
 import { groupedPlayersWithRoles } from '../helpers';
 
-const MODES: ChampionPoolMode[] = ['all', 'top20', 'meta'];
+const MODES: ChampionPoolMode[] = ['all', 'meta', 'mainstream', 'bottom'];
 const COUNTS = [1, 2, 3];
 
 describe('drawChampionAssignments', () => {
