@@ -25,21 +25,21 @@ export default function TeamCard({
       initial={{ opacity: 0, x: teamIndex === 0 ? -30 : 30 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 0.2 + teamIndex * 0.1 }}
-      className={`relative rounded-2xl shadow-2xl overflow-hidden border-2 ${
+      className={`relative rounded-2xl shadow-2xl overflow-hidden border-2 backdrop-blur-md bg-[#14161f]/45 tnum ${
         teamIndex === 0 ? 'border-blue-500/40' : 'border-red-500/40'
       }`}
     >
       <div
-        className={`absolute inset-0 bg-gradient-to-br ${team.color} opacity-10`}
+        className={`absolute inset-0 bg-gradient-to-br ${team.color} opacity-25`}
       />
-      <div className={`relative bg-gradient-to-r ${team.color} p-5`}>
+      <div className={`relative p-5`}>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-xl backdrop-blur-sm">
               {teamIndex === 0 ? '🛡️' : '⚔️'}
             </div>
             <div>
-              <h3 className="text-2xl font-display font-bold text-white drop-shadow">
+              <h3 className="text-3xl font-display text-white">
                 {team.name}
               </h3>
               <div className="text-white/80 text-xs mt-0.5">
@@ -61,7 +61,7 @@ export default function TeamCard({
         </div>
       </div>
 
-      <div className="relative p-4 space-y-2 bg-[#1a1d27]/80 backdrop-blur-sm">
+      <div className="relative p-4 space-y-2 bg-black/20">
         {POSITIONS.map((position) => {
           const groupedPlayer = team.players.find(
             (player) => player.position === position
@@ -76,7 +76,7 @@ export default function TeamCard({
           return (
             <div
               key={position}
-              className="flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 transition-colors"
+              className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.035] hover:bg-white/[0.07] border border-white/10 transition-colors"
             >
               <div
                 className={`w-9 h-9 rounded-lg ${tier.color} flex items-center justify-center text-lg flex-shrink-0`}

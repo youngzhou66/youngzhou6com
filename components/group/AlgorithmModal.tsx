@@ -25,11 +25,11 @@ export default function AlgorithmModal({
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="bg-[#1a1d27] border border-white/10 rounded-2xl p-6 shadow-2xl max-w-lg w-full max-h-[80vh] overflow-y-auto"
+            className="glass-strong rounded-2xl p-6 max-w-lg w-full max-h-[80vh] overflow-y-auto"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-bold text-white">📖 算法原理</h3>
+              <h3 className="text-2xl font-display text-white">📖 算法原理</h3>
               <button
                 onClick={onClose}
                 className="text-gray-400 hover:text-white text-xl"

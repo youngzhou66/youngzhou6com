@@ -26,14 +26,14 @@ export default function AnnouncementModal({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.92, y: 16 }}
             transition={{ duration: 0.2 }}
-            className="bg-[#1a1d27] border border-white/10 rounded-2xl p-6 shadow-2xl max-w-xl w-full max-h-[85vh] overflow-y-auto"
+            className="glass-strong rounded-2xl p-6 max-w-xl w-full max-h-[85vh] overflow-y-auto"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-4 mb-4">
               <div>
-                <h3 className="text-xl font-bold text-white">📢 版本公告</h3>
+                <h3 className="text-2xl font-display text-white">📢 版本公告</h3>
                 <p className="text-xs text-gray-500 mt-1">
-                  当前版本 v1.8 · 2026-10-21
+                  当前版本 v1.81 · 2026-10-21
                 </p>
               </div>
               <button
@@ -47,7 +47,27 @@ export default function AnnouncementModal({
             <div className="space-y-3">
               <div className="rounded-xl border border-cyan-500/20 bg-cyan-500/5 p-4">
                 <div className="text-sm font-bold text-cyan-300">
-                  🆕 v1.8 · 2026-10-21
+                  🆕 v1.81 · 2026-10-21
+                </div>
+                <ul className="list-disc list-inside space-y-1.5 text-gray-400 text-sm mt-2">
+                  <li>
+                    视觉改版：卡片换成<span className="text-white">毛玻璃</span>
+                    （半透明 + 模糊 + 顶部高光），背景光斑重做为青 / 靛 / 品红三色
+                  </li>
+                  <li>
+                    字体：标题换成<span className="text-white">站酷庆科黄油体</span>，
+                    ELO / 胜率等数字改用等宽字体对齐；不再请求 Google Fonts，国内首屏更快
+                  </li>
+                  <li>
+                    排版：主标题 48 → 60px，队伍名 24 → 30px，卡片与按钮的层级对比更清楚
+                  </li>
+                  <li>无障碍：补上键盘焦点样式，并尊重系统的「减少动效」设置</li>
+                </ul>
+              </div>
+
+              <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                <div className="text-sm font-bold text-gray-200">
+                  v1.8 · 2026-10-21
                 </div>
                 <ul className="list-disc list-inside space-y-1.5 text-gray-400 text-sm mt-2">
                   <li>
@@ -251,7 +271,7 @@ export default function AnnouncementModal({
 
             <button
               onClick={onClose}
-              className="mt-5 w-full py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white text-sm font-bold transition-all"
+              className="mt-5 w-full py-2.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-[#061018] text-sm font-bold transition-colors"
             >
               开始使用
             </button>

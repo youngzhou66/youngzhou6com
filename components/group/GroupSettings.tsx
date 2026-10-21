@@ -43,7 +43,7 @@ export default function GroupSettings({
     <>
       <div className="mt-6 pt-5 border-t border-white/10">
         <div className="flex flex-wrap items-center gap-3 mb-4">
-          <h3 className="text-base font-bold text-white">
+          <h3 className="text-lg font-display text-white">
             ⚙️ 分组与英雄设置
           </h3>
           <span className="text-xs text-gray-500">
@@ -55,7 +55,7 @@ export default function GroupSettings({
             <div className="text-sm font-medium text-gray-300 mb-3">
               🧩 分组模式
             </div>
-            <div className="flex bg-[#0f1117] rounded-lg p-1 border border-white/10">
+            <div className="flex bg-black/30 rounded-lg p-1 border border-white/10">
               <button
                 onClick={() => onSortModeChange('balanced')}
                 className={`flex-1 px-3 py-2 rounded-md text-sm transition-colors ${
@@ -137,7 +137,7 @@ export default function GroupSettings({
                 👁 查看英雄
               </button>
             </div>
-            <div className="grid grid-cols-2 gap-1.5 bg-[#0f1117] rounded-lg p-1 border border-white/10">
+            <div className="grid grid-cols-2 gap-1.5 bg-black/30 rounded-lg p-1 border border-white/10">
               {CHAMPION_POOL_OPTIONS.map((option) => (
                 <button
                   key={option.id}
@@ -193,10 +193,10 @@ export default function GroupSettings({
           <button
             onClick={onGenerate}
             disabled={selectedCount !== 10}
-            className={`px-10 py-3 rounded-xl font-bold text-white transition-all ${
+            className={`px-10 py-3 rounded-xl font-bold tnum transition-all ${
               selectedCount === 10
-                ? 'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/40'
-                : 'bg-gray-600 cursor-not-allowed'
+                ? 'bg-cyan-400 text-[#061018] hover:bg-cyan-300 shadow-[0_12px_32px_-14px_rgba(34,211,238,0.9)]'
+                : 'border border-white/10 bg-white/[0.06] text-gray-400 cursor-not-allowed'
             }`}
           >
             ⚔️ 开始分组

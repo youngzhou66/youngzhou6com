@@ -452,17 +452,17 @@ export default function GroupPageContent() {
         <div className="aurora-lines" />
         <div className="aurora-grid" />
       </div>
-      <div className="relative min-h-screen bg-gradient-to-b from-[#0c0e1a] via-[#0f1117] to-[#0c0e1a] text-gray-100 pt-24 pb-16">
+      <div className="relative min-h-screen text-gray-100 pt-24 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-8"
           >
-            <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-4">
+            <h1 className="text-5xl md:text-6xl font-display text-white mb-4">
               LOL 智能分组
             </h1>
-            <p className="text-gray-400 text-lg">
+            <p className="mx-auto max-w-2xl text-base md:text-lg leading-relaxed text-gray-400">
               选择 10 位玩家，系统将根据位置加权 ELO 智能平衡双方实力，并按位置抽取英雄
             </p>
           </motion.div>
@@ -471,7 +471,7 @@ export default function GroupPageContent() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="bg-[#1a1d27] border border-white/5 rounded-2xl p-6 shadow-xl mb-6"
+            className="glass rounded-2xl p-6 mb-6"
           >
             <PlayerSelector
               allPlayers={allPlayers}

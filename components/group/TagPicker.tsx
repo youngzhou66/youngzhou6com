@@ -95,7 +95,7 @@ export default function TagPicker({ value, onChange }: TagPickerProps) {
           }}
           maxLength={MAX_TAG_LENGTH}
           placeholder="自定义标签，回车添加"
-          className="min-w-0 flex-1 rounded-lg border border-white/10 bg-[#0f1117] px-3 py-1.5 text-xs text-gray-100 focus:border-cyan-500/50 focus:outline-none"
+          className="min-w-0 flex-1 rounded-lg border border-white/10 bg-black/30 px-3 py-1.5 text-xs text-gray-100 focus:border-cyan-500/50 focus:outline-none"
         />
         <button
           type="button"

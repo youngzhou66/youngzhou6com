@@ -95,7 +95,7 @@ export default function TeamResult({
                 transition={{ delay: 0.5 }}
                 className="text-center"
               >
-                <div className="inline-flex items-center gap-6 bg-[#1a1d27] border border-white/10 rounded-full px-8 py-4 shadow-2xl">
+                <div className="inline-flex items-center gap-6 glass-strong rounded-full px-8 py-4 tnum">
                   <div className="flex items-center gap-2">
                     <span className="text-blue-400 text-xs">蓝方加权</span>
                     <span className="text-xl font-bold text-white">
@@ -164,10 +164,10 @@ export default function TeamResult({
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-center py-12 bg-[#1a1d27] border border-white/5 rounded-2xl shadow-xl"
+              className="text-center py-12 glass rounded-2xl"
             >
               <div className="text-6xl mb-4">😢</div>
-              <h3 className="text-xl font-bold text-white mb-2">分组失败</h3>
+              <h3 className="text-2xl font-display text-white mb-2">分组失败</h3>
               <p className="text-gray-400">
                 无法为 10 位玩家分配满足位置约束的阵容，请尝试：
               </p>

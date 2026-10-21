@@ -1,8 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import './fonts.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ---------------------------------------------------------------
+ * 设计 token（玻璃拟态 2.0）
+ * - 不再从 Google Fonts 拉 Inter：Inter 没有中文，中英会混排两套字形，
+ *   而且 fonts.googleapis.com 在国内经常超时、还会阻塞首屏渲染。
+ *   这里直接用系统字体栈，中文/英文/数字都走同一套渲染。
+ * ------------------------------------------------------------- */
+:root {
+  --bg-base: #0b0d12;
+  --line-weak: rgba(255, 255, 255, 0.16);
+  --line-strong: rgba(255, 255, 255, 0.22);
+  --glass-top: rgba(255, 255, 255, 0.10);
+  --glass-bottom: rgba(255, 255, 255, 0.035);
+  --accent: #22d3ee;
+}
 
 * {
   box-sizing: border-box;
@@ -14,12 +29,16 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  font-family: 'Inter', system-ui, sans-serif;
 }
 
 body {
-  color: #f3f4f6;
-  background: #0f1117;
+  color: #e8ecf3;
+  background-color: var(--bg-base);
+  font-family: system-ui, -apple-system, 'Segoe UI', 'PingFang SC',
+    'HarmonyOS Sans SC', 'Microsoft YaHei', 'Noto Sans SC', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
 }
 
@@ -29,106 +48,151 @@ a {
 }
 
 ::selection {
-  background-color: #ff6b6b;
-  color: white;
+  background-color: rgba(34, 211, 238, 0.28);
+  color: #ffffff;
+}
+
+/* 键盘焦点：原来全站没有任何 focus 样式，TAB 走一圈看不到落点 */
+:focus-visible {
+  outline: 2px solid rgba(34, 211, 238, 0.6);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* 细滚动条，避免默认白条破坏深色玻璃 */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border: 3px solid transparent;
+  background-clip: content-box;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.22);
+  background-clip: content-box;
+}
+
+@layer components {
+  /* 主要卡片：半透明 + 模糊 + 顶部 1px 高光，背后有光斑才看得出玻璃感 */
+  .glass {
+    background-image: linear-gradient(
+      180deg,
+      var(--glass-top),
+      var(--glass-bottom)
+    );
+    background-color: rgba(18, 20, 30, 0.38);
+    -webkit-backdrop-filter: blur(14px) saturate(135%);
+    backdrop-filter: blur(14px) saturate(135%);
+    border: 1px solid var(--line-weak);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.18),
+      0 18px 40px -24px rgba(0, 0, 0, 0.85);
+  }
+
+  /* 弹窗：更厚一层，避免背景内容透过来影响阅读 */
+  .glass-strong {
+    background-image: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.09),
+      rgba(255, 255, 255, 0.035)
+    );
+    background-color: rgba(18, 20, 28, 0.82);
+    -webkit-backdrop-filter: blur(22px) saturate(140%);
+    backdrop-filter: blur(22px) saturate(140%);
+    border: 1px solid var(--line-strong);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.12),
+      0 32px 64px -32px rgba(0, 0, 0, 0.9);
+  }
+
+  /* 卡片内部的凹陷容器（输入框、分段控件、列表底） */
+  .glass-inset {
+    background-color: rgba(0, 0, 0, 0.28);
+    border: 1px solid var(--line-weak);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.45);
+  }
+
+  /* 展示字体：站酷庆科黄油体（自托管子集，仅覆盖站内用到的字符） */
+  .font-display {
+    font-family: 'ZCOOL QingKe HuangYou', system-ui, -apple-system,
+      'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.015em;
+  }
+
+  /* 数字对齐：ELO / 胜率 / 排名这类需要按位对齐；数字走 Space Grotesk，中文自动回落 */
+  .tnum {
+    font-family: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI',
+      'PingFang SC', 'Microsoft YaHei', sans-serif;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum' 1;
+  }
 }
 
 @layer utilities {
+  /* 背景氛围：只保留两团极淡的光 + 一层细网格，原来 5 层（光斑×2、orb、网格、斜线）太吵 */
   .aurora-bg {
     position: fixed;
     inset: 0;
-    overflow: hidden;
     z-index: 0;
+    overflow: hidden;
     pointer-events: none;
     background:
-      radial-gradient(ellipse at 20% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 80%, rgba(239, 68, 68, 0.06) 0%, transparent 50%),
-      radial-gradient(ellipse at 50% 50%, rgba(6, 182, 212, 0.05) 0%, transparent 60%);
-  }
-
-  .aurora-bg::before,
-  .aurora-bg::after {
-    content: '';
-    position: absolute;
-    width: 700px;
-    height: 700px;
-    border-radius: 50%;
-    filter: blur(140px);
-    opacity: 0.18;
-    animation: aurora-float 20s ease-in-out infinite;
+      radial-gradient(
+        60% 45% at 15% 0%,
+        rgba(34, 211, 238, 0.26) 0%,
+        transparent 70%
+      ),
+      radial-gradient(
+        55% 45% at 85% 5%,
+        rgba(99, 102, 241, 0.24) 0%,
+        transparent 70%
+      ),
+      radial-gradient(
+        70% 50% at 50% 100%,
+        rgba(217, 70, 239, 0.14) 0%,
+        transparent 70%
+      );
   }
 
   .aurora-bg::before {
-    background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
-    top: -250px;
-    left: -150px;
-    animation-delay: 0s;
-  }
-
-  .aurora-bg::after {
-    background: radial-gradient(circle, #ef4444 0%, transparent 70%);
-    bottom: -250px;
-    right: -150px;
-    animation-delay: -10s;
-  }
-
-  .aurora-orb {
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    filter: blur(100px);
-    opacity: 0.15;
-    background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: aurora-float 25s ease-in-out infinite;
-    animation-delay: -5s;
-  }
-
-  .aurora-lines {
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(135deg, transparent 40%, rgba(34, 211, 238, 0.04) 50%, transparent 60%),
-      linear-gradient(45deg, transparent 45%, rgba(167, 139, 250, 0.03) 55%, transparent 65%);
-    animation: lines-drift 30s linear infinite;
-  }
-
-  .aurora-grid {
+    content: '';
     position: absolute;
     inset: 0;
     background-image:
-      linear-gradient(rgba(34, 211, 238, 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(34, 211, 238, 0.06) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
-    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 64px 64px;
+    -webkit-mask-image: radial-gradient(
+      ellipse at 50% 0%,
+      black 15%,
+      transparent 72%
+    );
+    mask-image: radial-gradient(
+      ellipse at 50% 0%,
+      black 15%,
+      transparent 72%
+    );
   }
+}
 
-  @keyframes aurora-float {
-    0%, 100% {
-      transform: translate(0, 0) scale(1);
-    }
-    25% {
-      transform: translate(80px, -60px) scale(1.1);
-    }
-    50% {
-      transform: translate(-40px, 40px) scale(0.95);
-    }
-    75% {
-      transform: translate(-80px, 20px) scale(1.05);
-    }
+/* 尊重系统的减少动效设置 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
-
-  @keyframes lines-drift {
-    0% {
-      background-position: 0 0, 0 0;
-    }
-    100% {
-      background-position: 200px 200px, -200px 200px;
-    }
-  }
-
 }

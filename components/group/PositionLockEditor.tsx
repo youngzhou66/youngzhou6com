@@ -26,9 +26,9 @@ export default function PositionLockEditor({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2 }}
-      className="bg-[#1a1d27] border border-white/5 rounded-2xl p-6 shadow-xl mb-6"
+      className="glass rounded-2xl p-6 mb-6"
     >
-      <h3 className="text-lg font-bold text-white mb-1">
+      <h3 className="text-xl font-display text-white mb-1">
         位置锁定（可选，支持多选）
       </h3>
       <p className="text-xs text-gray-500 mb-4">

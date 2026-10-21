@@ -51,9 +51,9 @@ export default function PairConstraintEditor({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.25 }}
-      className="bg-[#1a1d27] border border-white/5 rounded-2xl p-6 shadow-xl mb-6"
+      className="glass rounded-2xl p-6 mb-6"
     >
-      <h3 className="text-lg font-bold text-white mb-1">🤝 同队约束（可选）</h3>
+      <h3 className="text-xl font-display text-white mb-1">🤝 同队约束（可选）</h3>
       <p className="text-xs text-gray-500 mb-4">
         支持指定任意两名玩家“必须同队”或“不要同队”，两种分组模式都会遵守。
       </p>
@@ -64,7 +64,7 @@ export default function PairConstraintEditor({
           <select
             value={playerA}
             onChange={(event) => setPlayerA(event.target.value)}
-            className="w-full px-3 py-2 bg-[#0f1117] border border-white/10 rounded-lg text-gray-100 text-sm focus:outline-none focus:border-cyan-500/50"
+            className="w-full px-3 py-2 bg-black/30 border border-white/10 rounded-lg text-gray-100 text-sm focus:outline-none focus:border-cyan-500/50"
           >
             {players.map((player) => (
               <option key={player.name} value={player.name}>
@@ -81,7 +81,7 @@ export default function PairConstraintEditor({
             onChange={(event) =>
               setType(event.target.value as PairConstraintType)
             }
-            className="w-full px-3 py-2 bg-[#0f1117] border border-white/10 rounded-lg text-gray-100 text-sm focus:outline-none focus:border-cyan-500/50"
+            className="w-full px-3 py-2 bg-black/30 border border-white/10 rounded-lg text-gray-100 text-sm focus:outline-none focus:border-cyan-500/50"
           >
             {CONSTRAINT_OPTIONS.map((option) => (
               <option key={option.id} value={option.id}>
@@ -96,7 +96,7 @@ export default function PairConstraintEditor({
           <select
             value={playerB}
             onChange={(event) => setPlayerB(event.target.value)}
-            className="w-full px-3 py-2 bg-[#0f1117] border border-white/10 rounded-lg text-gray-100 text-sm focus:outline-none focus:border-cyan-500/50"
+            className="w-full px-3 py-2 bg-black/30 border border-white/10 rounded-lg text-gray-100 text-sm focus:outline-none focus:border-cyan-500/50"
           >
             {players.map((player) => (
               <option key={player.name} value={player.name}>

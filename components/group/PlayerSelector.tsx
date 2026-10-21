@@ -160,7 +160,7 @@ export default function PlayerSelector({
                   }
                   placeholder="玩家名称"
                   maxLength={MAX_PLAYER_NAME_LENGTH}
-                  className="flex-1 min-w-[150px] px-3 py-2 bg-[#0f1117] border border-white/10 rounded-lg text-gray-100 text-sm focus:outline-none focus:border-cyan-500/50"
+                  className="flex-1 min-w-[150px] px-3 py-2 bg-black/30 border border-white/10 rounded-lg text-gray-100 text-sm focus:outline-none focus:border-cyan-500/50"
                 />
                 <button
                   onClick={onAddCustomPlayer}
@@ -168,7 +168,7 @@ export default function PlayerSelector({
                   className={`px-4 py-2 rounded-lg text-sm font-medium text-white transition-all ${
                     newPlayerName.trim()
                       ? 'bg-cyan-500 hover:bg-cyan-400'
-                      : 'bg-gray-600 cursor-not-allowed'
+                      : 'border border-white/10 bg-white/[0.06] text-gray-400 cursor-not-allowed'
                   }`}
                 >
                   确认添加
@@ -186,7 +186,7 @@ export default function PlayerSelector({
                 {POSITIONS.map((position) => (
                   <div
                     key={position}
-                    className="bg-[#0f1117] rounded-lg p-2 border border-white/5"
+                    className="bg-black/30 rounded-lg p-2 border border-white/5"
                   >
                     <div className="text-xs text-gray-400 mb-1 text-center">
                       {POSITION_LABELS[position].zh}
@@ -199,7 +199,7 @@ export default function PlayerSelector({
                           event.target.value as TierKey
                         )
                       }
-                      className="w-full text-xs bg-[#1a1d27] border border-white/10 rounded px-1 py-1 text-gray-100 focus:outline-none focus:border-cyan-500/50"
+                      className="w-full text-xs bg-black/35 border border-white/10 rounded px-1 py-1 text-gray-100 focus:outline-none focus:border-cyan-500/50"
                     >
                       {TIER_KEYS.map((key) => (
                         <option key={key} value={key}>
@@ -294,7 +294,7 @@ export default function PlayerSelector({
               value={searchQuery}
               onChange={(event) => onSearchQueryChange(event.target.value)}
               placeholder="搜索玩家 id（支持空格分词）"
-              className="w-full rounded-lg border border-white/10 bg-[#0f1117] py-2 pl-9 pr-8 text-sm text-gray-100 focus:border-cyan-500/50 focus:outline-none"
+              className="w-full rounded-lg border border-white/10 bg-black/30 py-2 pl-9 pr-8 text-sm text-gray-100 focus:border-cyan-500/50 focus:outline-none"
             />
             {searchQuery.length > 0 && (
               <button
@@ -378,8 +378,8 @@ export default function PlayerSelector({
                 key={player.name}
                 className={`${PLAYER_CARD_WIDTH} ${PLAYER_CARD_HEIGHT} flex flex-col justify-center rounded-xl border px-2 py-1.5 transition-all ${
                   isSelected
-                    ? 'border-cyan-400/60 bg-cyan-500/20'
-                    : 'border-white/10 bg-white/5 hover:bg-white/10'
+                    ? 'border-cyan-400/70 bg-cyan-400/[0.16] shadow-[0_0_0_1px_rgba(34,211,238,0.32),0_10px_24px_-16px_rgba(34,211,238,0.9)]'
+                    : 'border-white/10 bg-white/[0.04] hover:border-white/25 hover:bg-white/[0.08]'
                 } ${isCustom ? 'ring-1 ring-cyan-400/50' : ''}`}
               >
                 <button

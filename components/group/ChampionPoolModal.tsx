@@ -41,12 +41,12 @@ export default function ChampionPoolModal({
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="bg-[#1a1d27] border border-white/10 rounded-2xl p-6 shadow-2xl max-w-4xl w-full max-h-[85vh] overflow-y-auto"
+            className="glass-strong rounded-2xl p-6 max-w-4xl w-full max-h-[85vh] overflow-y-auto"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-4 mb-1">
               <div>
-                <h3 className="text-xl font-bold text-white">
+                <h3 className="text-2xl font-display text-white">
                   🗂️ 当前英雄池
                 </h3>
                 <p className="text-xs text-gray-500 mt-1">

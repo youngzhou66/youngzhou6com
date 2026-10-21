@@ -15,7 +15,7 @@ export default function ChampionPickCard({
   return (
     <div
       title={`${champion.name} · OP.GG #${champion.rank} · 胜率 ${champion.winRate.toFixed(1)}% · 登场率 ${champion.pickRate.toFixed(1)}%`}
-      className="flex items-center gap-2 rounded-lg bg-[#12151f] border border-white/10 px-2 py-1.5 shadow-sm hover:border-cyan-400/30 transition-colors"
+      className="flex items-center gap-2 rounded-lg bg-white/[0.04] border border-white/10 px-2 py-1.5 shadow-sm hover:border-cyan-400/30 transition-colors"
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
