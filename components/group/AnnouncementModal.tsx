@@ -33,7 +33,7 @@ export default function AnnouncementModal({
               <div>
                 <h3 className="text-xl font-bold text-white">📢 版本公告</h3>
                 <p className="text-xs text-gray-500 mt-1">
-                  当前版本 v1.7 · 2026-09-16
+                  当前版本 v1.7.2 · 2026-10-21
                 </p>
               </div>
               <button
@@ -47,7 +47,44 @@ export default function AnnouncementModal({
             <div className="space-y-3">
               <div className="rounded-xl border border-cyan-500/20 bg-cyan-500/5 p-4">
                 <div className="text-sm font-bold text-cyan-300">
-                  🆕 v1.7 · 2026-09-16
+                  🆕 v1.7.2 · 2026-10-21
+                </div>
+                <ul className="list-disc list-inside space-y-1.5 text-gray-400 text-sm mt-2">
+                  <li>
+                    玩家名单新增 4 位成员：<span className="text-white">橙子多多l</span>、
+                    <span className="text-white">你会等待还是离开</span>（红温小海）、
+                    <span className="text-white">嘉然说她喜欢猫</span>（二刺螈）、
+                    <span className="text-white">救我我还能奶</span>（L7）
+                  </li>
+                  <li>
+                    <span className="text-white">夜行少女</span>：打野 拉完了 → 人上人，中单 人上人 → 顶级
+                  </li>
+                  <li>
+                    <span className="text-white">青衫持刹那</span>：中单 人上人 → NPC，AD 人上人 → 顶级
+                  </li>
+                  <li>
+                    <span className="text-white">孤独娱乐</span>：上单 NPC → 人上人，辅助 NPC → 人上人
+                  </li>
+                  <li>
+                    <span className="text-white">许天麒</span>：打野 拉完了 → 人上人
+                  </li>
+                  <li>
+                    <span className="text-white">你会等待还是离开</span>：中单与打野档位互换
+                    （中单 顶级 → NPC，打野 NPC → 顶级）
+                  </li>
+                  <li>
+                    <span className="text-white">羊羊</span> 标签由「羊羊」改为「扫羊」
+                  </li>
+                  <li>
+                    英雄数据更新到 OP.GG <span className="text-white">Patch 16.20</span>
+                    （单双排 · 全服 · 翡翠+ · 2026-10-10）
+                  </li>
+                </ul>
+              </div>
+
+              <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                <div className="text-sm font-bold text-gray-200">
+                  v1.7 · 2026-09-16
                 </div>
                 <ul className="list-disc list-inside space-y-1.5 text-gray-400 text-sm mt-2">
                   <li>

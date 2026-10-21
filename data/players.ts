@@ -74,7 +74,7 @@ export const PLAYERS: Player[] = [
   { name: '哄完老婆',     tags: ['大董'], positions: { top: 'lawanle',       jungle: 'lawanle', mid: 'npc',      adc: 'npc',         support: 'renshangren' } },
   { name: '雇佣者', tags: ['精英咕咕嘎嘎'],         positions: { top: 'renshangren', jungle: 'renshangren', mid: 'npc',     adc: 'npc',         support: 'npc' } },
   { name: '雷展赫', tags: ['水豚噜噜'],         positions: { top: 'renshangren',       jungle: 'dingji', mid: 'npc',       adc: 'npc',         support: 'npc' } },
-  { name: '许天麒', tags: ['水豚噜噜'],         positions: { top: 'npc',       jungle: 'lawanle',     mid: 'renshangren', adc: 'lawanle',      support: 'npc' } },
+  { name: '许天麒', tags: ['水豚噜噜'],         positions: { top: 'npc',       jungle: 'renshangren',     mid: 'renshangren', adc: 'lawanle',      support: 'npc' } },
   { name: '张序然', tags: ['水豚噜噜'],         positions: { top: 'renshangren', jungle: 'npc',        mid: 'npc',       adc: 'npc',     support: 'npc' } },
   { name: '羊羊',           tags: ['扫羊'], positions: { top: 'dingji', jungle: 'hang',   mid: 'hang', adc: 'renshangren',   support: 'renshangren' } },
   { name: '泰隆0u0', tags: ['水豚噜噜'],           positions: { top: 'renshangren',   jungle: 'dingji', mid: 'hang', adc: 'renshangren',         support: 'renshangren' } },
@@ -87,7 +87,7 @@ export const PLAYERS: Player[] = [
   { name: '童话书',   positions: { top: 'npc',       jungle: 'lawanle',         mid: 'renshangren',         adc: 'lawanle',        support: 'dingji' } },
   { name: '青山不解风情',     positions: { top: 'lawanle',   jungle: 'lawanle',    mid: 'renshangren', adc: 'lawanle',    support: 'dingji' } },
   { name: '橙子多多l',       positions: { top: 'renshangren', jungle: 'dingji', mid: 'renshangren', adc: 'npc',    support: 'npc' } },
-  { name: '你会等待还是离开', tags: ['红温小海'], positions: { top: 'renshangren', jungle: 'npc', mid: 'dingji', adc: 'renshangren', support: 'npc' } },
+  { name: '你会等待还是离开', tags: ['红温小海'], positions: { top: 'renshangren', jungle: 'dingji', mid: 'npc', adc: 'renshangren', support: 'npc' } },
   { name: '嘉然说她喜欢猫',   tags: ['二刺螈'], positions: { top: 'renshangren', jungle: 'npc', mid: 'renshangren', adc: 'lawanle', support: 'npc' } },
   { name: '救我我还能奶',     tags: ['L7'], positions: { top: 'renji', jungle: 'renji', mid: 'lawanle', adc: 'npc', support: 'renshangren' } }
 ];
