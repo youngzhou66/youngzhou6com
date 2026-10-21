@@ -54,12 +54,17 @@ function writeStorage(key: string, value: string | null): void {
   }
 }
 
-/** 清洗玩家名：去掉控制字符并截断 */
+/**
+ * 去掉控制字符与首尾空白，但**不截断**。
+ * 校验长度必须用这一步的结果：先截断再判长度的话，超长就永远判不出来了。
+ */
+function cleanPlayerName(raw: string): string {
+  return raw.replace(/[\u0000-\u001f\u007f]/g, '').trim();
+}
+
+/** 清洗玩家名：去掉控制字符并截断到上限 */
 export function sanitizePlayerName(raw: string): string {
-  return raw
-    .replace(/[\u0000-\u001f\u007f]/g, '')
-    .trim()
-    .slice(0, MAX_PLAYER_NAME_LENGTH);
+  return cleanPlayerName(raw).slice(0, MAX_PLAYER_NAME_LENGTH);
 }
 
 function parsePlayer(value: unknown): Player | null {
@@ -148,12 +153,16 @@ export function validateNewPlayerName(
   raw: string,
   existingNames: readonly string[]
 ): string | null {
-  const name = sanitizePlayerName(raw);
+  // 先按"未截断"的原文判长度，再走截断的 sanitize：否则超长输入会被悄悄截成合法名字
+  const cleaned = cleanPlayerName(raw);
 
-  if (!name) return '请输入玩家名称';
-  if (name.length > MAX_PLAYER_NAME_LENGTH) {
+  if (!cleaned) return '请输入玩家名称';
+  if (cleaned.length > MAX_PLAYER_NAME_LENGTH) {
     return `名称不能超过 ${MAX_PLAYER_NAME_LENGTH} 个字符`;
   }
+
+  const name = sanitizePlayerName(cleaned);
+
   if (existingNames.includes(name)) {
     return `“${name}” 已存在，请换个名字`;
   }

@@ -24,7 +24,7 @@ export interface Player {
  * 档位 ELO 刻度（v1.5 起）：相邻档位统一相差 30 分，对应单人胜率约 54%，
  * 是"能感觉到、但不过分"的粒度。旧的 10 分档（夯爆了/夯、拉完了/人机）
  * 只对应 51.4% 胜率，等于抛硬币，已废弃。
- * 实测本表 39 位玩家：单人加权均值 115.2，队伍加权总分均值约 576。
+ * 实测本表 43 位玩家：单人加权均值 115.2，队伍加权总分均值约 576。
  * 注意：由于 5 个位置各有 2 人、共 32 种切分，算法在 300 次尝试内几乎总能凑出
  * 恰好 0 分差的完美五五开，因此 10% 阈值实际很少成为约束条件。
  */
@@ -49,7 +49,7 @@ export const POSITION_LABELS: Record<Position, { zh: string; en: string; icon: s
 export const PLAYERS: Player[] = [
   { name: '大灰蛛',         tags: ['咕咕嘎嘎'], positions: { top: 'npc',    jungle: 'dingji', mid: 'lawanle',        adc: 'renshangren', support: 'npc' } },
   { name: '忘绝尘',         tags: ['咕咕嘎嘎'], positions: { top: 'lawanle',    jungle: 'lawanle', mid: 'lawanle',      adc: 'lawanle',      support: 'renshangren' } },
-  { name: '夜行少女',       tags: ['咕咕嘎嘎'], positions: { top: 'renshangren',jungle: 'lawanle', mid: 'renshangren',        adc: 'hang',       support: 'dingji' } },
+  { name: '夜行少女',       tags: ['咕咕嘎嘎'], positions: { top: 'renshangren',jungle: 'renshangren', mid: 'dingji',        adc: 'hang',       support: 'dingji' } },
   { name: '牢王Ovo',    tags: ['牢王'], positions: { top: 'hang',       jungle: 'hangbaole',mid: 'dingji',      adc: 'renshangren',     support: 'hang' } },
   { name: '余晖光年',     tags: ['咕咕嘎嘎'], positions: { top: 'lawanle',    jungle: 'npc',    mid: 'dingji',        adc: 'renshangren',support: 'hang' } },
   { name: '打弟弟专用号',   tags: ['咕咕嘎嘎'], positions: { top: 'dingji',     jungle: 'npc',    mid: 'renshangren',   adc: 'lawanle',    support: 'npc' } },
@@ -57,7 +57,7 @@ export const PLAYERS: Player[] = [
   { name: '朗哥',           tags: ['咕咕嘎嘎'], positions: { top: 'lawanle',    jungle: 'dingji', mid: 'npc',          adc: 'npc',        support: 'dingji' } },
   { name: '杨晓豪石头人', tags: ['咕咕嘎嘎'], positions: { top: 'dingji',   jungle: 'npc',    mid: 'renshangren', adc: 'lawanle',    support: 'npc' } },
   { name: '小岩',           tags: ['咕咕嘎嘎'], positions: { top: 'lawanle',    jungle: 'renshangren',mid: 'npc',      adc: 'renshangren',     support: 'dingji' } },
-  { name: '青衫持刹那',     tags: ['再次抽象'], positions: { top: 'npc',       jungle: 'hang',    mid: 'renshangren',   adc: 'renshangren', support: 'dingji' } },
+  { name: '青衫持刹那',     tags: ['再次抽象'], positions: { top: 'npc',       jungle: 'hang',    mid: 'npc',   adc: 'dingji', support: 'dingji' } },
   { name: '吕庚辰',         tags: ['再次抽象'], positions: { top: 'dingji',    jungle: 'lawanle', mid: 'renshangren',   adc: 'lawanle',     support: 'renshangren' } },
   { name: '早春野湖',       tags: ['再次抽象'], positions: { top: 'lawanle',       jungle: 'renshangren', mid: 'npc', adc: 'dingji',     support: 'renshangren' } },
   { name: '水里de石头',     tags: ['再次抽象'], positions: { top: 'dingji',    jungle: 'lawanle', mid: 'renshangren',   adc: 'dingji',      support: 'renshangren' } },
@@ -76,14 +76,18 @@ export const PLAYERS: Player[] = [
   { name: '雷展赫', tags: ['水豚噜噜'],         positions: { top: 'renshangren',       jungle: 'dingji', mid: 'npc',       adc: 'npc',         support: 'npc' } },
   { name: '许天麒', tags: ['水豚噜噜'],         positions: { top: 'npc',       jungle: 'lawanle',     mid: 'renshangren', adc: 'lawanle',      support: 'npc' } },
   { name: '张序然', tags: ['水豚噜噜'],         positions: { top: 'renshangren', jungle: 'npc',        mid: 'npc',       adc: 'npc',     support: 'npc' } },
-  { name: '羊羊',           tags: ['羊羊'], positions: { top: 'dingji', jungle: 'hang',   mid: 'hang', adc: 'renshangren',   support: 'renshangren' } },
+  { name: '羊羊',           tags: ['扫羊'], positions: { top: 'dingji', jungle: 'hang',   mid: 'hang', adc: 'renshangren',   support: 'renshangren' } },
   { name: '泰隆0u0', tags: ['水豚噜噜'],           positions: { top: 'renshangren',   jungle: 'dingji', mid: 'hang', adc: 'renshangren',         support: 'renshangren' } },
   { name: '成都meiko', tags: ['水豚噜噜'],      positions: { top: 'lawanle',   jungle: 'npc',         mid: 'npc',         adc: 'npc',         support: 'renshangren' } },
-  { name: '孤独娱乐',           tags: ['白虎'], positions: { top: 'npc',       jungle: 'dingji',     mid: 'renshangren',         adc: 'dingji',      support: 'npc' } },
+  { name: '孤独娱乐',           tags: ['白虎'], positions: { top: 'renshangren',       jungle: 'dingji',     mid: 'renshangren',         adc: 'dingji',      support: 'renshangren' } },
   { name: '佳佳pp',          positions: { top: 'lawanle',   jungle: 'lawanle',    mid: 'npc',         adc: 'npc',         support: 'renshangren' } },
   { name: '你的笑点好低', tags: ['撸撸的超'],     positions: { top: 'renshangren', jungle: 'hang',     mid: 'renshangren', adc: 'renshangren', support: 'npc' } },
   { name: '状态好能一换一',   positions: { top: 'npc',       jungle: 'npc',         mid: 'npc',         adc: 'hang',        support: 'npc' } },
   { name: '临江边',   positions: { top: 'renji',       jungle: 'lawanle',         mid: 'renji',         adc: 'lawanle',        support: 'renji' } },
   { name: '童话书',   positions: { top: 'npc',       jungle: 'lawanle',         mid: 'renshangren',         adc: 'lawanle',        support: 'dingji' } },
-  { name: '青山不解风情',     positions: { top: 'lawanle',   jungle: 'lawanle',    mid: 'renshangren', adc: 'lawanle',    support: 'dingji' } }
+  { name: '青山不解风情',     positions: { top: 'lawanle',   jungle: 'lawanle',    mid: 'renshangren', adc: 'lawanle',    support: 'dingji' } },
+  { name: '橙子多多l',       positions: { top: 'renshangren', jungle: 'dingji', mid: 'renshangren', adc: 'npc',    support: 'npc' } },
+  { name: '你会等待还是离开', tags: ['红温小海'], positions: { top: 'renshangren', jungle: 'npc', mid: 'dingji', adc: 'renshangren', support: 'npc' } },
+  { name: '嘉然说她喜欢猫',   tags: ['二刺螈'], positions: { top: 'renshangren', jungle: 'npc', mid: 'renshangren', adc: 'lawanle', support: 'npc' } },
+  { name: '救我我还能奶',     tags: ['L7'], positions: { top: 'renji', jungle: 'renji', mid: 'lawanle', adc: 'npc', support: 'renshangren' } }
 ];

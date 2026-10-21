@@ -172,8 +172,11 @@ describe('collectAvailableTags', () => {
     ).toBe(true);
   });
 
-  it('真实名单上收集到 7 种标签', () => {
-    expect(collectAvailableTags(PLAYERS)).toHaveLength(7);
+  it('真实名单上收集到全部实际出现过的标签（不重不漏）', () => {
+    // 名单会随玩家增删变化，不写死数量：断言"收集结果 == 名单里真实出现过的标签集合"
+    const expected = [...new Set(PLAYERS.flatMap((player) => player.tags ?? []))];
+
+    expect(collectAvailableTags(PLAYERS).sort()).toEqual(expected.sort());
   });
 
   it('没有标签的名单返回空数组', () => {
